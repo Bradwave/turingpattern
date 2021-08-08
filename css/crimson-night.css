@@ -1,0 +1,169 @@
+/* Styling for the Turing Pattern */
+
+/* ==================================
+    Table of content
+    ----------------
+    1. Global
+        - Fonts
+        - Variables
+        - Selection
+        - Scrollbar
+    2. Components
+        2.1 Body
+        
+===================================== */
+
+/* ============================
+    1. Global
+    =============================== */
+
+/* -- Fonts -- */
+
+/* Robot Mono from Google Font */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+/**/
+
+/* -- Variables -- */
+
+:root {
+    --background: #ffffff;
+    --accent: #B01A00;
+    --primary: #000000;
+    --secondary: #494949;
+}
+
+/* -- Selection -- */
+
+/* Disable highlight rectangle on mobile */
+
+* {
+    -webkit-tap-highlight-color: #ffffff00;
+    user-select: none;
+}
+
+/* -- Selection -- */
+
+::-moz-selection {
+    color: #eeeeee;
+    background: var(--accent);
+}
+
+::selection {
+    color: #eeeeee;
+    background: var(--accent);
+}
+
+/* -- Scrollbar -- */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff36;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff88;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--accent);
+    transition: all 0.4s ease;
+}
+
+/* ============================
+    2. Components
+=============================== */
+
+/** -- 2.1 Page container -- */
+
+.page-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: minmax(150px, 1fr) 4fr 1fr;
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        grid-template-columns: none;
+    }
+}
+
+.page-content {
+    padding: 20px;
+}
+
+/* -- 2.2 Body -- */
+
+body {
+    background-color: var(--background);
+    font-family: 'STIX Two Text', serif;
+    color: var(--secondary);
+    counter-reset: section;
+    counter-reset: part;
+}
+
+/* -- 2.2.1 Text -- */
+
+/** -- Headers -- */
+
+/* Title */
+
+h1 {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+/* Part */
+
+h2 {
+    font-size: 32px;
+    font-weight: 700;
+    font-variant: small-caps;
+    counter-increment: part;
+}
+
+h2::before {
+    content: counter(part, upper-roman);
+    margin-right: 20px;
+}
+
+/* Section */
+
+h3 {
+    font-size: 28px;
+    counter-increment: section;
+    counter-reset: subsection;
+}
+
+h3::before {
+    content: counter(section);
+    margin-right: 20px;
+}
+
+/* Subsection */
+
+h4 {
+    font-size: 22px;
+    counter-increment: subsection;
+}
+
+h4::before {
+    content: counter(section) "." counter(subsection);
+    margin-right: 20px;
+}
+
+/** -- Paragraphs -- */
+
+p {
+    font-weight: normal;
+    font-size: 16px;
+}
