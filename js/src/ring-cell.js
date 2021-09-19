@@ -19,31 +19,36 @@ class cellsRing {
     resetCells() {
         this.#cells = [...Array(this.numberOfCells)].map(() => {
             return {
-                x: this.eq + Math.random() * .005 - .0025,
-                y: this.eq + Math.random() * .005 - .0025
+                x: .5 - Math.random() * .05,
+                y: .5 - Math.random() * .05
             }
         });
-        this.#newCells = this.#cells;
+        // for (let i = Math.round(this.#cells.length * 0.45); i < Math.round(this.#cells.length * 0.55); i++) {
+        //     this.#cells[i].y = 1 - Math.random() * .05;
+        // }
+        // this.#newCells = this.#cells;
     }
 
     nextStep() {
         this.#newCells = [];
         for (let i = 0; i < this.numberOfCells; i++) {
 
-            let prevI = (this.numberOfCells + i - 1) % this.numberOfCells;
-            let nextI = (i + 1) % this.numberOfCells;
+            const prevI = (this.numberOfCells + i - 1) % this.numberOfCells;
+            const nextI = (i + 1) % this.numberOfCells;
 
-            let xInc = this.a * this.#cells[i].x + this.b * this.#cells[i].y
+            // x[r] += a * x[r] + b * y[r] + mu * (x[r - 1] + 2 * x[r] + x[r - 1])
+            const xInc = this.a * this.#cells[i].x + this.b * this.#cells[i].y
                 + this.mu * (this.#cells[prevI].x - 2 * this.#cells[i].x + this.#cells[nextI].x);
-
-            let yInc = this.c * this.#cells[i].x + this.d * this.#cells[i].y
+            // y[r] += c * x[r] + d * y[r] + mu * (y[r - 1] + 2 * y[r] + y[r - 1])
+            const yInc = this.c * this.#cells[i].x + this.d * this.#cells[i].y
                 + this.nu * (this.#cells[prevI].y - 2 * this.#cells[i].y + this.#cells[nextI].y)
 
+            const newX = this.#cells[i].x + .05 * xInc;
+            const newY = this.#cells[i].y + .05 * yInc;
+
             this.#newCells[i] = {
-                // x[r] += a * x[r] + b * y[r] + mu * (x[r - 1] + 2 * x[r] + x[r - 1])
-                x: this.#cells[i].x + xInc, // > 0 ? this.#cells[i].x + xInc : 0,
-                // y[r] += c * x[r] + d * y[r] + mu * (y[r - 1] + 2 * y[r] + y[r - 1])
-                y: this.#cells[i].y + yInc  // > 0 ? this.#cells[i].y + yInc : 0
+                x: newX, // < 0 ? 0 : (newX > 1 ? 1 : newX),
+                y: newY // < 0 ? 0 : (newY > 1 ? 1 : newY)
             }
         };
         this.#cells = this.#newCells;
@@ -62,14 +67,15 @@ class cellsRing {
 
 const loopN = 1;
 const reps = 3;
-const vScale = 1;
+const vScale = 10;
 
 let cellsRingPlot = new p5((sketch) => {
 
     let c1;
 
     sketch.setup = function () {
-        c1 = new cellsRing(20, 1, 1, .5, -6, 2.5, -1.25, -2.5);
+        const I = 0.25;
+        c1 = new cellsRing(100, 0, 1, .5, I - 2, 2.5, -1.25, I + 1.5);
 
         let parentDiv = document.getElementById("canvas-1");
         sketch.createCanvas(parentDiv.offsetWidth, parentDiv.offsetWidth * 0.75);
@@ -84,7 +90,7 @@ let cellsRingPlot = new p5((sketch) => {
         let cellWidth = sketch.width / cells.length / reps;
         let ringWidth = sketch.width / reps;
         let repsOffSet = Math.floor(reps / 2);
-        let vOffset = - sketch.height / 3;
+        let vOffset = - sketch.height / 4;
 
         sketch.stroke(255);
         sketch.rect(0, 0, sketch.width, sketch.height);
@@ -93,29 +99,28 @@ let cellsRingPlot = new p5((sketch) => {
         sketch.line(ringWidth * repsOffSet, 0, ringWidth * repsOffSet, sketch.height);
         sketch.line(ringWidth * (repsOffSet + 1), 0, ringWidth * (repsOffSet + 1), sketch.height);
 
-        cells.forEach((cell, i) => {
+        for (let i = 0; i < cells.length - 1; i++) {
             for (let j = 0; j < reps; j++) {
                 sketch.stroke('#B01A00');
                 sketch.line(
-                    cellWidth * i + ringWidth * j, vOffset + sketch.height - cell.x * vScale,
-                    cellWidth * (i + 1) + ringWidth * j, vOffset + sketch.height - cell.x * vScale
+                    cellWidth * i + ringWidth * j, vOffset + sketch.height - cells[i].x * vScale,
+                    cellWidth * (i + 1) + ringWidth * j, vOffset + sketch.height - cells[i + 1].x * vScale
                 );
 
                 sketch.stroke(0);
                 sketch.line(
-                    cellWidth * i + ringWidth * j, vOffset + sketch.height - cell.y * vScale,
-                    cellWidth * (i + 1) + ringWidth * j, vOffset + sketch.height - cell.y * vScale
+                    cellWidth * i + ringWidth * j, vOffset + sketch.height - cells[i].y * vScale,
+                    cellWidth * (i + 1) + ringWidth * j, vOffset + sketch.height - cells[i + 1].y * vScale
                 );
             }
-        })
-
+        }
     }
 
-    sketch.keyPressed = function () {
-        if (sketch.keyCode === sketch.RIGHT_ARROW) {
+    document.addEventListener('keydown', (e) => {
+        if (e.code == "KeyN") {
             for (let i = 0; i < loopN; i++) { c1.nextStep(); }
             drawCells();
         }
-    }
+    })
 
 }, "canvas-1");

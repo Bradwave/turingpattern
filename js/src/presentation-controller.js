@@ -3,47 +3,58 @@ let presentationController = new function () {
     let currentSlideIndex = 0;
     let presentationMode = false;
 
-    let slides = document.getElementsByClassName("slide");
-    let presentationPlay = document.getElementById("presentation-play");
-    let presentationPause = document.getElementById("presentation-pause");
-    let presentationControls = document.getElementById("presentation-controls");
-    let progressBar = document.getElementById("progress-bar");
+    let slides;
+    let presentationPlay, presentationPause;
+    let presentationControls, progressBar;
 
-    presentationPlay.onclick = () => {
-        togglePresentation();
-    };
-
-    presentationPause.onclick = () => {
-        togglePresentation();
-    };
-
-    document.getElementById("next").onclick = () => {
-        nextSlide();
-    };
-
-    document.getElementById("previous").onclick = () => {
-        previousSlide();
-    };
-
-    document.addEventListener('keydown', (e) => {
-        switch (e.code) {
-
-            case "KeyS":
-                togglePresentation();
-                break;
-
-            case "ArrowRight":
-                nextSlide();
-                break;
-
-            case "ArrowLeft":
-                previousSlide();
-                break;
-
-            default:
-                break;
+    document.addEventListener("DOMContentLoaded", function (e) {
+        initHTMLComponents();
+        let hash = location.hash;
+        if (hash) {
+            currentSlideIndex = parseInt(hash.substr(1));
+            togglePresentation();
         }
     });
+
+    function initHTMLComponents() {
+        slides = document.getElementsByClassName("slide");
+        presentationPlay = document.getElementById("presentation-play");
+        presentationPause = document.getElementById("presentation-pause");
+        presentationControls = document.getElementById("presentation-controls");
+        progressBar = document.getElementById("progress-bar");
+
+        presentationPlay.onclick = () => {
+            togglePresentation();
+        };
+
+        presentationPause.onclick = () => {
+            togglePresentation();
+        };
+
+        document.getElementById("next").onclick = () => {
+            nextSlide();
+        };
+
+        document.getElementById("previous").onclick = () => {
+            previousSlide();
+        };
+
+        document.addEventListener('keydown', (e) => {
+            switch (e.code) {
+                case "KeyS":
+                    togglePresentation();
+                    break;
+                case "ArrowRight":
+                    nextSlide();
+                    break;
+                case "ArrowLeft":
+                    previousSlide();
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
 
     function togglePresentation() {
         presentationMode = !presentationMode;
@@ -55,10 +66,13 @@ let presentationController = new function () {
 
         if (presentationMode) {
             updateSlides();
+            window.location.hash = currentSlideIndex;
         } else {
             slides.forEach(slide => {
                 slide.style = "background: var(--background);"
             });
+            // history.pushState(null, null, null);
+            history.replaceState("", "", location.pathname);
         }
     }
 
@@ -81,6 +95,7 @@ let presentationController = new function () {
     }
 
     function updateSlides() {
+        window.location.hash = currentSlideIndex;
         slides.forEach((slide, i) => {
             slide.style = "background: " + (i == currentSlideIndex ? "var(--background)" : "var(--hidden)") + ";";
         });

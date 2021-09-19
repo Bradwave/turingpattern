@@ -60,36 +60,47 @@
                 <p>
                     Per illustrare i principi della morfogenesi, considero - seguendo strettamente l'articolo del 1952
                     di Turing - una particolare configurazione: <b>un anello di cellule simili</b>. Pur non essendo
-                    riconducibile ad un corrispettivo biologico, questo caso risulta particolarmente semplice e la
-                    teoria matematica ad esso applicata può essere facilmente estesa a casi più rilevanti.
+                    riconducibile ad un corrispettivo biologico, questa configurazione facilita l'analisi matematica del
+                    problema e la teoria ad essa applicata può essere eventualmente estesa ad altri casi più complessi.
                 </p>
             </div>
             <div class="slide">
                 <p>
                     Per semplicità, considero per ora un sistema in cui solo due morfogeni, $X$ e $Y$, interagiscono tra
-                    loro. Ogni cellula scambia i morfogeni con le cellule adiacenti per diffusione. Inoltre, ogni
-                    cellula produce o distrugge morfogeni in base alla concentrazione degli stessi.
+                    loro. Ogni cellula scambia i morfogeni con le cellule adiacenti per <b>diffusione</b>. Inoltre, in
+                    ogni
+                    cellula i morfogeni reagiscono tra loro ed eventualmente con catalizzatori e altre molecole, la cui
+                    disponibilità - per semplicità - si considera illimitata . Il prodotto di tale <b>reazione</b> è un
+                    aumento
+                    o una diminuzione dei morfogeni, che dipende dalla concentrazione degli stessi.
+                </p>
+                <p>
+                    Risulta così ovvio il motivo per cui tale sistema è noto come <b><i>reazione-diffusione</i></b>.
+                </p>
+                <p>
+                    Si suppone infine che, all'instante $t = 0$, le concentrazioni di $X$ e $Y$ non siano omogenee , a
+                    causa di una perturbazione che verrà tuttavia ignorata per $t > 0$.
                 </p>
             </div>
             <div class="slide">
-                <p>
-                    Il sistema può essere pertanto descritto dalle seguenti equazioni differenziali:
-                </p>
-                <div class="formula-container compact">
-                    <div class="formula">
-                        \[
-                        \begin{cases}
-                        \dfrac{dX_r}{dt} = f(X_r, Y_r) + \mu (X_{r + 1} - 2X_r + X_{r-1}) \\[1em]
-                        \dfrac{dY_r}{dt} = g(X_r, Y_r) + \nu (Y_{r + 1} - 2Y_r + Y_{r-1})
-                        \end{cases}
 
-                        \qquad
-
-                        r = 1, ..., N
-                        \]
-                    </div>
-                </div>
+            </div>
+            <div class="slide">
                 <p>
+                    Il sistema può essere pertanto descritto dalle seguenti $2N$ equazioni differenziali:
+
+                    \[
+                    \begin{cases}
+                    \dfrac{dX_r}{dt} = \underbrace{f(X_r, Y_r)}_{\text{reazione}} + \underbrace{\mu (X_{r + 1} - 2X_r +
+                    X_{r-1})}_{\text{diffusione}} \\[1em]
+                    \dfrac{dY_r}{dt} = g(X_r, Y_r) + \nu (Y_{r + 1} - 2Y_r + Y_{r-1})
+                    \end{cases}
+
+                    \qquad
+
+                    r = 1, ..., N
+                    \]
+
                     dove:
                 </p>
                 <ul>
@@ -101,9 +112,7 @@
                         $r$;
                     </li>
                     <li>
-                        $f(X, Y) \, , \; g(X, Y)$ modellizzano i processi di creazione e distruzione dei morfogeni in
-                        base alla
-                        loro concentrazione in una cellula;
+                        $f(X, Y) \, , \; g(X, Y)$ modellizzano la reazione dei morfogeni.
                     </li>
                     <li>
                         $\mu \, \; \nu$ sono i coefficienti di diffusione rispettivamente dei morfogeni $X$ e $Y$.
@@ -123,7 +132,7 @@
                         Una cellula isolata ha equilibrio $X = h \, , \; Y = k$ quando $f(h,k) = 0 = g(h, k)$.
                     </li>
                     <li>
-                        Il sistema è pertanto in equilibrio se $X_r = h \, , \; Y_r = k \; \forall r = 1, ..., N \,$.
+                        Il sistema è pertanto in equilibrio se $X_r = h \, , \; Y_r = k \;\: \forall r = 1, ..., N \,$.
                     </li>
                     <li>
                         Supponendo di non essere troppo distanti dall'equilibrio, è possibile scrivere $X_r = h + x_r \,
@@ -134,113 +143,138 @@
             </div>
             <div class="slide">
                 <p>
-                    Il sistema puù quindi essere riscritto nella forma:
+                    Il sistema può quindi essere riscritto nella seguente forma:
+
+                    \[
+                    \begin{cases}
+                    \dfrac{dx_r}{dt} = a x_r + b y_r + \mu (x_{r + 1} - 2x_r + x_{r-1}) \\[.5em]
+                    \dfrac{dy_r}{dt} = c x_r + d y_r + \nu (y_{r + 1} - 2y_r + y_{r-1})
+                    \end{cases}
+                    \]
                 </p>
-                <div class="formula-container compact">
-                    <div class="formula">
-                        \[
-                        \begin{cases}
-                        \dfrac{dx_r}{dt} = a x_r + b y_r + \mu (x_{r + 1} - 2x_r + x_{r-1}) \\[.5em]
-                        \dfrac{dy_r}{dt} = c x_r + d y_r + \nu (y_{r + 1} - 2y_r + y_{r-1})
-                        \end{cases}
-                        \]
-                    </div>
-                </div>
-                <p></p>
             </div>
             <div class="slide">
                 <p>
                     Con il seguente cambio di variabili
-                </p>
-                <div class="formula-container compact">
-                    <div class="formula">
-                        \[
-                        \begin{cases}
-                        x_r = \displaystyle \sum_{s = 0}^{N - 1} e^{\large \frac{2 \pi i r s}{N}} \xi_s \\[.5em]
-                        y_r = \displaystyle \sum_{s = 0}^{N - 1} e^{\large \frac{2 \pi i r s}{N}} \eta_s \\[.5em]
-                        \end{cases}
 
-                        \quad \Longrightarrow \quad
+                    \[
+                    \begin{cases}
+                    x_r = \displaystyle \sum_{s = 0}^{N - 1} e^{\large \frac{2 \pi i r s}{N}} \xi_s \\[.5em]
+                    y_r = \displaystyle \sum_{s = 0}^{N - 1} e^{\large \frac{2 \pi i r s}{N}} \eta_s \\[.5em]
+                    \end{cases}
 
-                        \begin{cases}
-                        \xi_r = \dfrac{1}{N} \displaystyle \sum_{s = 1}^{N} e^{\large \frac{2 \pi i r s}{N}} x_s
-                        \\[.5em]
-                        \eta_r = \dfrac{1}{N} \displaystyle \sum_{s = 1}^{N} e^{\large \frac{2 \pi i r s}{N}} y_s
-                        \\[.5em]
-                        \end{cases}
-                        \]
-                    </div>
-                </div>
-                <p>
-                    il sistema può inoltre essere ricondotto in una forma lineare con coefficienti costanti:
+                    \quad \Longrightarrow \quad
+
+                    \begin{cases}
+                    \xi_r = \dfrac{1}{N} \displaystyle \sum_{s = 1}^{N} e^{\large \frac{2 \pi i r s}{N}} x_s
+                    \\[.5em]
+                    \eta_r = \dfrac{1}{N} \displaystyle \sum_{s = 1}^{N} e^{\large \frac{2 \pi i r s}{N}} y_s
+                    \\[.5em]
+                    \end{cases}
+                    \]
+
+                    il sistema può inoltre così ricondotto in una <b>forma lineare</b> con <b>coefficienti
+                        costanti</b>:
+
+                    \[
+                    \begin{cases}
+                    \dfrac{d\xi_s}{dt} = \Big(a - 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) \xi_s + b \eta_s \\[.5em]
+                    \dfrac{d\eta_s}{dt} = c \xi_s + \Big(d - 4 \nu \sin^2 \dfrac{\pi s}{N} \Big) \eta_s
+                    \end{cases}
+                    \]
                 </p>
-                <div class="formula-container compact">
-                    <div class="formula">
-                        \[
-                        \begin{cases}
-                        \dfrac{d\xi_s}{dt} = \Big(a - 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) \xi_s + b \eta_s \\[.5em]
-                        \dfrac{d\eta_s}{dt} = c \xi_s + \Big(d - 4 \nu \sin^2 \dfrac{\pi s}{N} \Big) \eta_s
-                        \end{cases}
-                        \]
-                    </div>
-                </div>
-                <p></p>
             </div>
             <div class="slide">
                 <p>Detti $p_s$ e $p_s^\prime$ gli autovalori della matrice $
+                    \scriptsize
                     \begin{pmatrix}
-                    a - 4 \mu \sin^2 \dfrac{\pi s}{N} & b \\
-                    c & d - 4 \nu \sin^2 \dfrac{\pi s}{N}
+                    a - 4 \mu \sin^2 \dfrac{\pi s}{N} & \small b \\
+                    \small c & d - 4 \nu \sin^2 \dfrac{\pi s}{N}
                     \end{pmatrix}
-                    $, che pertanto soddisfano l'equazione:</p>
-                <div class="formula-container compact">
-                    <div class="formula">
-                        \[
-                        \Big(p - a + 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) \Big(p - d + 4 \nu \sin^2 \dfrac{\pi s}{N}
-                        \Big) = bc
-                        \]
-                    </div>
-                </div>
-                <p>
-                    e $A_s, \, B_s, \, C_s, \, D_s$ le componenti degli autovettori associati, che soddisfano
-                </p>
-                <div class="formula-container compact">
-                    <div class="formula">
-                        \[
-                        \begin{cases}
-                        A_s \Big(p_s - a + 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) = b C_s \\[.5em]
-                        B_s \Big(p_s - a + 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) = bD_s
-                        \end{cases}
-                        \]
-                    </div>
-                </div>
-                <p>
-                    le soluzioni delle equazioni possono essere scritte come
+                    $,
 
+                    che pertanto soddisfano l'equazione
+                    \begin{equation}
+                    \Big(p - a + 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) \Big(p - d + 4 \nu \sin^2 \dfrac{\pi s}{N}
+                    \Big) = bc \, ,
+                    \end{equation}
+
+                    e $A_s, \, B_s, \, C_s, \, D_s$ le componenti degli autovettori associati, che soddisfano
+
+                    \begin{equation}
+                    \begin{cases}
+                    A_s \Big(p_s - a + 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) = b C_s \\[.5em]
+                    B_s \Big(p_s - a + 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) = bD_s \, ,
+                    \end{cases}
+                    \end{equation}
+
+                    le soluzioni delle equazioni differenziali risultano essere
+
+                    \[
+                    \begin{cases}
+                    \xi_s = A_s e^{p_s t} + B_s e^{p_s^\prime t} \\[.5em]
+                    \eta_s = C_s e^{p_s t} + D_s e^{p_s^\prime t} \, ,
+                    \end{cases}
+                    \]
+
+                    ovvero, in termini di $X$ e $Y$,
+
+                    \begin{equation}
+                    \begin{cases}
+                    X_r = h + \displaystyle \sum_{s = 1}^{N} \big(A_s e^{p_s t} + B_s e^{p_s^\prime t} \big)
+                    e^{\Large \frac{2 \pi i r s}{N}} \\[.5em]
+                    Y_r = k + \displaystyle \sum_{s = 1}^{N} \big(C_s e^{p_s t} + D_s e^{p_s^\prime t} \big)
+                    e^{\Large \frac{2 \pi i r s}{N}} \, .
+                    \end{cases}
+                    \end{equation}
+            </div>
+            <div class="slide">
+                <p>
+                    Il modello può essere esteso al <b>caso continuo</b>, dove $\rho$ è il raggio dell'anello cellulare
+                    e
+                    $\theta$ descrive la posizione di un punto sull'anello. In tal caso, i coefficienti di diffusione
+                    sono
+                    $\mu^\prime \,$ e $\nu^\prime$, con $\mu = \mu^\prime \Big(\dfrac{N}{2 \pi \rho} \Big)^2 \,$ e,
+                    analogamente, $\nu = \nu^\prime \Big(\dfrac{N}{2 \pi \rho} \Big)^2$.
                 </p>
-                <div class="formula-container compact">
-                    <div class="formula">
-                        \[
-                        \begin{cases}
-                        \xi_s = A_s e^{p_s t} + B_s e^{p_s^\prime t} \\[.5em]
-                        \eta_s = C_s e^{p_s t} + D_s e^{p_s^\prime t}
-                        \end{cases}
-                        \]
-                    </div>
+                <p>
+                    Le equazioni differenziali che descrivono il modello diventano
+
+                    \begin{equation}
+                    \begin{cases}
+                    \dfrac{\partial X}{\partial t} = a(X - h) + b(Y - k) + \dfrac{\mu^\prime}{\rho^2} \dfrac{\partial^2
+                    X}{\partial \theta^2} \\[.5em]
+                    \dfrac{\partial Y}{\partial t} = c(X - h) + d(Y - k) + \dfrac{\nu^\prime}{\rho^2} \dfrac{\partial^2
+                    X}{\partial \theta^2}
+                    \end{cases}
+                    \end{equation}
+
+                    con soluzioni date da
+
+                    \begin{equation}
+                    \begin{cases}
+                    X = h + \displaystyle \sum_{s = -\infty}^{+\infty} \big(A_s e^{p_s t} + B_s e^{p_s^\prime t} \big)
+                    e^{\large i r s} \\[.5em]
+                    Y = k + \displaystyle \sum_{s = -\infty}^{+\infty} \big(C_s e^{p_s t} + D_s e^{p_s^\prime t} \big)
+                    e^{\large i r s} \, .
+                    \end{cases}
+                    \end{equation}
+
+                    con $p_s$ e $p_s^\prime$ radici di $\Big(p - a + \dfrac{\mu^\prime s^2}{\rho^2} \Big) \Big(p - d +
+                    \dfrac{\nu^\prime s^2}{\rho^2} \Big) = bc \,$, mentre $A_s, \; B_s, \; C_s, \; D_s$ soddisfano
+
+                    \begin{equation}
+                    \begin{cases}
+                    A_s \Big(p_s - a + \dfrac{\mu^\prime s^2}{\rho^2} \Big) = b C_s \\[.5em]
+                    B_s \Big(p_s - a + \dfrac{\mu^\prime s^2}{\rho^2} \Big) = b D_s
+                    \end{cases}
+                    \end{equation}
+                </p>
+            </div>
+            <div class="slide">
+                <div id="canvas-1">
+
                 </div>
-                <div class="formula-container compact">
-                    <div class="formula">
-                        \[
-                        \begin{cases}
-                        X_s = h + \sum_{s = 1}^{N} \big(A_s e^{p_s t} + B_s e^{p_s^\prime t} \big)
-                        e^{\Large \frac{2 \pi i r s}{N}} \\[.5em]
-                        Y_s = k + \sum_{s = 1}^{N} \big(C_s e^{p_s t} + D_s e^{p_s^\prime t} \big)
-                        e^{\Large \frac{2 \pi i r s}{N}}
-                        \end{cases}
-                        \]
-                    </div>
-                </div>
-                <p></p>
             </div>
 
             <h3>Ring Cell Graphs</h3>
@@ -256,7 +290,8 @@
     <script>
         MathJax = {
             tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                tags: 'ams'
             }
         };
     </script>
