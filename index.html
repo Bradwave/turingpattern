@@ -12,10 +12,35 @@
     <title>Turing Pattern</title>
 
     <!-- link rel="icon" type="image/png" href="images/icon.png" /-->
-    <link rel="stylesheet" href="css/crimson-night.css">
+    <link rel="stylesheet" href="css/crimson-days.css">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
+    <div class="play-pause-controls">
+        <span id="presentation-play" class="material-icons button play">
+            present_to_all
+        </span>
+        <span id="presentation-pause" class="material-icons button pause">
+            pause_presentation
+        </span>
+    </div>
+
+    <div id="presentation-controls" class="presentation-controls">
+        <div class="arrows">
+            <span id="previous" class="material-icons button">
+                arrow_back_ios
+            </span>
+            <span id="next" class="material-icons button">
+                arrow_forward_ios
+            </span>
+        </div>
+        <div id="progress-bar" class="progress-bar">
+
+        </div>
+    </div>
+
     <div class="page-container">
         <nav class="page-sidebar">
 
@@ -27,14 +52,107 @@
             <p>
                 <b>Based on: A. M. Turing, <i>The Chemical Basis of Morphogenesis</i>, 1952</b>
             </p>
-            <h2>Part</h2>
-            <h3>Sezione</h3>
-            <h4>Subsezione</h4>
-            <p>
-                Turing patterns in cell-like organism<br>
-                Almost before we knew it, we had left the ground.
-            </p>
-            <p>\[ f(x) = x^2 + x + 2 \]</p>
+
+            <h2>A Mathematical Approach</h2>
+
+            <div class="slide">
+                <h3>A Ring of Cells</h3>
+                <p>
+                    In order to illustrate the general principle of morphogenesis, I will first consider - closely
+                    following
+                    Prof. A. M. Turing's 1952 article - a particular configuration of cells: a <b>ring of similar
+                        cells</b>.
+                    Despite not modelling a real biological example, this configuration allows for a simple mathematical
+                    analysis and the associated theory can later be extended to more complex and practically useful
+                    cases.
+                </p>
+                <p>
+                    Only two morphogens $X$ and $Y$ will be considered. Each cell exchanges morphogens by diffusion to
+                    the adje
+
+                </p>
+                <div class="formula-container">
+                    <div class="formula">
+                        \[
+                        \begin{cases}
+                        \dfrac{dX_r}{dt} = f(X_r, Y_r) + \mu (X_{r + 1} - 2X_r + X_{r-1}) \\[1em]
+                        \dfrac{dY_r}{dt} = g(X_r, Y_r) + \nu (Y_{r + 1} - 2Y_r + Y_{r-1})
+                        \end{cases}
+
+                        \qquad
+
+                        r = 1, ..., N \, .
+                        \]
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <ul>
+                    <li>
+                        $N \in \mathbb{N} \;$ number of cells in the ring;
+                    </li>
+                    <li>
+                        $X_r, Y_r \in \mathbb{R}^+ \;$ concentration of the morphogens $X$ and $Y$ in cell $r$;
+                    </li>
+                    <li>
+                        $f \, : \, \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ rate of $X$ increase;
+                    </li>
+                </ul>
+                <p>
+                    Some considerations can be made:
+                </p>
+                <ul>
+                    <li>
+                        An isolated cell has equilibrium $X = h \, , \; Y = k$ when $f(h,k) = 0 = g(h, k)$.
+                    </li>
+                    <li>
+                        The system has an equilibrium when $X_r = h \, , \; Y_r = k \; \forall r = 1, ..., N \,$.
+                    </li>
+                </ul>
+            </div>
+            <div class="slide">
+                <p>
+                    yo, what's up
+                </p>
+
+                <div class="formula-container">
+                    <div class="formula">
+                        \[
+                        \begin{cases}
+                        \dfrac{dx_r}{dt} = a x_r + b y_r + \mu (x_{r + 1} - 2x_r + x_{r-1}) \\[.5em]
+                        \dfrac{dy_r}{dt} = c x_r + d y_r + \nu (y_{r + 1} - 2y_r + y_{r-1})
+                        \end{cases}
+                        \]
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="formula-container">
+                    <div class="formula">
+                        \[
+                        \begin{cases}
+                        x_r = \displaystyle \sum_{s = 0}^{N - 1} e^{\large \frac{2 \pi i r s}{N}} \xi_s \\[.5em]
+                        y_r = \displaystyle \sum_{s = 0}^{N - 1} e^{\large \frac{2 \pi i r s}{N}} \eta_s \\[.5em]
+                        \end{cases}
+
+                        \quad \Longrightarrow \quad
+
+                        \begin{cases}
+                        \xi_r = \dfrac{1}{N} \displaystyle \sum_{s = 1}^{N} e^{\large \frac{2 \pi i r s}{N}} x_s
+                        \\[.5em]
+                        \eta_r = \dfrac{1}{N} \displaystyle \sum_{s = 1}^{N} e^{\large \frac{2 \pi i r s}{N}} y_s
+                        \\[.5em]
+                        \end{cases}
+                        \]
+                    </div>
+                </div>
+            </div>
+
+            <h3>Ring Cell Graphs</h3>
+
+            <p>The graph for a ring cell</p>
+
+            <div class="canvas" id="canvas-1"></div>
         </main>
     </div>
 
@@ -48,6 +166,9 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="js/src/presentation-controller.js"></script>
+    <!-- script src="js/src/ring-cell.js"></script -->
 
 </body>
 

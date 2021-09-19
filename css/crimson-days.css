@@ -10,6 +10,9 @@
         - Scrollbar
     2. Components
         2.1 Body
+        2.2 Formulas
+        2.3 Canvas
+        2.4 Presentation
         
 ===================================== */
 
@@ -19,7 +22,7 @@
 
 /* -- Fonts -- */
 
-/* Robot Mono from Google Font */
+/* Robot Mono and STIX Two Text from Google Font */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 /**/
@@ -28,9 +31,10 @@
 
 :root {
     --background: #ffffff;
+    --hidden: #686868;
     --accent: #B01A00;
     --primary: #000000;
-    --secondary: #494949;
+    --secondary: #333333;
 }
 
 /* -- Selection -- */
@@ -39,7 +43,6 @@
 
 * {
     -webkit-tap-highlight-color: #ffffff00;
-    user-select: none;
 }
 
 /* -- Selection -- */
@@ -61,29 +64,26 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--background);
+    background: #ffffff00;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #ffffff36;
+    background: #00000015;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #ffffff88;
-    -webkit-transition: all 0.4s ease;
-    transition: all 0.4s ease;
+    background: #00000030;
 }
 
 ::-webkit-scrollbar-thumb:active {
     background: var(--accent);
-    transition: all 0.4s ease;
 }
 
 /* ============================
     2. Components
 =============================== */
 
-/** -- 2.1 Page container -- */
+/* -- 2.1 Page container -- */
 
 .page-container {
     display: grid;
@@ -91,33 +91,39 @@
     grid-template-columns: minmax(150px, 1fr) 4fr 1fr;
 }
 
-@media (max-width: 768px) {
+.page-content {
+    padding: 10px;
+}
+
+@media (max-width: 768px), (orientation: portrait), (hover: none) {
     .page-container {
         grid-template-columns: none;
     }
-}
-
-.page-content {
-    padding: 20px;
+    .page-content {
+        padding: 40px;
+    }
 }
 
 /* -- 2.2 Body -- */
 
 body {
+    margin: 0;
     background-color: var(--background);
     font-family: 'STIX Two Text', serif;
     color: var(--secondary);
     counter-reset: section;
     counter-reset: part;
+    transition: all .3s ease-in-out;
 }
 
 /* -- 2.2.1 Text -- */
 
-/** -- Headers -- */
+/* -- Headers -- */
 
 /* Title */
 
 h1 {
+    margin-top: 80px;
     font-size: 40px;
     font-weight: 700;
 }
@@ -125,6 +131,7 @@ h1 {
 /* Part */
 
 h2 {
+    margin-top: 60px;
     font-size: 32px;
     font-weight: 700;
     font-variant: small-caps;
@@ -161,9 +168,94 @@ h4::before {
     margin-right: 20px;
 }
 
-/** -- Paragraphs -- */
+/* -- Paragraphs -- */
 
 p {
     font-weight: normal;
     font-size: 16px;
+}
+
+/* -- Highlight -- */
+
+mark {
+    background-color: #00000020;
+}
+
+/* -- 2.2 Formulas -- */
+
+div.formula-container {
+    display: grid;
+    place-items: center;
+    margin: 10px;
+}
+
+div.formula {
+    width: fit-content;
+    border-radius: 10px;
+    padding: 5px 30px;
+}
+
+div.formula.grey {
+    background-color: #00000010;
+}
+
+/* -- 2.3 Canvas -- */
+
+div.canvas {
+    width: 100%;
+    background-color: #B01A00;
+}
+
+/* -- 2.4 Presentation -- */
+
+div.slide {
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: var(--background);
+    transition: all .3s ease-in-out;
+}
+
+div.play-pause-controls {
+    position: fixed;
+    top: 10px;
+    right: 50px;
+}
+
+.material-icons.button {
+    cursor: pointer;
+    user-select: none;
+}
+
+span.material-icons.button.pause {
+    position: absolute;
+    visibility: hidden;
+    color: #ffffff75;
+}
+
+span.material-icons.button.play {
+    position: absolute;
+}
+
+div.presentation-controls {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    transition: all .3s ease-in-out;
+}
+
+div.arrows {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #ffffff;
+}
+
+div.progress-bar {
+    position: absolute;
+    display: block;
+    top: -5px;
+    width: 0%;
+    height: 5px;
+    background-color: var(--accent);
+    transition: all .4s ease-in-out;
 }
