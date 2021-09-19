@@ -47,31 +47,35 @@
         </nav>
         <main class="page-content">
             <h1>
-                A Brief Study of Turing Patterns
+                Brevi note sui pattern di Turing
             </h1>
             <p>
-                <b>Based on: A. M. Turing, <i>The Chemical Basis of Morphogenesis</i>, 1952</b>
+                <b>Basato su: A. M. Turing, <i>The Chemical Basis of Morphogenesis</i>, 1952</b>
             </p>
 
-            <h2>A Mathematical Approach</h2>
+            <h2>Un approccio matematico</h2>
 
             <div class="slide">
-                <h3>A Ring of Cells</h3>
+                <h3>L'anello cellulare</h3>
                 <p>
-                    In order to illustrate the general principle of morphogenesis, I will first consider - closely
-                    following
-                    Prof. A. M. Turing's 1952 article - a particular configuration of cells: a <b>ring of similar
-                        cells</b>.
-                    Despite not modelling a real biological example, this configuration allows for a simple mathematical
-                    analysis and the associated theory can later be extended to more complex and practically useful
-                    cases.
+                    Per illustrare i principi della morfogenesi, considero - seguendo strettamente l'articolo del 1952
+                    di Turing - una particolare configurazione: <b>un anello di cellule simili</b>. Pur non essendo
+                    riconducibile ad un corrispettivo biologico, questo caso risulta particolarmente semplice e la
+                    teoria matematica ad esso applicata può essere facilmente estesa a casi più rilevanti.
                 </p>
+            </div>
+            <div class="slide">
                 <p>
-                    Only two morphogens $X$ and $Y$ will be considered. Each cell exchanges morphogens by diffusion to
-                    the adje
-
+                    Per semplicità, considero per ora un sistema in cui solo due morfogeni, $X$ e $Y$, interagiscono tra
+                    loro. Ogni cellula scambia i morfogeni con le cellule adiacenti per diffusione. Inoltre, ogni
+                    cellula produce o distrugge morfogeni in base alla concentrazione degli stessi.
                 </p>
-                <div class="formula-container">
+            </div>
+            <div class="slide">
+                <p>
+                    Il sistema può essere pertanto descritto dalle seguenti equazioni differenziali:
+                </p>
+                <div class="formula-container compact">
                     <div class="formula">
                         \[
                         \begin{cases}
@@ -81,41 +85,58 @@
 
                         \qquad
 
-                        r = 1, ..., N \, .
+                        r = 1, ..., N
                         \]
                     </div>
                 </div>
-            </div>
-            <div class="slide">
-                <ul>
-                    <li>
-                        $N \in \mathbb{N} \;$ number of cells in the ring;
-                    </li>
-                    <li>
-                        $X_r, Y_r \in \mathbb{R}^+ \;$ concentration of the morphogens $X$ and $Y$ in cell $r$;
-                    </li>
-                    <li>
-                        $f \, : \, \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ rate of $X$ increase;
-                    </li>
-                </ul>
                 <p>
-                    Some considerations can be made:
+                    dove:
                 </p>
                 <ul>
                     <li>
-                        An isolated cell has equilibrium $X = h \, , \; Y = k$ when $f(h,k) = 0 = g(h, k)$.
+                        $N \in \mathbb{N} \;$ è il numero di cellule nell'anello;
                     </li>
                     <li>
-                        The system has an equilibrium when $X_r = h \, , \; Y_r = k \; \forall r = 1, ..., N \,$.
+                        $X_r, Y_r \;$ indicano rispettivamente la concentrazione dei morfogeni $X$ e $Y$ nella cellula
+                        $r$;
+                    </li>
+                    <li>
+                        $f(X, Y) \, , \; g(X, Y)$ modellizzano i processi di creazione e distruzione dei morfogeni in
+                        base alla
+                        loro concentrazione in una cellula;
+                    </li>
+                    <li>
+                        $\mu \, \; \nu$ sono i coefficienti di diffusione rispettivamente dei morfogeni $X$ e $Y$.
+                    </li>
+                </ul>
+                <p>
+                    Si noti che, data la struttura anulare, la cellula $X_N$ corrisponde alla $X_0$ e, più in generale
+                    $X_{r_0} \equiv X_{N - r_0}$.
+                </p>
+            </div>
+            <div class="slide">
+                <p>
+                    <b>Osservazioni</b>
+                </p>
+                <ul>
+                    <li>
+                        Una cellula isolata ha equilibrio $X = h \, , \; Y = k$ quando $f(h,k) = 0 = g(h, k)$.
+                    </li>
+                    <li>
+                        Il sistema è pertanto in equilibrio se $X_r = h \, , \; Y_r = k \; \forall r = 1, ..., N \,$.
+                    </li>
+                    <li>
+                        Supponendo di non essere troppo distanti dall'equilibrio, è possibile scrivere $X_r = h + x_r \,
+                        , \; Y_r = k + y_r \,$ e approssimare $f(x + h, y + k) \approx ax + by \, , \; g(x + h, y + k)
+                        \approx cx + dy \,$.
                     </li>
                 </ul>
             </div>
             <div class="slide">
                 <p>
-                    yo, what's up
+                    Il sistema puù quindi essere riscritto nella forma:
                 </p>
-
-                <div class="formula-container">
+                <div class="formula-container compact">
                     <div class="formula">
                         \[
                         \begin{cases}
@@ -125,9 +146,13 @@
                         \]
                     </div>
                 </div>
+                <p></p>
             </div>
             <div class="slide">
-                <div class="formula-container">
+                <p>
+                    Con il seguente cambio di variabili
+                </p>
+                <div class="formula-container compact">
                     <div class="formula">
                         \[
                         \begin{cases}
@@ -146,6 +171,76 @@
                         \]
                     </div>
                 </div>
+                <p>
+                    il sistema può inoltre essere ricondotto in una forma lineare con coefficienti costanti:
+                </p>
+                <div class="formula-container compact">
+                    <div class="formula">
+                        \[
+                        \begin{cases}
+                        \dfrac{d\xi_s}{dt} = \Big(a - 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) \xi_s + b \eta_s \\[.5em]
+                        \dfrac{d\eta_s}{dt} = c \xi_s + \Big(d - 4 \nu \sin^2 \dfrac{\pi s}{N} \Big) \eta_s
+                        \end{cases}
+                        \]
+                    </div>
+                </div>
+                <p></p>
+            </div>
+            <div class="slide">
+                <p>Detti $p_s$ e $p_s^\prime$ gli autovalori della matrice $
+                    \begin{pmatrix}
+                    a - 4 \mu \sin^2 \dfrac{\pi s}{N} & b \\
+                    c & d - 4 \nu \sin^2 \dfrac{\pi s}{N}
+                    \end{pmatrix}
+                    $, che pertanto soddisfano l'equazione:</p>
+                <div class="formula-container compact">
+                    <div class="formula">
+                        \[
+                        \Big(p - a + 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) \Big(p - d + 4 \nu \sin^2 \dfrac{\pi s}{N}
+                        \Big) = bc
+                        \]
+                    </div>
+                </div>
+                <p>
+                    e $A_s, \, B_s, \, C_s, \, D_s$ le componenti degli autovettori associati, che soddisfano
+                </p>
+                <div class="formula-container compact">
+                    <div class="formula">
+                        \[
+                        \begin{cases}
+                        A_s \Big(p_s - a + 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) = b C_s \\[.5em]
+                        B_s \Big(p_s - a + 4 \mu \sin^2 \dfrac{\pi s}{N} \Big) = bD_s
+                        \end{cases}
+                        \]
+                    </div>
+                </div>
+                <p>
+                    le soluzioni delle equazioni possono essere scritte come
+
+                </p>
+                <div class="formula-container compact">
+                    <div class="formula">
+                        \[
+                        \begin{cases}
+                        \xi_s = A_s e^{p_s t} + B_s e^{p_s^\prime t} \\[.5em]
+                        \eta_s = C_s e^{p_s t} + D_s e^{p_s^\prime t}
+                        \end{cases}
+                        \]
+                    </div>
+                </div>
+                <div class="formula-container compact">
+                    <div class="formula">
+                        \[
+                        \begin{cases}
+                        X_s = h + \sum_{s = 1}^{N} \big(A_s e^{p_s t} + B_s e^{p_s^\prime t} \big)
+                        e^{\Large \frac{2 \pi i r s}{N}} \\[.5em]
+                        Y_s = k + \sum_{s = 1}^{N} \big(C_s e^{p_s t} + D_s e^{p_s^\prime t} \big)
+                        e^{\Large \frac{2 \pi i r s}{N}}
+                        \end{cases}
+                        \]
+                    </div>
+                </div>
+                <p></p>
             </div>
 
             <h3>Ring Cell Graphs</h3>

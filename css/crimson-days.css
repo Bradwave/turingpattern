@@ -175,6 +175,10 @@ p {
     font-size: 16px;
 }
 
+li {
+    margin: 5px -5px;
+}
+
 /* -- Highlight -- */
 
 mark {
@@ -186,7 +190,11 @@ mark {
 div.formula-container {
     display: grid;
     place-items: center;
-    margin: 10px;
+    margin: 5px;
+}
+
+div.formula-container.compact {
+    margin: -15px;
 }
 
 div.formula {
