@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <meta name="description" content="Turing Pattern">
     <meta name="keywords" content="maths, turing pattern, educational">
@@ -14,38 +14,16 @@
     <!-- link rel="icon" type="image/png" href="images/icon.png" /-->
     <link rel="stylesheet" href="css/crimson-days.css">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
+    <script src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-    <div class="play-pause-controls">
-        <span id="presentation-play" class="material-icons button play">
-            present_to_all
-        </span>
-        <span id="presentation-pause" class="material-icons button pause">
-            pause_presentation
-        </span>
-    </div>
-
-    <div id="presentation-controls" class="presentation-controls">
-        <div class="arrows">
-            <span id="previous" class="material-icons button">
-                arrow_back_ios
-            </span>
-            <span id="next" class="material-icons button">
-                arrow_forward_ios
-            </span>
-        </div>
-        <div id="progress-bar" class="progress-bar">
-
-        </div>
-    </div>
-
     <div class="page-container">
         <nav class="page-sidebar">
 
         </nav>
-        <main class="page-content">
+        <main class="page-content" id="page-content">
             <h1>
                 Brevi note sui pattern di Turing
             </h1>
@@ -53,12 +31,11 @@
                 <b>Basato su: A. M. Turing, <i>The Chemical Basis of Morphogenesis</i>, 1952</b>
             </p>
 
-            <h2>Un approccio matematico</h2>
-
             <div class="slide">
                 <h3>L'anello cellulare</h3>
                 <p>
-                    Per illustrare i principi della morfogenesi, considero - seguendo strettamente l'articolo del 1952
+                    Per illustrare i principi della morfogenesi, consideriamo - seguendo strettamente l'articolo del
+                    1952
                     di Turing - una particolare configurazione: <b>un anello di cellule simili</b>. Pur non essendo
                     riconducibile ad un corrispettivo biologico, questa configurazione facilita l'analisi matematica del
                     problema e la teoria ad essa applicata può essere eventualmente estesa ad altri casi più complessi.
@@ -66,11 +43,12 @@
             </div>
             <div class="slide">
                 <p>
-                    Per semplicità, considero per ora un sistema in cui solo due morfogeni, $X$ e $Y$, interagiscono tra
+                    Per semplicità, consideriamo per ora un sistema in cui solo due morfogeni, $X$ e $Y$, interagiscono
+                    tra
                     loro. Ogni cellula scambia i morfogeni con le cellule adiacenti per <b>diffusione</b>. Inoltre, in
                     ogni
                     cellula i morfogeni reagiscono tra loro ed eventualmente con catalizzatori e altre molecole, la cui
-                    disponibilità - per semplicità - si considera illimitata . Il prodotto di tale <b>reazione</b> è un
+                    disponibilità - per semplicità - si presuppone illimitata . Il prodotto di tale <b>reazione</b> è un
                     aumento
                     o una diminuzione dei morfogeni, che dipende dalla concentrazione degli stessi.
                 </p>
@@ -83,11 +61,8 @@
                 </p>
             </div>
             <div class="slide">
-
-            </div>
-            <div class="slide">
                 <p>
-                    Il sistema può essere pertanto descritto dalle seguenti $2N$ equazioni differenziali:
+                    Il sistema può pertanto essere descritto dalle seguenti $2N$ equazioni differenziali:
 
                     \[
                     \begin{cases}
@@ -124,6 +99,10 @@
                 </p>
             </div>
             <div class="slide">
+                L'obiettivo è trovare, tramite opportune semplificazioni e approssimazioni, le <b>soluzioni</b> del
+                sistema.
+            </div>
+            <div class="slide">
                 <p>
                     <b>Osservazioni</b>
                 </p>
@@ -135,8 +114,8 @@
                         Il sistema è pertanto in equilibrio se $X_r = h \, , \; Y_r = k \;\: \forall r = 1, ..., N \,$.
                     </li>
                     <li>
-                        Supponendo di non essere troppo distanti dall'equilibrio, è possibile scrivere $X_r = h + x_r \,
-                        , \; Y_r = k + y_r \,$ e approssimare $f(x + h, y + k) \approx ax + by \, , \; g(x + h, y + k)
+                        Supponendo di non essere troppo distanti dall'equilibrio, è possibile scrivere $X_r = h + x_r$,
+                        $\, Y_r = k + y_r \,$ e approssimare $f(x + h, y + k) \approx ax + by \, , \; g(x + h, y + k)
                         \approx cx + dy \,$.
                     </li>
                 </ul>
@@ -185,6 +164,7 @@
                 </p>
             </div>
             <div class="slide">
+                <h4>Soluzioni del sistema discreto</h4>
                 <p>Detti $p_s$ e $p_s^\prime$ gli autovalori della matrice $
                     \scriptsize
                     \begin{pmatrix}
@@ -220,7 +200,7 @@
                     ovvero, in termini di $X$ e $Y$,
 
                     \begin{equation}
-                    \begin{cases}
+                    \begin{cases}\label{eq:discrete-sol}
                     X_r = h + \displaystyle \sum_{s = 1}^{N} \big(A_s e^{p_s t} + B_s e^{p_s^\prime t} \big)
                     e^{\Large \frac{2 \pi i r s}{N}} \\[.5em]
                     Y_r = k + \displaystyle \sum_{s = 1}^{N} \big(C_s e^{p_s t} + D_s e^{p_s^\prime t} \big)
@@ -229,6 +209,7 @@
                     \end{equation}
             </div>
             <div class="slide">
+                <h4>Soluzioni del sistema continuo</h4>
                 <p>
                     Il modello può essere esteso al <b>caso continuo</b>, dove $\rho$ è il raggio dell'anello cellulare
                     e
@@ -272,17 +253,220 @@
                 </p>
             </div>
             <div class="slide">
-                <div id="canvas-1">
+                <h4>Comportamento delle soluzioni</h4>
+                <p><b>Osservazioni</b></p>
+                <ul>
+                    <li>
+                        Data la
+                        <span class="tooltip">
+                            <span class="tooltip-text bottom">
+                                \[
+                                \begin{cases}
+                                X_r = h + \displaystyle \sum_{s = 1}^{N} \big(A_s e^{p_s t} + B_s e^{p_s^\prime t} \big)
+                                e^{\Large \frac{2 \pi i r s}{N}} \\[.5em]
+                                Y_r = k + \displaystyle \sum_{s = 1}^{N} \big(C_s e^{p_s t} + D_s e^{p_s^\prime t} \big)
+                                e^{\Large \frac{2 \pi i r s}{N}} \, .
+                                \end{cases}
+                                \]
+                            </span>
+                            soluzione del sistema discreto
+                        </span>,
+                        siamo interessati alla sua parte reale.
+                    </li>
+                    <li>
+                        Dopo un certo lasso di tempo, la soluzione risulterà dominata dai termini per cui i
+                        corrispondenti $p_s$ hanno la parte reale maggiore.
+                    </li>
+                    <li>
+                        Se $p_{s_0}$ è tra questi, allora anche
+                        $p_{N - s_0}$ lo è, perché $\: \sin^2 \frac{\pi (N - s_0)}{N} = \sin^2 \frac{\pi s_0}{N}$.
+                    </li>
+                    <li style="margin-top: 10px">
+                        Vale $\, \textrm{Re} (p_{s_0}) = \textrm{Re} (p_{s_0}^\prime) = \textrm{Re} (p_{\small N - s_0})
+                        = \textrm{Re} (p_{\small N - s_0}^\prime) \,$.
+                    </li>
+                </ul>
+            </div>
+            <div class="slide">
+                <p>
+                    Per il sistema discreto, si distinguono così <b>due macro-casi</b>:
+                </p>
+                <ul>
+                    <li>
+                        <span style="margin-right: 10px">
+                            <i><b>Stazionario:</b></i>
+                        </span>
+                        se $p_{s_0} = I$ è reale, allora $X_r - h \,$ e $\, Y_r - k$ tendono asintoticamente alla forma
 
+                        \[
+                        \begin{cases}
+                        X_r - h = 2 \, \text{Re}\Big( A_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} + I t} \Big) \\[.5em]
+                        Y_r - k = 2 \, \text{Re}\Big( C_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} + I t} \Big)
+                        \end{cases}
+                        \]
+                    </li>
+                    <li>
+                        <span style="margin-right: 10px">
+                            <i><b>Oscillatorio:</b></i>
+                        </span>
+                        se $p_{s_0} = I + i \omega$ è complesso, con $I, \omega \in \mathbb{R}$, allora $X_r - h \,$ e
+                        $\, Y_r - k$ tendono alla forma
+
+                        \[
+                        \begin{cases}
+                        X_r - h = 2 \, e^{I t} \, \text{Re}\Big( A_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} + i \omega
+                        t} + A_{\small N - s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} - i \omega t} \Big) \\[.5em]
+                        Y_r - k = 2 \, e^{I t} \, \text{Re}\Big( C_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} + i \omega
+                        t} + C_{\small N - s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} - i \omega t} \Big)
+                        \end{cases}
+                        \]
+                    </li>
+                </ul>
+            </div>
+            <div class="slide">
+                <p>
+                    Nel caso continuo, questi corrispondono ai seguenti macro-casi:
+                </p>
+                <ul>
+                    <li>
+                        <span style="margin-right: 10px">
+                            <i><b>Stazionario:</b></i>
+                        </span>
+                        se $p_{s_0} = I$ è reale, allora
+
+                        \[
+                        \begin{cases}
+                        x_r - h = 2 \, \text{Re}\Big( A_{s_0} \, e^{i r s_0 + I t} \Big) \\[.5em]
+                        y_r - k = 2 \, \text{Re}\Big( C_{s_0} \, e^{i r s_0 + I t} \Big)
+                        \end{cases}
+                        \]
+                    </li>
+                    <li>
+                        <span style="margin-right: 10px">
+                            <i><b>Oscillatorio:</b></i>
+                        </span>
+                        se $p_{s_0} = I + i \omega$ è complesso, allora
+
+                        \[
+                        \begin{cases}
+                        x_r - h = 2 \, e^{I t} \, \text{Re}\Big( A_{s_0} \, e^{i r s_0 + i \omega
+                        t} + A_{\small N - s_0} \, e^{i r s_0 - i \omega t} \Big) \\[.5em]
+                        y_r - k = 2 \, e^{I t} \, \text{Re}\Big( C_{s_0} \, e^{i r s + i \omega
+                        t} + C_{\small N - s_0} \, e^{i r s_0 - i \omega t} \Big)
+                        \end{cases}
+                        \]
+                    </li>
+                </ul>
+            </div>
+            <div class="slide">
+                <p>
+                    <b>Osservazioni</b>
+                </p>
+                <ul>
+                    <li>
+                        Nel caso <b>stazionario</b>, si possono appunto osservare onde stazionarie aventi $s_0$ massimi
+                        e minimi lungo l'anello. Essendo i coefficienti $A_{s_0}$ e $C_{s_0}$ in
+                        <span class="tooltip">
+                            <span class="tooltip-text bottom">
+                                <p>
+                                    <b>Caso discreto</b>:
+                                    \[
+                                    A_{s_0} \Big(p_{s_0} - a + 4 \mu \sin^2 \dfrac{\pi s_0}{N} \Big) = b C_{s_0} \,
+                                    \]
+                                </p>
+                                <p>
+                                    <b>Caso continuo</b>:<br>
+                                    \[
+                                    A_{s_0} \Big(p_{s_0} - a + \dfrac{\mu^\prime s_0^2}{\rho^2} \Big) = b C_{s_0} \,
+                                    \]
+                                </p>
+                            </span>
+                            relazione tra loro
+                        </span>,
+                        il pattern di un morfogeno determina quello dell'altro. Inoltre, quando il sistema è instabile,
+                        ovvero $I > 0$, le onde divento via via più pronunciate.
+                    </li>
+                    <li>
+                        Nel caso <b>oscillatorio</b>, le onde che si formano si muovono lungo l'anello con frequenza
+                        $\dfrac{\omega}{2 \pi}$.
+                    </li>
+                </ul>
+                <p>
+                    La lunghezza d'onda dipende non solo dai parametri del sistema, ma - nel caso continuo - anche dalla
+                    dimensione dell'anello, poiché ne dovrà essere un sottomultiplo. Proprio sulla base della lunghezza
+                    d'onda è quindi possibile differenziare ulteriori <b>sottocasi</b>, per un totale di sei, di cui due
+                    ottenibili solamente con tre o più morfogeni. Ci limiteremo tuttavia all'analisi dei sistemi con due
+                    morfogeni.
+                </p>
+            </div>
+            <div class="slide">
+                <h5>Caso stazionario, lunghezza d'onda estremamente lunga</h5>
+                <p>
+
+                </p>
+                <div class="plot-container" id="plot-1">
+                    <canvas class="ring-plot" id="canvas-1" tabindex="1"></canvas>
+                    <div id="loader-1" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-1">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-1">
+                                skip_next
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <h5>Caso oscillatorio, lunghezza d'onda estremamente lunga</h5>
+                <p>
+
+                </p>
+                <div class="plot-container" id="plot-2">
+                    <canvas class="ring-plot" id="canvas-2" tabindex="2"></canvas>
+                    <div id="loader-2" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-2">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-2">
+                                skip_next
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <h3>Ring Cell Graphs</h3>
 
             <p>The graph for a ring cell</p>
-
-            <div class="canvas" id="canvas-1"></div>
         </main>
+
+        <div class="play-pause-controls">
+            <span id="presentation-play" class="material-icons button play">
+                present_to_all
+            </span>
+            <span id="presentation-pause" class="material-icons button pause">
+                pause_presentation
+            </span>
+        </div>
+
+        <div id="presentation-controls" class="presentation-controls">
+            <div class="arrows">
+                <span id="previous" class="material-icons button">
+                    arrow_back_ios
+                </span>
+                <span id="next" class="material-icons button">
+                    arrow_forward_ios
+                </span>
+            </div>
+            <div id="progress-bar" class="progress-bar">
+
+            </div>
+        </div>
     </div>
 
     <!-- MathJax -->
@@ -291,14 +475,14 @@
         MathJax = {
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
-                tags: 'ams'
+                tags: 'ams',
             }
-        };
+        }
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script src="js/src/presentation-controller.js"></script>
-    <!-- script src="js/src/ring-cell.js"></script -->
+    <script src="js/src/test.js"></script>
 
 </body>
 

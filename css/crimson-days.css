@@ -13,6 +13,7 @@
         2.2 Formulas
         2.3 Canvas
         2.4 Presentation
+        2.5 Tooltip
         
 ===================================== */
 
@@ -111,8 +112,10 @@ body {
     background-color: var(--background);
     font-family: 'STIX Two Text', serif;
     color: var(--secondary);
-    counter-reset: section;
     counter-reset: part;
+    counter-reset: section;
+    counter-reset: subsection;
+    counter-reset: case;
     transition: all .3s ease-in-out;
 }
 
@@ -126,6 +129,8 @@ h1 {
     margin-top: 80px;
     font-size: 40px;
     font-weight: 700;
+    counter-reset: part;
+    counter-reset: section;
 }
 
 /* Part */
@@ -136,6 +141,7 @@ h2 {
     font-weight: 700;
     font-variant: small-caps;
     counter-increment: part;
+    counter-reset: section;
 }
 
 h2::before {
@@ -161,10 +167,21 @@ h3::before {
 h4 {
     font-size: 22px;
     counter-increment: subsection;
+    counter-reset: case;
 }
 
 h4::before {
     content: counter(section) "." counter(subsection);
+    margin-right: 20px;
+}
+
+h5 {
+    font-size: 20px;
+    counter-increment: case;
+}
+
+h5::before {
+    content: counter(case, upper-alpha);
     margin-right: 20px;
 }
 
@@ -209,9 +226,41 @@ div.formula.grey {
 
 /* -- 2.3 Canvas -- */
 
-div.canvas {
+div.plot-container {
+    position: relative;
+}
+
+canvas.ring-plot {
     width: 100%;
-    background-color: #B01A00;
+    height: 50%;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-in-out;
+}
+
+/* Activate for focus outline */
+
+canvas.ring-plot:focus {
+    padding: 4px;
+    margin-right: 4px;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #00000030;
+}
+
+/* */
+
+div.plot-controls {
+    display: grid;
+    place-items: center;
+    transition: all .3s ease-in-out;
+    user-select: none;
+}
+
+div.play-pause-plot {
+    position: relative;
 }
 
 /* -- 2.4 Presentation -- */
@@ -227,6 +276,7 @@ div.play-pause-controls {
     position: fixed;
     top: 10px;
     right: 50px;
+    user-select: none;
 }
 
 .material-icons.button {
@@ -248,6 +298,7 @@ div.presentation-controls {
     position: fixed;
     bottom: 0px;
     width: 100%;
+    user-select: none;
     transition: all .3s ease-in-out;
 }
 
@@ -266,4 +317,130 @@ div.progress-bar {
     height: 5px;
     background-color: var(--accent);
     transition: all .4s ease-in-out;
+}
+
+/* -- 2.5 Tooltip -- */
+
+/* Tooltip container */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    /* If you want dots under the hoverable text */
+    border-bottom: dotted var(--secondary) 1pt;
+    cursor: pointer;
+}
+
+/* Tooltip text */
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: auto;
+    background-color: var(--background);
+    color: var(--secondary);
+    box-shadow: #0000004a 0 0 20px;
+    text-align: center;
+    padding: 5px 15px;
+    border-radius: 10px;
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.tooltip-text.top {
+    bottom: 130%;
+}
+
+.tooltip-text.bottom {
+    top: 100%;
+}
+
+/* Tooltip arrow */
+
+.tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent var(--background) transparent;
+}
+
+.tooltip-text.tooltip-text.top::after {
+    top: 98%;
+}
+
+.tooltip-text.tooltip-text.bottom::after {
+    bottom: 98%;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip:hover .tooltip-text.top {
+    transform: translate(-50%, -10px);
+}
+
+.tooltip:hover .tooltip-text.bottom {
+    transform: translate(-50%, 10px);
+}
+
+/* -- 2.6 Loaders -- */
+
+.loader, .loader:after {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+}
+
+.loader {
+    margin: 4px;
+    text-indent: 0em;
+    border-top: 1.75em solid #00000015;
+    border-right: 1.75em solid #00000015;
+    border-bottom: 1.75em solid #00000015;
+    transform: translateZ(0);
+    animation: load 1.1s infinite linear;
+    animation-play-state: paused;
+    visibility: hidden;
+}
+
+@keyframes load {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Plot loader */
+
+.loader.plot {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    font-size: 2px;
+    border-left: 1.75em solid #00000090;
+}
+
+/* General loader */
+
+.loader.general {
+    top: 6pt;
+    left: 2pt;
+    font-size: 3px;
+    border-left: 1.75em solid #B01A00;
+    visibility: visible;
+    animation-play-state: running;
 }

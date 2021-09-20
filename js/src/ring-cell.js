@@ -1,8 +1,22 @@
+/**
+ * Ring of cells.
+ */
 class cellsRing {
 
     #cells;
     #newCells;
 
+    /**
+     * Constructor for the cell fo ring.
+     * @param {Number} numberOfCells Number of cells in the ring.
+     * @param {Number} eq Equilibrium status.
+     * @param {Number} mu Diffusion coefficient for x.
+     * @param {Number} nu Diffusion coefficient for y.
+     * @param {Number} a Marginal reaction rate a.
+     * @param {Number} b Marginal reaction rate b.
+     * @param {Number} c Marginal reaction rate c.
+     * @param {Number} d Marginal reaction rate d.
+     */
     constructor(numberOfCells, eq, mu, nu, a, b, c, d) {
         this.numberOfCells = numberOfCells;
         this.eq = eq;
@@ -16,60 +30,81 @@ class cellsRing {
         this.resetCells();
     }
 
+    /**
+     * Sets cells to a disturbed initial status.
+     */
     resetCells() {
         this.#cells = [...Array(this.numberOfCells)].map(() => {
             return {
-                x: .5 - Math.random() * .05,
-                y: .5 - Math.random() * .05
+                x: this.eq + Math.random() * .05 - .025,
+                y: this.eq + Math.random() * .05 - .025
             }
         });
-        // for (let i = Math.round(this.#cells.length * 0.45); i < Math.round(this.#cells.length * 0.55); i++) {
-        //     this.#cells[i].y = 1 - Math.random() * .05;
-        // }
-        // this.#newCells = this.#cells;
     }
 
+    /**
+     * Moves system forward in time.
+     */
     nextStep() {
         this.#newCells = [];
         for (let i = 0; i < this.numberOfCells; i++) {
 
+            // New indexes are calculated
             const prevI = (this.numberOfCells + i - 1) % this.numberOfCells;
             const nextI = (i + 1) % this.numberOfCells;
 
-            // x[r] += a * x[r] + b * y[r] + mu * (x[r - 1] + 2 * x[r] + x[r - 1])
+            // xInc[r] = a * x[r] + b * y[r] + mu * (x[r - 1] + 2 * x[r] + x[r - 1])
             const xInc = this.a * this.#cells[i].x + this.b * this.#cells[i].y
                 + this.mu * (this.#cells[prevI].x - 2 * this.#cells[i].x + this.#cells[nextI].x);
-            // y[r] += c * x[r] + d * y[r] + mu * (y[r - 1] + 2 * y[r] + y[r - 1])
-            const yInc = this.c * this.#cells[i].x + this.d * this.#cells[i].y
-                + this.nu * (this.#cells[prevI].y - 2 * this.#cells[i].y + this.#cells[nextI].y)
 
-            const newX = this.#cells[i].x + .05 * xInc;
-            const newY = this.#cells[i].y + .05 * yInc;
+            // yInc[r] = c * x[r] + d * y[r] + mu * (y[r - 1] + 2 * y[r] + y[r - 1])
+            const yInc = this.c * this.#cells[i].x + this.d * this.#cells[i].y
+                + this.nu * (this.#cells[prevI].y - 2 * this.#cells[i].y + this.#cells[nextI].y);
 
             this.#newCells[i] = {
-                x: newX, // < 0 ? 0 : (newX > 1 ? 1 : newX),
-                y: newY // < 0 ? 0 : (newY > 1 ? 1 : newY)
+                // x[r] += deltaTime * xInc[r]
+                x: this.#cells[i].x + .05 * xInc,
+                // y[r] += deltaTime * yInc[r]
+                y: this.#cells[i].y + .05 * yInc
+
             }
         };
+
+        // Cells are updated
         this.#cells = this.#newCells;
     }
 
-    getMorphogenX() {
-        this.#cells.forEach((cell, i) => {
-            console.log(i + ": " + cell.x);
-        });
-    }
-
+    /**
+     * Returns the cells of the ring in the current status.
+     * @returns {{x: Number, y: Number}} Cells of the ring.
+     */
     getCells() {
         return this.#cells;
     }
 }
 
-const loopN = 1;
-const reps = 3;
-const vScale = 10;
-
 let cellsRingPlot = new p5((sketch) => {
+
+    /*_______________________________________
+    |   HTML elements
+    */
+
+    let parentDiv;
+    let pageDiv;
+
+    /*_______________________________________
+    |   Resizing variables
+    */
+
+    let resizeTimeout;
+
+    /** Number of milliseconds to wait after resizing.
+     * @type {number} */
+    const waitTime = 200;
+
+    const loopN = 1;
+    const reps = 3;
+    const vScale = 10;
 
     let c1;
 
@@ -77,11 +112,35 @@ let cellsRingPlot = new p5((sketch) => {
         const I = 0.25;
         c1 = new cellsRing(100, 0, 1, .5, I - 2, 2.5, -1.25, I + 1.5);
 
-        let parentDiv = document.getElementById("canvas-1");
-        sketch.createCanvas(parentDiv.offsetWidth, parentDiv.offsetWidth * 0.75);
+        initHTMLComponents();
+
+        let canvas = sketch.createCanvas(parentDiv.offsetWidth, parentDiv.offsetWidth * 0.75);
 
         sketch.noLoop();
         drawCells();
+    }
+
+    function initHTMLComponents() {
+        parentDiv = document.getElementById("canvas-1");
+        pageDiv = document.getElementById("page-content");
+    }
+
+    sketch.windowResized = function () {
+        parentDiv.style = "width: " + pageDiv.style.offsetWidth;
+        sketch.resizeCanvas(parentDiv.offsetWidth, parentDiv.offsetWidth * 0.75);
+
+        sketch.clear();
+
+        // Waits before drawing
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {    
+
+            // Hides loader after waiting
+
+            // Draws cells
+            drawCells();
+
+        }, waitTime);
     }
 
     function drawCells() {
@@ -92,8 +151,7 @@ let cellsRingPlot = new p5((sketch) => {
         let repsOffSet = Math.floor(reps / 2);
         let vOffset = - sketch.height / 4;
 
-        sketch.stroke(255);
-        sketch.rect(0, 0, sketch.width, sketch.height);
+        sketch.clear();
 
         sketch.stroke(100);
         sketch.line(ringWidth * repsOffSet, 0, ringWidth * repsOffSet, sketch.height);
