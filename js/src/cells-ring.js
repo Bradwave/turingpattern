@@ -14,6 +14,7 @@ class cellsRing {
 
         this.deltaTime = toDefaultIfUndefined(options.deltaTime, .05);
         this.maxTime = toDefaultIfUndefined(options.maxTime, Infinity);
+        this.reps = toDefaultIfUndefined(options.reps, 1);
         this.t = 0;
 
         this.eqX = toDefaultIfUndefined(options.eqX, .5);
@@ -50,42 +51,41 @@ class cellsRing {
      */
     nextStep() {
         this.#newCells = [];
+        for (let j = 0; j < this.reps; j++) {
+            // Executes if time is in range
+            if (this.t++ < this.maxTime) {
+                for (let i = 0; i < this.numberOfCells; i++) {
 
-        // Executes if time is in range
-        if (this.t++ < this.maxTime) {
-            for (let i = 0; i < this.numberOfCells; i++) {
+                    // New indexes are calculated
+                    const prevI = (this.numberOfCells + i - 1) % this.numberOfCells;
+                    const nextI = (i + 1) % this.numberOfCells;
 
-                // New indexes are calculated
-                const prevI = (this.numberOfCells + i - 1) % this.numberOfCells;
-                const nextI = (i + 1) % this.numberOfCells;
+                    // xInc[r] = a * x[r] + b * y[r] + mu * (x[r - 1] + 2 * x[r] + x[r - 1])
+                    const xInc = this.a * this.#cells[i].x + this.b * this.#cells[i].y
+                        + this.mu * (this.#cells[prevI].x - 2 * this.#cells[i].x + this.#cells[nextI].x);
 
-                // xInc[r] = a * x[r] + b * y[r] + mu * (x[r - 1] + 2 * x[r] + x[r - 1])
-                const xInc = this.a * this.#cells[i].x + this.b * this.#cells[i].y
-                    + this.mu * (this.#cells[prevI].x - 2 * this.#cells[i].x + this.#cells[nextI].x);
+                    // yInc[r] = c * x[r] + d * y[r] + mu * (y[r - 1] + 2 * y[r] + y[r - 1])
+                    const yInc = this.c * this.#cells[i].x + this.d * this.#cells[i].y
+                        + this.nu * (this.#cells[prevI].y - 2 * this.#cells[i].y + this.#cells[nextI].y);
 
-                // yInc[r] = c * x[r] + d * y[r] + mu * (y[r - 1] + 2 * y[r] + y[r - 1])
-                const yInc = this.c * this.#cells[i].x + this.d * this.#cells[i].y
-                    + this.nu * (this.#cells[prevI].y - 2 * this.#cells[i].y + this.#cells[nextI].y);
+                    this.#newCells[i] = {
+                        // x[r] += deltaTime * (xInc[r] + noise)
+                        x: this.#cells[i].x
+                            + this.deltaTime * (xInc + this.noiseFactor2 * (Math.random() - .5)),
+                        // y[r] += deltaTime * (yInc[r] + noise)
+                        y: this.#cells[i].y
+                            + this.deltaTime * (yInc + this.noiseFactor2 * (Math.random() - .5))
 
-                this.#newCells[i] = {
-                    // x[r] += deltaTime * (xInc[r] + noise)
-                    x: this.#cells[i].x
-                        + this.deltaTime * (xInc + this.noiseFactor2 * (Math.random() - .5)),
-                    // y[r] += deltaTime * (yInc[r] + noise)
-                    y: this.#cells[i].y
-                        + this.deltaTime * (yInc + this.noiseFactor2 * (Math.random() - .5))
-
+                    }
                 }
+                // Cells are updated
+                this.#cells = this.#newCells;
+            } else {
+                // Resets time and cells
+                this.t = 0;
+                this.resetCells();
             }
-            // Cells are updated
-            this.#cells = this.#newCells;
-        } else {
-            // Resets time and cells
-            this.t = 0;
-            this.resetCells();
         }
-
-
     }
 
     /**
@@ -207,21 +207,28 @@ let ringPlot = function (idNumber, ring, options = []) {
 
     const canvas = document.getElementById("canvas-" + idNumber);
     const ctx = canvas.getContext('2d');
-    const dpi = window.devicePixelRatio;
+
+    /**
+     * Device dpi.
+     */
+    let dpi;
 
     /**
      * Resize the canvas to fill the HTML canvas element.
      */
     publicAPIs.resizeCanvas = () => {
-        // Saves the width and height of the resized canvas
-        width = canvas.offsetWidth;
-        height = canvas.offsetHeight;
+        // Get the device dpi
+        dpi = window.devicePixelRatio;
 
         // Sets the canvas width and height based on the dpi resolution of the page
         const styleWidth = +getComputedStyle(canvas).getPropertyValue("width").slice(0, -2);
         const styleHeight = +getComputedStyle(canvas).getPropertyValue("height").slice(0, -2);
-        canvas.setAttribute('height', styleHeight * dpi);
-        canvas.setAttribute('width', styleWidth * dpi);
+        canvas.setAttribute('height', Math.round(styleHeight * dpi));
+        canvas.setAttribute('width', Math.round(styleWidth * dpi));
+
+        // Saves the width and height of the resized canvas, multiplied by dpi?
+        width = canvas.offsetWidth * dpi;
+        height = canvas.offsetHeight * dpi;
     }
 
     /*_______________________________________
@@ -308,16 +315,16 @@ let ringPlot = function (idNumber, ring, options = []) {
                 ctx.beginPath();
                 ctx.moveTo(
                     cellWidth * i + ringWidth * j,
-                    vOffset + height - cells[i].x * vScale);
+                    vOffset + height - cells[i].x * vScale * dpi);
                 if (squared) {
                     ctx.lineWidth = 3;
                     ctx.lineTo(
                         cellWidth * (i + 1) + ringWidth * j,
-                        vOffset + height - cells[i].x * vScale);
+                        vOffset + height - cells[i].x * vScale * dpi);
                 } else {
                     ctx.lineTo(
                         cellWidth * (i + 1) + ringWidth * j,
-                        vOffset + height - cells[(i + 1) % numberOfCells].x * vScale);
+                        vOffset + height - cells[(i + 1) % numberOfCells].x * vScale * dpi);
                 }
                 ctx.stroke();
 
@@ -327,16 +334,16 @@ let ringPlot = function (idNumber, ring, options = []) {
                 ctx.beginPath();
                 ctx.moveTo(
                     cellWidth * i + ringWidth * j,
-                    vOffset + height - cells[i].y * vScale);
+                    vOffset + height - cells[i].y * vScale * dpi);
                 if (squared) {
                     ctx.lineWidth = 3;
                     ctx.lineTo(
                         cellWidth * (i + 1) + ringWidth * j,
-                        vOffset + height - cells[i].y * vScale);
+                        vOffset + height - cells[i].y * vScale * dpi);
                 } else {
                     ctx.lineTo(
                         cellWidth * (i + 1) + ringWidth * j,
-                        vOffset + height - cells[(i + 1) % numberOfCells].y * vScale);
+                        vOffset + height - cells[(i + 1) % numberOfCells].y * vScale * dpi);
                 }
                 ctx.stroke();
 
@@ -347,20 +354,20 @@ let ringPlot = function (idNumber, ring, options = []) {
                     ctx.beginPath();
                     ctx.moveTo(
                         cellWidth * (i + 1) + ringWidth * j,
-                        vOffset + height - cells[i].x * vScale);
+                        vOffset + height - cells[i].x * vScale * dpi);
                     ctx.lineTo(
                         cellWidth * (i + 1) + ringWidth * j,
-                        vOffset + height - cells[(i + 1) % numberOfCells].x * vScale);
+                        vOffset + height - cells[(i + 1) % numberOfCells].x * vScale * dpi);
                     ctx.stroke();
 
                     ctx.strokeStyle = "#000000" + (j != 1 ? "15" : "40");
                     ctx.beginPath();
                     ctx.moveTo(
                         cellWidth * (i + 1) + ringWidth * j,
-                        vOffset + height - cells[i].y * vScale);
+                        vOffset + height - cells[i].y * vScale * dpi);
                     ctx.lineTo(
                         cellWidth * (i + 1) + ringWidth * j,
-                        vOffset + height - cells[(i + 1) % numberOfCells].y * vScale);
+                        vOffset + height - cells[(i + 1) % numberOfCells].y * vScale * dpi);
                     ctx.stroke();
                 }
             }

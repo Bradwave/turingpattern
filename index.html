@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.86, maximum-scale=1">
 
     <meta name="description" content="Turing Pattern">
     <meta name="keywords" content="maths, turing pattern, educational">
@@ -19,7 +19,16 @@
 </head>
 
 <body>
-    <div class="page-container">
+
+    <!-- SPINNING LOADER -->
+
+    <div id="loading-container" class="loading-container">
+        <div class="general loader"></div>
+    </div>
+
+    <!-- PAGE CONTENT -->
+
+    <div class="page-container" id="page-container" style="visibility: hidden; opacity: 0;">
         <nav class="page-sidebar">
 
         </nav>
@@ -30,6 +39,8 @@
             <p>
                 <b>Basato su: A. M. Turing, <i>The Chemical Basis of Morphogenesis</i>, 1952</b>
             </p>
+
+            <!-- ANELLO CELLULARE -->
 
             <div class="slide">
                 <h3>L'anello cellulare</h3>
@@ -163,6 +174,9 @@
                     \]
                 </p>
             </div>
+
+            <!-- SOLUZIONI DEL SISTEMA DISCRETO -->
+
             <div class="slide">
                 <h4>Soluzioni del sistema discreto</h4>
                 <p>Detti $p_s$ e $p_s^\prime$ gli autovalori della matrice $
@@ -208,6 +222,9 @@
                     \end{cases}
                     \end{equation}
             </div>
+
+            <!-- SOLUZIONI DEL SISTEMA CONTINUO -->
+
             <div class="slide">
                 <h4>Soluzioni del sistema continuo</h4>
                 <p>
@@ -252,6 +269,9 @@
                     \end{equation}
                 </p>
             </div>
+
+            <!-- COMPORTAMENTO DELLE SOLUZIONI -->
+
             <div class="slide">
                 <h4>Comportamento delle soluzioni</h4>
                 <p><b>Osservazioni</b></p>
@@ -261,6 +281,7 @@
                         <span class="tooltip">
                             <span class="tooltip-text bottom">
                                 \[
+                                \small
                                 \begin{cases}
                                 X_r = h + \displaystyle \sum_{s = 1}^{N} \big(A_s e^{p_s t} + B_s e^{p_s^\prime t} \big)
                                 e^{\Large \frac{2 \pi i r s}{N}} \\[.5em]
@@ -279,7 +300,8 @@
                     </li>
                     <li>
                         Se $p_{s_0}$ è tra questi, allora anche
-                        $p_{N - s_0}$ lo è, perché $\: \sin^2 \frac{\pi (N - s_0)}{N} = \sin^2 \frac{\pi s_0}{N}$.
+                        $p_{N - s_0}$ lo è, perché $\: \sin^2 {\large \frac{\pi (N - s_0)}{N}} = \sin^2 {\large
+                        \frac{\pi s_0}{N}}$.
                     </li>
                     <li style="margin-top: 10px">
                         Vale $\, \textrm{Re} (p_{s_0}) = \textrm{Re} (p_{s_0}^\prime) = \textrm{Re} (p_{\small N - s_0})
@@ -300,8 +322,9 @@
 
                         \[
                         \begin{cases}
-                        X_r - h = 2 \, \text{Re}\Big( A_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} + I t} \Big) \\[.5em]
-                        Y_r - k = 2 \, \text{Re}\Big( C_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} + I t} \Big)
+                        X_r - h = 2 \, e^{I t} \, \text{Re}\Big( A_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N}} \Big)
+                        \\[.5em]
+                        Y_r - k = 2 \, e^{I t} \, \text{Re}\Big( C_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N}} \Big)
                         \end{cases}
                         \]
                     </li>
@@ -368,15 +391,17 @@
                         e minimi lungo l'anello. Essendo i coefficienti $A_{s_0}$ e $C_{s_0}$ in
                         <span class="tooltip">
                             <span class="tooltip-text bottom">
-                                <p>
+                                <p style="font-size: 11pt;">
                                     <b>Caso discreto</b>:
                                     \[
+                                    \small
                                     A_{s_0} \Big(p_{s_0} - a + 4 \mu \sin^2 \dfrac{\pi s_0}{N} \Big) = b C_{s_0} \,
                                     \]
                                 </p>
-                                <p>
+                                <p style="font-size: 11pt;">
                                     <b>Caso continuo</b>:<br>
                                     \[
+                                    \small
                                     A_{s_0} \Big(p_{s_0} - a + \dfrac{\mu^\prime s_0^2}{\rho^2} \Big) = b C_{s_0} \,
                                     \]
                                 </p>
@@ -399,6 +424,9 @@
                     morfogeni.
                 </p>
             </div>
+
+            <!-- CASO A -->
+
             <div class="slide">
                 <h5>Caso stazionario, lunghezza d'onda $\gg 1$</h5>
                 <p>
@@ -410,7 +438,8 @@
                 <p>
                     Questa configurazione si può ottenere quando $\, \mu = \nu = \frac{1}{4}$, $\, a = d$, $\, b = c =
                     1$.<br>
-                    In tal caso, $\, p_s = a - \sin^2 \frac{\pi s}{N} + 1 \,$ è <b>reale</b> ed massimo per $s = 0$.
+                    In tal caso, $\, p_s = a - \sin^2 {\large \frac{\pi s}{N}} + 1 \,$ è <b>reale</b> ed massimo per $s
+                    = 0$.
                 </p>
                 <p>
                     <b>Nota:</b> le ondulazioni visibili nel grafico di tempo non sono direttamente prodotti
@@ -418,7 +447,7 @@
                     che viene via via amplificato.
                 </p>
                 <div class="plot-container" id="plot-1" style="margin-top: 20px;">
-                    <canvas class="ring-plot" id="canvas-1" tabindex="1"></canvas>
+                    <canvas class="ring-plot" id="canvas-1" tabindex="1" style="height: 300px;"></canvas>
                     <div id="loader-1" class="plot loader"></div>
                     <div class="plot-controls">
                         <div>
@@ -459,8 +488,8 @@
                 </div>
                 <p>
                     Introducendo invece un <b>rumore continuo nel tempo</b>, il sistema sembra <b>stabilizzarsi</b>, ma
-                    - come
-                    ci si aspetterebbe - non raggiunge uno stato di equilibrio definitivo come nel caso precedente.
+                    - come ci si aspetterebbe - non raggiunge uno stato di equilibrio definitivo come nel caso
+                    precedente.
                 </p>
                 <div class="plot-container" id="plot-3">
                     <canvas class="ring-plot" id="canvas-3" tabindex="3" style="height: 100px;"></canvas>
@@ -481,11 +510,85 @@
                     </div>
                 </div>
             </div>
+
+            <!-- STUDIO CASO A -->
+
+            <div class="slide">
+                <p>
+                    Studiando il caso continuo, per un anello di raggio $\rho$ sufficientemente grande da poter
+                    accomodare
+                    ogni tipo di onda, è possibile ricavare condizioni più precise che caratterizzano i vari sottocasi.
+                    Detto $U_s = \dfrac{s^2}{\rho^2} = \Big( \dfrac{2 \pi}{\lambda} \Big)^2$, dove $\lambda$ indica la
+                    lunghezza d'onda, si può scrivere $p$ in funzione di $U_s$:
+
+                    \[
+                    p_s = \dfrac{a + d}{2} - \dfrac{\mu^\prime + \nu^\prime}{2} U_s \pm \sqrt{\Big(\dfrac{\mu^\prime -
+                    \nu^\prime}{2}
+                    U_s + \dfrac{d - a}{2} \Big)^2 + bc} \, .
+                    \]
+
+                    La parte reale di $p$ rappresenta l'<b>instabilità</b> delle onde di lunghezza
+                    d'onda $\, \lambda = \dfrac{2 \pi} {\sqrt{U_s}}$. La componente dominante della soluzione è
+                    data dal massimo di $\, \text{Re}(p_s)$, verificato per $U_s \to 0^+$, oppure per $\, U_s \to
+                    +\infty$, oppure ancora per un punto intermedio,
+
+                    \[
+                    U_s = \Big(a - d + \dfrac{\mu^\prime + \nu^\prime}{\sqrt{\mu^\prime \nu^\prime}} \sqrt{-bc} \Big)
+                    \dfrac{1}{\mu^\prime - \nu^\prime} \, ,
+                    \]
+
+                    da cui si ricava
+
+                    \[
+                    p = \big(d \mu^\prime - a \nu^\prime - 2 \sqrt{\mu^\prime \nu^\prime} \big)
+                    \dfrac{\sqrt{-bc}}{\mu^\prime - \mu^\prime} \, .
+                    \]
+                </p>
+            </div>
+            <div class="slide">
+                <p>
+                    Per garantire la <b>stazionarietà</b> dell'<b>onda dominante</b> è necessario innanzitutto imporre
+                    che imporre che
+                    <span class="tooltip">
+                        <span class="tooltip-text bottom">
+                            \[
+                            \small
+                            p_{\large s} = \dfrac{a + d}{2} - \dfrac{\mu^\prime + \nu^\prime}{2} U_{\large s} \pm
+                            \sqrt{\Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc}
+                            \, .
+                            \]
+                        </span>
+                        $p_s$
+                    </span>
+                    sia <b>reale</b>, cioè
+
+                    \[
+                    \Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc \geq 0 \, .
+                    \]
+
+                    Inoltre, affinché $\lambda = {\large \frac{2 \pi}{\sqrt{U_s}}} \gg 1 \,$ (o meglio $\lambda \to
+                    +\infty$) è possibile porre $U_s \to 0^+$. Combinando tutte condizioni e il fatto che non debbano
+                    esistere $U_s$ intermedi per cui $p_s$ è massimo, si ottiene che il caso desiderato è
+                    dato da $bc \gt 0$ oppure da $bc \lt 0$ e
+
+                    \[
+                    \dfrac{d - a}{\sqrt{-bc}} \gt \dfrac{\mu^\prime + \nu^\prime}{\sqrt{\mu^\prime \nu^\prime}}
+                    \quad \lor \quad
+                    \dfrac{d - a}{\sqrt{-bc}} \lt -2 \, .
+                    \]
+
+                    L'<b>instabilità</b> della soluzione è verificata per $p_s > 0$, ovvero $a + d > 0$ oppure $bc >
+                    ad$.
+                </p>
+            </div>
+
+            <!-- CASO B  -->
+
             <div class="slide">
                 <h5>Caso oscillatorio, lunghezza d'onda $\gg 1$</h5>
                 <p>
                     Come per l'analogo stazionario, le cellule si comportano come se fossero <b>isolate</b>. In tal
-                    caso, tuttavia, l'allontanamento dall'equilibrio è oscillatorio.
+                    caso, tuttavia, l'allontanamento dall'equilibrio segue un moto oscillatorio.
                 </p>
                 <p>
                     Questa configurazione si può ottenere quando $\, \mu = \nu = \frac{1}{4}$, $\, a = d$, $\, b = -c =
@@ -494,7 +597,7 @@
                     massima per $s = 0$.
                 </p>
                 <div class="plot-container" id="plot-4" style="margin-top: 20px;">
-                    <canvas class="ring-plot" id="canvas-4" tabindex="4"></canvas>
+                    <canvas class="ring-plot" id="canvas-4" tabindex="4" style="height: 300px;"></canvas>
                     <div id="loader-4" class="plot loader"></div>
                     <div class="plot-controls">
                         <div>
@@ -512,8 +615,7 @@
                 <p>
                     Come per il caso stazionario, ho individuato la configurazione $\, a = d = -1 \,$ per cui il sistema
                     sembra tendere <b>asintoticamente</b> all'equilibrio, indipendentemente dal <b>rumore</b> introdotto
-                    iniziale nel
-                    sistema.
+                    iniziale nel sistema.
                 </p>
                 <div class="plot-container" id="plot-5">
                     <canvas class="ring-plot" id="canvas-5" tabindex="5" style="height: 100px;"></canvas>
@@ -556,10 +658,65 @@
                     </div>
                 </div>
             </div>
+
+            <!-- STUDIO CASO B -->
+
+            <div class="slide">
+                <p>
+                    Il caso oscillatorio si verifica per
+                    <span class="tooltip">
+                        <span class="tooltip-text bottom">
+                            \[
+                            \small
+                            p_{\large s} = \dfrac{a + d}{2} - \dfrac{\mu^\prime + \nu^\prime}{2} U_{\large s} \pm
+                            \sqrt{\Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc}
+                            \, .
+                            \]
+                        </span>
+                        $p_s$
+                    </span>
+                    complesso, pertanto è necessario imporre
+
+                    \[
+                    \Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc \geq 0 \, .
+                    \]
+
+                    Inoltre, come per il caso stazionario, $\lambda \to +\infty$ è data da $U \to 0^+$. Tuttavia,
+                    <span class="tooltip">
+                        <span class="tooltip-text bottom"
+                            style="width: 320px; font-size: 11pt; padding: 15px; text-align: left;">
+                            La mia ipotesi è che la condizione derivi dalle disuguaglianze che caratterizzano i casi
+                            successivi, in particolare quello delle onde stazionarie con lunghezze d'onda finita.
+                        </span>
+                        Turing raffina la disuguaglianza risultate
+                    </span>,
+                    ottenendo
+
+                    \[
+                    bc \lt 0
+                    \quad \; \land \quad
+                    -2 \lt \dfrac{d - a}{\sqrt{-bc}} \lt \dfrac{4 \sqrt{\mu^\prime \nu^\prime}}{\mu^\prime + \nu^\prime}
+                    \, .
+                    \]
+
+                    L'<b>instabilità</b> è data banalmente da $a + d \gt 0$.
+                </p>
+            </div>
+
             <div class="slide">
                 <h5>Caso stazionario, lunghezza d'onda breve</h5>
-                <div class="plot-container" id="plot-7">
-                    <canvas class="ring-plot" id="canvas-7" tabindex="7" style="height: 200px"></canvas>
+                <p>
+                    In questo caso, le onde risultanti sono stazionarie, ma la lunghezza d'onda estremamente breve
+                    genere <b>pattern frastagliati</b>.
+                </p>
+                <p>
+                    Quando il numero di cellule $N$ è contenuto, si possono osservare due differenti fenomeni. Per $N$
+                    <b>pari</b>, il contenuto di ogni cellula $r$ tenderà ad essere simile a quello delle cellule $\, r
+                    + 2 \,$ e $\, r - 2$, ma quanto più dissimile da quello delle cellule adiacenti $\, r + 1 \,$ e $\,
+                    r - 1 \,$.
+                </p>
+                <div class="plot-container" id="plot-7" style="margin-top: 10px;">
+                    <canvas class="ring-plot" id="canvas-7" tabindex="7" style="height: 150px"></canvas>
                     <div id="loader-7" class="plot loader"></div>
                     <div class="plot-controls">
                         <div>
@@ -576,8 +733,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="plot-container" id="plot-8">
-                    <canvas class="ring-plot" id="canvas-8" tabindex="7" style="height: 200px"></canvas>
+                <p style="margin-top: 10px;">
+                    Per $N$ <b>dispari</b>, invece, ciò non è possibile e - tendenzialmente - la differenza tra cellule
+                    adiacenti sarà contenuta in un punto dell'anello e massima nel punto diametralmente opposto.
+                </p>
+                <div class="plot-container" id="plot-8" style="margin-top: 10px;">
+                    <canvas class="ring-plot" id="canvas-8" tabindex="8" style="height: 150px"></canvas>
                     <div id="loader-8" class="plot loader"></div>
                     <div class="plot-controls">
                         <div>
@@ -596,9 +757,13 @@
                 </div>
             </div>
             <div class="slide">
-                <h5>Caso stazionario, lunghezza d'onda finita</h5>
-                <div class="plot-container" id="plot-9">
-                    <canvas class="ring-plot" id="canvas-9" tabindex="9" style="height: 150px;"></canvas>
+                <p>
+                    All'aumentare del numero di cellule, questi comportamenti risultano via via meno evidenti, ma
+                    permane la formazione di un pattern estremamente frastagliato, eventualmente con punti in cui la
+                    differenza tra contenuto di cellule adiacenti è massimo e altri in cui è minimo.
+                </p>
+                <div class="plot-container" id="plot-9" style="margin-top: 10px;">
+                    <canvas class="ring-plot" id="canvas-9" tabindex="9" style="height: 150px"></canvas>
                     <div id="loader-9" class="plot loader"></div>
                     <div class="plot-controls">
                         <div>
@@ -610,6 +775,49 @@
                             </span>
                             <span style="margin-right: 10px;"></span>
                             <span class="material-icons button" id="refresh-9">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="plot-container" id="plot-10" style="margin-top: 10px;">
+                    <canvas class="ring-plot" id="canvas-10" tabindex="10" style="height: 150px"></canvas>
+                    <div id="loader-10" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-10">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-10">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-10">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p>
+
+                </p>
+            </div>
+
+            <div class="slide">
+                <h5>Caso stazionario, lunghezza d'onda finita</h5>
+                <div class="plot-container" id="plot-11">
+                    <canvas class="ring-plot" id="canvas-11" tabindex="11" style="height: 150px;"></canvas>
+                    <div id="loader-11" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-11">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-11">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-11">
                                 refresh
                             </span>
                         </div>

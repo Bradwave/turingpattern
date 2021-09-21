@@ -116,7 +116,7 @@
     padding: 10px;
 }
 
-@media (max-width: 768px), (orientation: portrait), (hover: none) {
+@media (max-width: 768px), (hover: none) {
     .page-container {
         grid-template-columns: none;
     }
@@ -461,9 +461,19 @@ div.progress-bar {
     top: 6pt;
     left: 2pt;
     font-size: 3px;
-    border-left: 1.75em solid #B01A00;
+    border-left: 1.75em solid #00000090;
     visibility: visible;
     animation-play-state: running;
+}
+
+/* Loading container */
+
+div.loading-container {
+    position: absolute;
+    width: 100%;
+    top: 42%;
+    display: grid;
+    place-items: center;
 }
 
 /* -- 2.7 Input box -- */

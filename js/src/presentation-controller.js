@@ -58,11 +58,21 @@ let presentationController = new function () {
         if (hash) {
             // Sets the current slide to the hash value
             currentSlideIndex = parseInt(hash.substr(1));
+            presentationMode = true;
+        }
+    });
 
+    window.onload = () => {
+        // Removes the spinning loader
+        document.getElementById("loading-container").remove();
+
+        // 
+        document.getElementById("page-container").style = "visibility: visible; opacity: 1;";
+        if (presentationMode) {
             // Start the presentation
             togglePresentation(true);
         }
-    });
+    }
 
     /**
      * Initializes the HTML elements and their listeners
