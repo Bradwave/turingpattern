@@ -400,11 +400,24 @@
                 </p>
             </div>
             <div class="slide">
-                <h5>Caso stazionario, lunghezza d'onda estremamente lunga</h5>
+                <h5>Caso stazionario, lunghezza d'onda $\gg 1$</h5>
                 <p>
-
+                    Il contenuto di tutte le cellule è identico e non si osservano flussi evidenti causati dalla
+                    diffusione. Le cellule si comportano pertanto come se fossero <b>isolate</b>. L'equilibrio del
+                    sistema è
+                    <b>instabile</b>.
                 </p>
-                <div class="plot-container" id="plot-1">
+                <p>
+                    Questa configurazione si può ottenere quando $\, \mu = \nu = \frac{1}{4}$, $\, a = d$, $\, b = c =
+                    1$.<br>
+                    In tal caso, $\, p_s = a - \sin^2 \frac{\pi s}{N} + 1 \,$ è <b>reale</b> ed massimo per $s = 0$.
+                </p>
+                <p>
+                    <b>Nota:</b> le ondulazioni visibili nel grafico di tempo non sono direttamente prodotti
+                    dall'evoluzione del sistema, ma sono causati dal rumore introdotto nella configurazione iniziale,
+                    che viene via via amplificato.
+                </p>
+                <div class="plot-container" id="plot-1" style="margin-top: 20px;">
                     <canvas class="ring-plot" id="canvas-1" tabindex="1"></canvas>
                     <div id="loader-1" class="plot loader"></div>
                     <div class="plot-controls">
@@ -420,12 +433,14 @@
                 </div>
             </div>
             <div class="slide">
-                <h5>Caso oscillatorio, lunghezza d'onda estremamente lunga</h5>
                 <p>
-
+                    Durante le mie esplorazioni, ho individuato la configurazione $\, a = d = -1 \,$ per cui il sistema
+                    sembra tendere <b>asintoticamente</b> ad un equilibrio. Particolarmente interessante è il fatto che
+                    l'equilibrio sembra essere raggiunto indipendentemente dal <b>rumore</b> introdotto iniziale nel
+                    sistema.
                 </p>
                 <div class="plot-container" id="plot-2">
-                    <canvas class="ring-plot" id="canvas-2" tabindex="2"></canvas>
+                    <canvas class="ring-plot" id="canvas-2" tabindex="2" style="height: 100px;"></canvas>
                     <div id="loader-2" class="plot loader"></div>
                     <div class="plot-controls">
                         <div>
@@ -435,6 +450,212 @@
                             <span class="material-icons button" id="skip-2">
                                 skip_next
                             </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-2">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    Introducendo invece un <b>rumore continuo nel tempo</b>, il sistema sembra <b>stabilizzarsi</b>, ma
+                    - come
+                    ci si aspetterebbe - non raggiunge uno stato di equilibrio definitivo come nel caso precedente.
+                </p>
+                <div class="plot-container" id="plot-3">
+                    <canvas class="ring-plot" id="canvas-3" tabindex="3" style="height: 100px;"></canvas>
+                    <div id="loader-3" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-3">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-3">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-3">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <h5>Caso oscillatorio, lunghezza d'onda $\gg 1$</h5>
+                <p>
+                    Come per l'analogo stazionario, le cellule si comportano come se fossero <b>isolate</b>. In tal
+                    caso, tuttavia, l'allontanamento dall'equilibrio è oscillatorio.
+                </p>
+                <p>
+                    Questa configurazione si può ottenere quando $\, \mu = \nu = \frac{1}{4}$, $\, a = d$, $\, b = -c =
+                    1$.<br>
+                    In tal caso, $\, p_s = a - \sin^2 \frac{\pi s}{N} \pm i \,$ è <b>complesso</b> e la parte reale è
+                    massima per $s = 0$.
+                </p>
+                <div class="plot-container" id="plot-4" style="margin-top: 20px;">
+                    <canvas class="ring-plot" id="canvas-4" tabindex="4"></canvas>
+                    <div id="loader-4" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-4">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-4">
+                                skip_next
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <p>
+                    Come per il caso stazionario, ho individuato la configurazione $\, a = d = -1 \,$ per cui il sistema
+                    sembra tendere <b>asintoticamente</b> all'equilibrio, indipendentemente dal <b>rumore</b> introdotto
+                    iniziale nel
+                    sistema.
+                </p>
+                <div class="plot-container" id="plot-5">
+                    <canvas class="ring-plot" id="canvas-5" tabindex="5" style="height: 100px;"></canvas>
+                    <div id="loader-5" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-5">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-5">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-5">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    Un <b>rumore continuo nel tempo</b> non impedisce al sistema di <b>stabilizzarsi</b>, ma - come
+                    previsto - non si verifica l'avvicinamento asintotico all'equilibrio.
+                </p>
+                <div class="plot-container" id="plot-6">
+                    <canvas class="ring-plot" id="canvas-6" tabindex="6" style="height: 100px;"></canvas>
+                    <div id="loader-6" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-6">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-6">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-6">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <h5>Caso stazionario, lunghezza d'onda breve</h5>
+                <div class="plot-container" id="plot-7">
+                    <canvas class="ring-plot" id="canvas-7" tabindex="7" style="height: 200px"></canvas>
+                    <div id="loader-7" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-7">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-7">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-7">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="plot-container" id="plot-8">
+                    <canvas class="ring-plot" id="canvas-8" tabindex="7" style="height: 200px"></canvas>
+                    <div id="loader-8" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-8">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-8">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-8">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <h5>Caso stazionario, lunghezza d'onda finita</h5>
+                <div class="plot-container" id="plot-9">
+                    <canvas class="ring-plot" id="canvas-9" tabindex="9" style="height: 150px;"></canvas>
+                    <div id="loader-9" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-9">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-9">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-9">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h5>Caso oscillatorio, lunghezza d'onda estremamente lunga</h5>
+                <p>
+
+                </p>
+
+                <div class="input-container" id="input-container">
+                    <div>
+                        <div>
+                            #iters:
+                            <input id="iters" class="input-box" type="text" maxlength="4" value="100">
+                            v-scale:
+                            <input id="v-scale" class="input-box" type="text" maxlength="4" value="0.04">
+                            v-offset:
+                            <input id="v-offset" class="input-box" type="text" maxlength="4" value="0.04">
+                        </div>
+                        <div style="margin-top: 5px;">
+                            #cells:
+                            <input id="num-of-cells" class="input-box" type="text" maxlength="4" value="200">
+                            dt:
+                            <input id="dt" class="input-box" type="text" maxlength="4" value="0.01">
+                            noise:
+                            <input id="noise" class="input-box" type="text" maxlength="4" value="0.04">
+                            noise2:
+                            <input id="noise-2" class="input-box" type="text" maxlength="4" value="0.04">
+                        </div>
+                        <div style="margin-top: 5px;">
+                            mu:
+                            <input id="mu" class="input-box" type="text" maxlength="4" value="0.04">
+                            nu:
+                            <input id="nu" class="input-box" type="text" maxlength="4" value="0.04">
+                            a:
+                            <input id="a" class="input-box" type="text" maxlength="4" value="0.04">
+                            b:
+                            <input id="b" class="input-box" type="text" maxlength="4" value="0.04">
+                            c:
+                            <input id="c" class="input-box" type="text" maxlength="4" value="0.04">
+                            d:
+                            <input id="d" class="input-box" type="text" maxlength="4" value="0.04">
                         </div>
                     </div>
                 </div>
@@ -482,6 +703,7 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script src="js/src/presentation-controller.js"></script>
+    <script src="js/src/cells-ring.js"></script>
     <script src="js/src/plots-manager.js"></script>
 
 </body>

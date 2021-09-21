@@ -14,6 +14,8 @@
         2.3 Canvas
         2.4 Presentation
         2.5 Tooltip
+        2.6 Loaders
+        2.7 Input box
         
 ===================================== */
 
@@ -78,6 +80,24 @@
 
 ::-webkit-scrollbar-thumb:active {
     background: var(--accent);
+}
+
+/* -- Focus -- */
+
+* {
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-in-out;
+}
+
+*:focus-visible:not(input.input-box) {
+    padding: 4px;
+    margin-right: 4px;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #00000030;
 }
 
 /* ============================
@@ -269,6 +289,7 @@ div.slide {
     padding: 10px 30px;
     border-radius: 10px;
     background-color: var(--background);
+    opacity: 1;
     transition: all .3s ease-in-out;
 }
 
@@ -443,4 +464,52 @@ div.progress-bar {
     border-left: 1.75em solid #B01A00;
     visibility: visible;
     animation-play-state: running;
+}
+
+/* -- 2.7 Input box -- */
+
+div.input-container {
+    display: grid;
+    place-items: center;
+    margin-top: 10px;
+    font-family: 'Roboto-Mono', monospace;
+    font-size: 10pt;
+    font-weight: 600;
+}
+
+input.input-box {
+    min-width: 10px;
+    width: 40px;
+    margin-left: -2px;
+    margin-right: 5px;
+    background-color: #00000000;
+    outline: none;
+    border-width: 0;
+    border-bottom: #00000050 solid 2px;
+    color: var(--secondary);
+    text-align: center;
+    font-family: 'Roboto-Mono', monospace;
+    font-weight: 600;
+    font-size: 10pt;
+    caret-color: #8d8d8d;
+    transition: all .3 ease-in-out;
+}
+
+input.input-box:active {
+    border-color: #B01A00;
+}
+
+input.input-box:hover {
+    border-color: #d43417;
+}
+
+/* Hides arrows of input box */
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }

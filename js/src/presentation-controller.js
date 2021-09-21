@@ -187,7 +187,8 @@ let presentationController = new function () {
 
         // Sets the background of each slide dark, aside from the currently selected one
         slides.forEach((slide, i) => {
-            slide.style = "background: " + (i == currentSlideIndex ? "var(--background)" : "var(--hidden)") + ";";
+            slide.style = "background: " + (i == currentSlideIndex ? "var(--background)" : "var(--hidden)") + ";"
+                + "opacity: " + (i == currentSlideIndex ? "1" : ".5") + ";";
         });
 
         // Updates the progress bar
