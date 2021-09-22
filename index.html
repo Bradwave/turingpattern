@@ -707,13 +707,24 @@
                 <h5>Caso stazionario, lunghezza d'onda breve</h5>
                 <p>
                     In questo caso, le onde risultanti sono stazionarie, ma la lunghezza d'onda estremamente breve
-                    genere <b>pattern frastagliati</b>.
+                    genere <b>pattern frastagliati</b>.<br>
+                    Le configurazioni che seguono sono generate da $\mu = 1, \; \nu = 0$, $b = - c = 1$, $a = J - 1$, $d
+                    = J$ con $J = {\large \frac{1}{4}}$. In questo caso,
+
+                    \[
+                    p_s = J - \dfrac{1}{2} - 2 \sin^2 \dfrac{\pi s}{N} + \sqrt{\Big( 2 \sin^2 \dfrac{\pi s}{N} +
+                    \dfrac{1}{2} \Big)^2 - 1} \,
+                    \]
+
+                    ed è massimo quando $\sin^2 \dfrac{\pi s}{N}$ è massimo, cioè $s = \dfrac{1}{2} N \;\, \lor \;\, s =
+                    \dfrac{1}{2} (N - 1) \,$.
                 </p>
                 <p>
-                    Quando il numero di cellule $N$ è contenuto, si possono osservare due differenti fenomeni. Per $N$
-                    <b>pari</b>, il contenuto di ogni cellula $r$ tenderà ad essere simile a quello delle cellule $\, r
-                    + 2 \,$ e $\, r - 2$, ma quanto più dissimile da quello delle cellule adiacenti $\, r + 1 \,$ e $\,
-                    r - 1 \,$.
+                    In generale, il contenuto di ogni cellula tenderà ad essere quanto <b>più diverso possibile</b> da
+                    quello delle <b>cellule adiacenti</b>. Come si può osservare, per un numero di cellule
+                    sufficientemente grande, nonostante la generale frastagliatura, esistono punti in cui la differenza
+                    tra il contenuto di due cellule adiacenti è contenuta, mentre altri è più marcata. In caso di
+                    instabilità, la differenza crescerà con l'avanzare del tempo.
                 </p>
                 <div class="plot-container" id="plot-7" style="margin-top: 10px;">
                     <canvas class="ring-plot" id="canvas-7" tabindex="7" style="height: 150px"></canvas>
@@ -733,11 +744,15 @@
                         </div>
                     </div>
                 </div>
-                <p style="margin-top: 10px;">
-                    Per $N$ <b>dispari</b>, invece, ciò non è possibile e - tendenzialmente - la differenza tra cellule
-                    adiacenti sarà contenuta in un punto dell'anello e massima nel punto diametralmente opposto.
+            </div>
+            <div class="slide">
+                <p>
+                    Esistono configurazioni dei parametri per cui il sistema sembra raggiungere un equilibrio.
                 </p>
-                <div class="plot-container" id="plot-8" style="margin-top: 10px;">
+                <p>
+                    Ad esempio, il grafico seguente è generato da $J = 0.21$.
+                </p>
+                <div class="plot-container" id="plot-8" style="margin-top: 20px;">
                     <canvas class="ring-plot" id="canvas-8" tabindex="8" style="height: 150px"></canvas>
                     <div id="loader-8" class="plot loader"></div>
                     <div class="plot-controls">
@@ -748,19 +763,16 @@
                             <span class="material-icons button" id="skip-8">
                                 skip_next
                             </span>
-                            <span style="margin-right: 10px;"></span>
+                            <span style="margin-right: 8px;"></span>
                             <span class="material-icons button" id="refresh-8">
                                 refresh
                             </span>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="slide">
                 <p>
-                    All'aumentare del numero di cellule, questi comportamenti risultano via via meno evidenti, ma
-                    permane la formazione di un pattern estremamente frastagliato, eventualmente con punti in cui la
-                    differenza tra contenuto di cellule adiacenti è massimo e altri in cui è minimo.
+                    Per $J = 0.20$, le onde sembrano via via appiattirsi, tendendo asintoticamente ad uno stato di
+                    equilibrio.
                 </p>
                 <div class="plot-container" id="plot-9" style="margin-top: 10px;">
                     <canvas class="ring-plot" id="canvas-9" tabindex="9" style="height: 150px"></canvas>
@@ -780,6 +792,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="slide">
+                <p>
+                    Quando il numero di cellule $N$ è contenuto, si possono osservare due differenti fenomeni. Per $N$
+                    <b>pari</b>, il contenuto di ogni cellula $r$ tenderà ad essere simile a quello delle cellule $\, r
+                    + 2 \,$ e $\, r - 2$, ma quanto più dissimile da quello delle cellule adiacenti $\, r + 1 \,$ e $\,
+                    r - 1 \,$.
+                </p>
                 <div class="plot-container" id="plot-10" style="margin-top: 10px;">
                     <canvas class="ring-plot" id="canvas-10" tabindex="10" style="height: 150px"></canvas>
                     <div id="loader-10" class="plot loader"></div>
@@ -798,15 +818,12 @@
                         </div>
                     </div>
                 </div>
-                <p>
-
+                <p style="margin-top: 10px;">
+                    Per $N$ <b>dispari</b>, invece, ciò non è possibile e - tendenzialmente - la differenza tra cellule
+                    adiacenti sarà contenuta in un punto dell'anello e massima nel punto diametralmente opposto.
                 </p>
-            </div>
-
-            <div class="slide">
-                <h5>Caso stazionario, lunghezza d'onda finita</h5>
-                <div class="plot-container" id="plot-11">
-                    <canvas class="ring-plot" id="canvas-11" tabindex="11" style="height: 150px;"></canvas>
+                <div class="plot-container" id="plot-11" style="margin-top: 10px;">
+                    <canvas class="ring-plot" id="canvas-11" tabindex="11" style="height: 150px"></canvas>
                     <div id="loader-11" class="plot loader"></div>
                     <div class="plot-controls">
                         <div>
@@ -818,6 +835,63 @@
                             </span>
                             <span style="margin-right: 10px;"></span>
                             <span class="material-icons button" id="refresh-11">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STUDIO CASO C -->
+
+            <div class="slide">
+                <p>
+                    Il caso di onde stazionarie con lunghezza d'onda $\, \lambda = {\large \frac{2 \pi}{\sqrt{U}}} \to
+                    0^+ \,$ (nel caso continuo) è verificato per
+                    <span class="tooltip">
+                        <span class="tooltip-text bottom">
+                            \[
+                            \small
+                            p_{\large s} = \dfrac{a + d}{2} - \dfrac{\mu^\prime + \nu^\prime}{2} U_{\large s} \pm
+                            \sqrt{\Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc}
+                            \, .
+                            \]
+                        </span>
+                        $\, p_s \,$
+                    </span>
+                    <b>reale</b> con
+                    <span class="tooltip">
+                        <span class="tooltip-text bottom">
+                            \[
+                            \small
+                            U_s = \Big(a - d + \dfrac{\mu^\prime + \nu^\prime}{\sqrt{\mu^\prime \nu^\prime}} \sqrt{-bc}
+                            \Big) \dfrac{1}{\mu^\prime - \nu^\prime} \, ,
+                            \]
+                        </span>
+                        $\, U_s \to +\infty \,$
+                    </span>,
+                    ovvero $bc \lt 0 \,$ (per garantire l'esistenza di $U$) e, supponendo $\mu^\prime > \nu^\prime$, $\, \nu \to
+                    0^+$. L'<b>instabilità</b> è data da $\, a + d \gt 0$.
+                </p>
+            </div>
+
+            <!-- CASO D -->
+
+            <div class="slide">
+                <h5>Caso stazionario, lunghezza d'onda finita</h5>
+                <div class="plot-container" id="plot-13">
+                    <canvas class="ring-plot" id="canvas-13" tabindex="13" style="height: 150px;"></canvas>
+                    <div id="loader-13" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-13">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-13">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-13">
                                 refresh
                             </span>
                         </div>

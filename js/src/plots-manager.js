@@ -16,9 +16,11 @@ let plotsManager = new function () {
      */
     let loaders = document.getElementsByClassName("plot loader");
 
-    const I1 = .26;
-    const I2 = .21
-    const I3 = 0;
+    const J1 = .28;
+    const J2 = .21;
+    const J3 = .2;
+    const J4 = .25;
+    const J5 = 0;
 
     /**
      * Ring plots.
@@ -81,53 +83,64 @@ let plotsManager = new function () {
             startingPosition: .5,
             verticalScale: 100
         }),
-        // Stationary, extreme short wave length, even number of cells
+        // Stationary, extreme short wave length, lots of cells
         new ringPlot(7, new cellsRing({
+            numberOfCells: 100, reps: 2, maxTime: 1000,
+            noiseFactor: 0.025,
+            eqX: 0, eqY: 0,
+            mu: 1, nu: 0, a: J1 - 1, b: 1, c: -1, d: J1
+        }), {
+            startingPosition: .5,
+            verticalScale: 600
+        }),
+        // Stationary, extreme short wave length, lots of cells, stable
+        new ringPlot(8, new cellsRing({
+            numberOfCells: 100, reps: 5, maxTime: 6000,
+            noiseFactor: 0.05,
+            eqX: 0, eqY: 0,
+            mu: 1, nu: 0, a: J2 - 1, b: 1, c: -1, d: J2
+        }), {
+            startingPosition: .5,
+            verticalScale: 1500
+        }),
+        // Stationary, extreme short wave length, lots of cells, very stable
+        new ringPlot(9, new cellsRing({
+            numberOfCells: 100, reps: 5, maxTime: 6000,
+            noiseFactor: 0.05,
+            eqX: 0, eqY: 0,
+            mu: 1, nu: 0, a: J3 - 1, b: 1, c: -1, d: J3
+        }), {
+            startingPosition: .5,
+            verticalScale: 1500
+        }),
+        // Stationary, extreme short wave length, even number of cells
+        new ringPlot(10, new cellsRing({
             numberOfCells: 10, reps: 10, maxTime: 3600,
             noiseFactor: .0025,
             eqX: 0, eqY: 0,
-            mu: 1, nu: 0, a: I1 - 1, b: 1, c: -1, d: I1
+            mu: 1, nu: 0, a: J4 - 1, b: 1, c: -1, d: J4
         }), {
             squared: true,
             startingPosition: .5,
             verticalScale: 300
         }),
         // Stationary, extreme short wave length, odd number of cells
-        new ringPlot(8, new cellsRing({
+        new ringPlot(11, new cellsRing({
             numberOfCells: 11, reps: 10, maxTime: 3600,
             noiseFactor: .0025,
             eqX: 0, eqY: 0,
-            mu: 1, nu: 0, a: I1 - 1, b: 1, c: -1, d: I1
+            mu: 1, nu: 0, a: J4 - 1, b: 1, c: -1, d: J4
         }), {
             squared: true,
             startingPosition: .5,
             verticalScale: 300
         }),
-        // Stationary, extreme short wave length, a lot of cells
-        new ringPlot(9, new cellsRing({
-            numberOfCells: 100, reps: 5, maxTime: 2200,
-            noiseFactor: 0.005,
-            eqX: 0, eqY: 0,
-            mu: 1, nu: 0, a: I1 - 1, b: 1, c: -1, d: I1
-        }), {
-            startingPosition: .5,
-            verticalScale: 600
-        }),
-        new ringPlot(10, new cellsRing({
-            numberOfCells: 100, reps: 5,
-            noiseFactor: 0.005,
-            eqX: 0, eqY: 0,
-            mu: 1, nu: 0, a: I2 - 1, b: 1, c: -1, d: I2
-        }), {
-            startingPosition: .5,
-            verticalScale: 20000
-        }),
         // Stationary, finite short wave
-        new ringPlot(11, new cellsRing({
+        new ringPlot(13, new cellsRing({
             numberOfCells: 100, maxTime: 500,
             noiseFactor: 0.005,
             eqX: 0, eqY: 0,
-            mu: 1, nu: .5, a: I3 - 2, b: 2.5, c: -1.25, d: I3 + 1.5
+            mu: 1, nu: .5, a: J5 - 2, b: 2.5, c: -1.25, d: J5 + 1.5
         }), {
             startingPosition: .5,
             verticalScale: 600
