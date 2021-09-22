@@ -1,3 +1,6 @@
+// patch all methods
+seamless.polyfill();
+
 /**
  * Presentation mode controller.
  */
@@ -67,7 +70,7 @@ let presentationController = new function () {
         document.getElementById("loading-container").remove();
         // Makes page content visible 
         document.getElementById("page-container").style = "visibility: visible; opacity: 1;";
-        
+
         if (presentationMode) {
             // Start the presentation
             togglePresentation(true);
@@ -194,7 +197,7 @@ let presentationController = new function () {
     function updateSlides() {
         // Sets the hash to the currently selected slide index
         window.location.hash = currentSlideIndex;
-        
+
         // Sets the background of each slide dark, aside from the currently selected one
         for (let i = 0; i < slides.length; i++) {
             slides[i].style = "background: " + (i == currentSlideIndex ? "var(--background)" : "var(--hidden)") + ";"

@@ -136,6 +136,7 @@ body {
     counter-reset: section;
     counter-reset: subsection;
     counter-reset: case;
+    scroll-behavior: smooth;
     transition: all .3s ease-in-out;
 }
 
