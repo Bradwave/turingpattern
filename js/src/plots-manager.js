@@ -14,7 +14,7 @@ let plotsManager = new function () {
     /**
      * Spinning loaders
      */
-    let loaders = document.getElementsByClassName("plot loader");
+    let loaders = [...document.getElementsByClassName("plot loader")];
 
     /*_______________________________________
     |   Ring plots

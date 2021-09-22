@@ -80,7 +80,7 @@ let presentationController = new function () {
     function initHTMLComponents() {
 
         // Gets the slide div elements
-        slides = document.getElementsByClassName("slide");
+        slides = [...document.getElementsByClassName("slide")];
 
         // Gets the presentation controls elements and the progress bar
         presentationPlay = document.getElementById("presentation-play");
