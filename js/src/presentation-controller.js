@@ -65,9 +65,9 @@ let presentationController = new function () {
     window.onload = () => {
         // Removes the spinning loader
         document.getElementById("loading-container").remove();
-
-        // 
+        // Makes page content visible 
         document.getElementById("page-container").style = "visibility: visible; opacity: 1;";
+        
         if (presentationMode) {
             // Start the presentation
             togglePresentation(true);
@@ -194,12 +194,12 @@ let presentationController = new function () {
     function updateSlides() {
         // Sets the hash to the currently selected slide index
         window.location.hash = currentSlideIndex;
-
+        
         // Sets the background of each slide dark, aside from the currently selected one
-        slides.forEach((slide, i) => {
-            slide.style = "background: " + (i == currentSlideIndex ? "var(--background)" : "var(--hidden)") + ";"
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style = "background: " + (i == currentSlideIndex ? "var(--background)" : "var(--hidden)") + ";"
                 + "opacity: " + (i == currentSlideIndex ? "1" : ".5") + ";";
-        });
+        }
 
         // Updates the progress bar
         progressBar.style = "width: " + (currentSlideIndex / (slides.length - 1) * 100) + "%";
