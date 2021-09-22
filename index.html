@@ -1113,8 +1113,65 @@
 
             <div class="slide" style="margin-top: 2em">
                 <h3>Tessuto cellulare</h3>
-                <div id="canvas-17"></div>
+                <div class="plot-container" id="plot-17" style="margin-top: 15px;">
+                    <div class="canvas-container">
+                        <canvas class="tissue-plot" id="canvas-17" tabindex="17"></canvas>
+                    </div>
+                    <div id="loader-17" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-17">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-17">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-17">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-container" id="input-container-2">
+                    <div>
+                        <div>
+                            #iters:
+                            <input id="t-iters" class="input-box" type="text" maxlength="5" value="400">
+                            #cells:
+                            <input id="t-num-of-cells" class="input-box" type="text" maxlength="5" value="100">
+                            reps:
+                            <input id="t-reps" class="input-box" type="text" maxlength="5" value="5">
+                            dt:
+                            <input id="t-dt" class="input-box" type="text" maxlength="5" value="1">
+                        </div>
+                        <div style="margin-top: 5px;">
+                            eq-x:
+                            <input id="t-eq-x" class="input-box" type="text" maxlength="5" value="1">
+                            eq-y:
+                            <input id="t-eq-y" class="input-box" type="text" maxlength="5" value="0">
+                            noise:
+                            <input id="t-noise" class="input-box" type="text" maxlength="5" value="0.25">
+                            noise-2:
+                            <input id="t-noise-2" class="input-box" type="text" maxlength="5" value="0.05">
+                        </div>
+                        <div style="margin-top: 5px;">
+                            mu:
+                            <input id="t-mu" class="input-box" type="text" maxlength="5" value="1">
+                            nu:
+                            <input id="t-nu" class="input-box" type="text" maxlength="5" value="0.5">
+                            feed:
+                            <input id="t-feed" class="input-box" type="text" maxlength="5" value="0.055">
+                            kill:
+                            <input id="t-kill" class="input-box" type="text" maxlength="5" value="0.062">
+                        </div>
+                    </div>
+                </div>
+                <p></p>
             </div>
+
+            <div style="height: 300px;"></div>
+
         </main>
 
         <div class="play-pause-controls">
@@ -1154,9 +1211,11 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <script src="js/src/presentation-controller.js"></script>
-    <script src="js/src/cells-ring.js"></script>
+    <script src="js/src/utils.js"></script>
+    <script src="js/src/cells-structure.js"></script>
+    <script src="js/src/ring-plot.js"></script>
+    <script src="js/src/tissue-plot.js"></script>
     <script src="js/src/plots-manager.js"></script>
-    <script src="js/src/rd-plots.js"></script>
 
 </body>
 

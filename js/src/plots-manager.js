@@ -16,6 +16,11 @@ let plotsManager = new function () {
      */
     let loaders = document.getElementsByClassName("plot loader");
 
+    /*_______________________________________
+    |   Ring plots
+    */
+
+    // Ring plots variables
     const JC1 = .28, JC2 = .21, JC3 = .2, JC4 = .25;
     const JD1 = 0, JD2 = -.1, JD3 = .1;
 
@@ -162,7 +167,7 @@ let plotsManager = new function () {
             startingPosition: .5,
             verticalScale: 600
         }),
-        // General plot
+        // General ring plot
         new ringPlot(16, new cellsRing({
             numberOfCells: 100, maxTime: 400,
             noiseFactor: 0.05,
@@ -172,6 +177,16 @@ let plotsManager = new function () {
             startingPosition: .5,
             verticalScale: 600
         }),
+        // General tissue plot
+        new tissuePlot(17, new cellsTissue({
+            numberOfCells: 100, reps: 5,
+            eqX: 1, eqY: 0,
+            noiseFactor: 0.25, noiseFactor2: 0.05,
+            mu: 1, nu: 0.5, feed: .055, kill: 0.062
+        }), {
+
+        }),
+        // 
     ];
 
     window.onresize = () => {
@@ -205,55 +220,75 @@ let plotsManager = new function () {
         e.target.focus();
     }
 
-    let inputs = new Map();
+    /*_______________________________________
+    |   Inputs for ring plots
+    */
 
-    let ids = [
+    /**
+     * Ids of input boxes for the ring plot.
+     */
+    let ringIds = [
         'iters', 'v-scale', 'v-offset',
         'num-of-cells', 'dt', 'noise', 'noise-2',
         'eq-x', 'eq-y', 'squared',
         'mu', 'nu', 'a', 'b', 'c', 'd'
     ];
 
-    ids.forEach((id) => {
-        inputs.set(id, document.getElementById(id));
+    /**
+     * Input boxes for ring plot.
+     */
+    let ringInputs = new Map();
+
+    ringIds.forEach((id) => {
+        ringInputs.set(id, document.getElementById(id));
     })
 
-    inputs.forEach((input) => {
+    // Sets listeners
+    ringInputs.forEach((input) => {
         input.onchange = () => {
-            changePlot();
+            changeRingPlot();
         }
     });
 
-    function changePlot() {
+    /**
+     * Update ring plot when input boxes change.
+     */
+    function changeRingPlot() {
         // Checks for infinity
-        let iters = inputs.get('iters').value;
+        let iters = ringInputs.get('iters').value;
         if (iters.localeCompare("inf") == 0) {
             iters = Infinity;
         } else {
-            iters = getInputNumber('iters')
-        }   
+            iters = getInputNumber(ringInputs, 'iters')
+        }
 
-        let squared = inputs.get('squared').value;
+        let squared = ringInputs.get('squared').value;
         if (squared.localeCompare("true") == 0) {
             squared = true;
         } else {
             squared = false;
-            inputs.get('squared').value = "false";
+            ringInputs.get('squared').value = "false";
         }
 
         try {
             plots[14].updatePlot(new cellsRing({
-                numberOfCells: getInputNumber('num-of-cells'),
-                dt: getInputNumber('dt'), maxTime: iters,
-                noiseFactor: getInputNumber('noise'), noiseFactor2: getInputNumber('noise-2'),
-                eqX: getInputNumber('eq-x'), eqY: getInputNumber('eq-y'),
-                mu: getInputNumber('mu'), nu: getInputNumber('nu'),
-                a: getInputNumber('a'), b: getInputNumber('b'),
-                c: getInputNumber('c'), d: getInputNumber('d')
+                maxTime: iters,
+                numberOfCells: getInputNumber(ringInputs, 'num-of-cells'),
+                dt: getInputNumber(ringInputs, 'dt'),
+                noiseFactor: getInputNumber(ringInputs, 'noise'),
+                noiseFactor2: getInputNumber(ringInputs, 'noise-2'),
+                eqX: getInputNumber(ringInputs, 'eq-x'),
+                eqY: getInputNumber(ringInputs, 'eq-y'),
+                mu: getInputNumber(ringInputs, 'mu'),
+                nu: getInputNumber(ringInputs, 'nu'),
+                a: getInputNumber(ringInputs, 'a'),
+                b: getInputNumber(ringInputs, 'b'),
+                c: getInputNumber(ringInputs, 'c'),
+                d: getInputNumber(ringInputs, 'd')
             }), {
                 squared: squared,
-                startingPosition: getInputNumber('v-offset'),
-                verticalScale: getInputNumber('v-scale')
+                startingPosition: getInputNumber(ringInputs, 'v-offset'),
+                verticalScale: getInputNumber(ringInputs, 'v-scale')
             });
         } catch (e) {
             console.log(e);
@@ -262,9 +297,73 @@ let plotsManager = new function () {
         plots[14].drawCells();
     }
 
-    const getInputNumber = (id) => {
-        let newValue = parseFloat(inputs.get(id).value);
-        inputs.get(id).value = newValue;
+    /*_______________________________________
+    |   Tissue plot
+    */
+
+    let tissueInputs = new Map();
+
+    let tissueIds = [
+        'iters', 'num-of-cells', 'reps', 'dt',
+        'eq-x', 'eq-y', 'noise', 'noise-2',
+        'mu', 'nu', 'feed', 'kill'
+    ];
+
+    tissueIds.forEach((id) => {
+        tissueInputs.set(id, document.getElementById("t-" + id));
+    })
+
+    // Sets listeners
+    tissueInputs.forEach((input) => {
+        input.onchange = () => {
+            changeTissuePlot();
+        }
+    });
+
+    /**
+     * Update tissue plot when input boxes change.
+     */
+    function changeTissuePlot() {
+        // Checks for infinity
+        let iters = tissueInputs.get('iters').value;
+        if (iters.localeCompare("inf") == 0) {
+            iters = Infinity;
+        } else {
+            iters = getInputNumber(tissueInputs, 'iters')
+        }
+
+        try {
+            plots[15].updatePlot(new cellsTissue({
+                maxTime: iters,
+                numberOfCells: getInputNumber(tissueInputs, 'num-of-cells'),
+                reps: getInputNumber(tissueInputs, 'reps'),
+                dt: getInputNumber(tissueInputs, 'dt'),
+                eqX: getInputNumber(tissueInputs, 'eq-x'),
+                eqY: getInputNumber(tissueInputs, 'eq-y'),
+                noiseFactor: getInputNumber(tissueInputs, 'noise'),
+                noiseFactor2: getInputNumber(tissueInputs, 'noise-2'),
+                mu: getInputNumber(tissueInputs, 'mu'),
+                nu: getInputNumber(tissueInputs, 'nu'),
+                feed: getInputNumber(tissueInputs, 'feed'),
+                kill: getInputNumber(tissueInputs, 'kill'),
+            }), {
+
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        plots[15].drawCells();
+    }
+
+    /**
+     * Converts the input value to float and sets the input box value.
+     * @param {*} id Id of the input box. 
+     * @returns Returns the float value of the input box.
+     */
+    const getInputNumber = (inputsMap, id) => {
+        let newValue = parseFloat(inputsMap.get(id).value);
+        inputsMap.get(id).value = newValue;
         return newValue;
     }
 

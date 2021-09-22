@@ -1,116 +1,7 @@
 /**
- * Ring of cells.
- */
-class cellsRing {
-
-    #cells;
-    #newCells;
-
-    /**
-     * Constructor for the cell fo ring.
-     */
-    constructor(options) {
-        this.numberOfCells = toDefaultIfUndefined(options.numberOfCells, 200);
-
-        this.deltaTime = toDefaultIfUndefined(options.deltaTime, .05);
-        this.maxTime = toDefaultIfUndefined(options.maxTime, Infinity);
-        this.reps = toDefaultIfUndefined(options.reps, 1);
-        this.t = 0;
-
-        this.eqX = toDefaultIfUndefined(options.eqX, .5);
-        this.eqY = toDefaultIfUndefined(options.eqY, .5);
-        this.noiseFactor = toDefaultIfUndefined(options.noiseFactor, .05);
-        this.noiseFactor2 = toDefaultIfUndefined(options.noiseFactor2, 0);
-
-        this.mu = options.mu;
-        this.nu = options.nu;
-        this.a = options.a;
-        this.b = options.b;
-        this.c = options.c;
-        this.d = options.d;
-
-        this.resetCells();
-    }
-
-    /**
-     * Sets cells to a disturbed initial status.
-     */
-    resetCells() {
-        this.#cells = [...Array(this.numberOfCells)].map(() => {
-            return {
-                x: this.eqX + Math.random() * this.noiseFactor - this.noiseFactor / 2,
-                y: this.eqY + Math.random() * this.noiseFactor - this.noiseFactor / 2
-            }
-        });
-
-        this.t = 0;
-    }
-
-    /**
-     * Moves system forward in time.
-     */
-    nextStep() {
-        this.#newCells = [];
-        for (let j = 0; j < this.reps; j++) {
-            // Executes if time is in range
-            if (this.t++ < this.maxTime) {
-                for (let i = 0; i < this.numberOfCells; i++) {
-
-                    // New indexes are calculated
-                    const prevI = (this.numberOfCells + i - 1) % this.numberOfCells;
-                    const nextI = (i + 1) % this.numberOfCells;
-
-                    // xInc[r] = a * x[r] + b * y[r] + mu * (x[r - 1] + 2 * x[r] + x[r - 1])
-                    const xInc = this.a * this.#cells[i].x + this.b * this.#cells[i].y
-                        + this.mu * (this.#cells[prevI].x - 2 * this.#cells[i].x + this.#cells[nextI].x);
-
-                    // yInc[r] = c * x[r] + d * y[r] + mu * (y[r - 1] + 2 * y[r] + y[r - 1])
-                    const yInc = this.c * this.#cells[i].x + this.d * this.#cells[i].y
-                        + this.nu * (this.#cells[prevI].y - 2 * this.#cells[i].y + this.#cells[nextI].y);
-
-                    this.#newCells[i] = {
-                        // x[r] += deltaTime * (xInc[r] + noise)
-                        x: this.#cells[i].x
-                            + this.deltaTime * (xInc + this.noiseFactor2 * (Math.random() - .5)),
-                        // y[r] += deltaTime * (yInc[r] + noise)
-                        y: this.#cells[i].y
-                            + this.deltaTime * (yInc + this.noiseFactor2 * (Math.random() - .5))
-
-                    }
-                }
-                // Cells are updated
-                this.#cells = this.#newCells;
-            } else {
-                // Resets time and cells
-                this.t = 0;
-                this.resetCells();
-            }
-        }
-    }
-
-    /**
-     * Returns the cells of the ring in the current status.
-     * @returns {} Cells of the ring.
-     */
-    getCells() {
-        return this.#cells;
-    }
-}
-
-/**
- * Sets a variable to a default value if undefined.
- * @param {*} variable Variable to check.
- * @param {*} defaultValue Default value.
- * @returns Returns the default value if the variable is undefined, hte variable itself if not.
- */
-const toDefaultIfUndefined = (variable, defaultValue) => {
-    return (typeof variable === 'undefined' ? defaultValue : variable);
-}
-
-/**
  * Plots a ring of cells.
  * @param {Number} idNumber Id of the ring plot.
- * @param {cellsRing} inputRing Ring of cells.
+ * @param {*} inputRing Ring of cells.
  * @param {*} inputOptions Options
  */
 let ringPlot = function (idNumber, inputRing, inputOptions = []) {
@@ -119,7 +10,9 @@ let ringPlot = function (idNumber, inputRing, inputOptions = []) {
     |   General variables
     */
 
-    // Public methods
+    /**
+     * Public methods.
+     */
     let publicAPIs = {};
 
     /**
@@ -249,8 +142,8 @@ let ringPlot = function (idNumber, inputRing, inputOptions = []) {
         canvas.setAttribute('width', Math.round(styleWidth * dpi));
 
         // Saves the width and height of the resized canvas, multiplied by dpi?
-        width = canvas.offsetWidth * dpi;
-        height = canvas.offsetHeight * dpi;
+        width = Math.round(canvas.offsetWidth * dpi);
+        height = Math.round(canvas.offsetHeight * dpi);
     }
 
     /*_______________________________________
