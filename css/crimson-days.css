@@ -116,7 +116,7 @@
     padding: 10px;
 }
 
-@media (max-width: 768px), (hover: none) {
+@media (max-width: 768px), (orientation: portrait), (hover: none) {
     .page-container {
         grid-template-columns: none;
     }

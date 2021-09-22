@@ -55,13 +55,11 @@
             <div class="slide">
                 <p>
                     Per semplicità, consideriamo per ora un sistema in cui solo due morfogeni, $X$ e $Y$, interagiscono
-                    tra
-                    loro. Ogni cellula scambia i morfogeni con le cellule adiacenti per <b>diffusione</b>. Inoltre, in
-                    ogni
-                    cellula i morfogeni reagiscono tra loro ed eventualmente con catalizzatori e altre molecole, la cui
-                    disponibilità - per semplicità - si presuppone illimitata . Il prodotto di tale <b>reazione</b> è un
-                    aumento
-                    o una diminuzione dei morfogeni, che dipende dalla concentrazione degli stessi.
+                    tra loro. Ogni cellula scambia i morfogeni con le cellule adiacenti per <b>diffusione</b>. Inoltre,
+                    in ogni cellula i morfogeni reagiscono tra loro ed eventualmente con catalizzatori e altre molecole,
+                    la cui disponibilità - per semplicità - si presuppone illimitata . Il prodotto di tale
+                    <b>reazione</b> è un aumento o una diminuzione dei morfogeni, che dipende dalla concentrazione degli
+                    stessi.
                 </p>
                 <p>
                     Risulta così ovvio il motivo per cui tale sistema è noto come <b><i>reazione-diffusione</i></b>.
@@ -163,8 +161,7 @@
                     \end{cases}
                     \]
 
-                    il sistema può inoltre così ricondotto in una <b>forma lineare</b> con <b>coefficienti
-                        costanti</b>:
+                    il sistema può inoltre così ricondotto in una <b>forma lineare</b> con <b>coefficienti costanti</b>:
 
                     \[
                     \begin{cases}
@@ -387,8 +384,8 @@
                 </p>
                 <ul>
                     <li>
-                        Nel caso <b>stazionario</b>, si possono appunto osservare onde stazionarie aventi $s_0$ massimi
-                        e minimi lungo l'anello. Essendo i coefficienti $A_{s_0}$ e $C_{s_0}$ in
+                        Nel caso <b>stazionario</b>, si possono appunto osservare onde stazionarie aventi $s_0$ creste e
+                        avvallamenti lungo l'anello. Essendo i coefficienti $A_{s_0}$ e $C_{s_0}$ in
                         <span class="tooltip">
                             <span class="tooltip-text bottom">
                                 <p style="font-size: 11pt;">
@@ -540,7 +537,7 @@
                     da cui si ricava
 
                     \[
-                    p = \big(d \mu^\prime - a \nu^\prime - 2 \sqrt{\mu^\prime \nu^\prime} \big)
+                    p_s = \big(d \mu^\prime - a \nu^\prime - 2 \sqrt{\mu^\prime \nu^\prime} \big)
                     \dfrac{\sqrt{-bc}}{\mu^\prime - \mu^\prime} \, .
                     \]
                 </p>
@@ -555,7 +552,6 @@
                             \small
                             p_{\large s} = \dfrac{a + d}{2} - \dfrac{\mu^\prime + \nu^\prime}{2} U_{\large s} \pm
                             \sqrt{\Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc}
-                            \, .
                             \]
                         </span>
                         $p_s$
@@ -670,7 +666,6 @@
                             \small
                             p_{\large s} = \dfrac{a + d}{2} - \dfrac{\mu^\prime + \nu^\prime}{2} U_{\large s} \pm
                             \sqrt{\Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc}
-                            \, .
                             \]
                         </span>
                         $p_s$
@@ -708,11 +703,12 @@
                 <p>
                     In questo caso, le onde risultanti sono stazionarie, ma la lunghezza d'onda estremamente breve
                     genere <b>pattern frastagliati</b>.<br>
-                    Le configurazioni che seguono sono generate da $\mu = 1, \; \nu = 0$, $b = - c = 1$, $a = J - 1$, $d
-                    = J$ con $J = {\large \frac{1}{4}}$. In questo caso,
+                    Le configurazioni che seguono sono generate da $\mu = 1, \; \nu = 0$, $b = - c = 1$, $a = J_1 - 1$,
+                    $d
+                    = J_1$ con $J_1 = {\large \frac{1}{4}}$. In questo caso,
 
                     \[
-                    p_s = J - \dfrac{1}{2} - 2 \sin^2 \dfrac{\pi s}{N} + \sqrt{\Big( 2 \sin^2 \dfrac{\pi s}{N} +
+                    p_s = J_1 - \dfrac{1}{2} - 2 \sin^2 \dfrac{\pi s}{N} + \sqrt{\Big( 2 \sin^2 \dfrac{\pi s}{N} +
                     \dfrac{1}{2} \Big)^2 - 1} \,
                     \]
 
@@ -750,7 +746,7 @@
                     Esistono configurazioni dei parametri per cui il sistema sembra raggiungere un equilibrio.
                 </p>
                 <p>
-                    Ad esempio, il grafico seguente è generato da $J = 0.21$.
+                    Ad esempio, il grafico seguente è generato da $J_1 = 0.21$.
                 </p>
                 <div class="plot-container" id="plot-8" style="margin-top: 20px;">
                     <canvas class="ring-plot" id="canvas-8" tabindex="8" style="height: 150px"></canvas>
@@ -771,7 +767,7 @@
                     </div>
                 </div>
                 <p>
-                    Per $J = 0.20$, le onde sembrano via via appiattirsi, tendendo asintoticamente ad uno stato di
+                    Per $J_1 = 0.20$, le onde sembrano via via appiattirsi, tendendo asintoticamente ad uno stato di
                     equilibrio.
                 </p>
                 <div class="plot-container" id="plot-9" style="margin-top: 10px;">
@@ -854,7 +850,6 @@
                             \small
                             p_{\large s} = \dfrac{a + d}{2} - \dfrac{\mu^\prime + \nu^\prime}{2} U_{\large s} \pm
                             \sqrt{\Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc}
-                            \, .
                             \]
                         </span>
                         $\, p_s \,$
@@ -865,12 +860,13 @@
                             \[
                             \small
                             U_s = \Big(a - d + \dfrac{\mu^\prime + \nu^\prime}{\sqrt{\mu^\prime \nu^\prime}} \sqrt{-bc}
-                            \Big) \dfrac{1}{\mu^\prime - \nu^\prime} \, ,
+                            \Big) \dfrac{1}{\mu^\prime - \nu^\prime}
                             \]
                         </span>
                         $\, U_s \to +\infty \,$
                     </span>,
-                    ovvero $bc \lt 0 \,$ (per garantire l'esistenza di $U$) e, supponendo $\mu^\prime > \nu^\prime$, $\, \nu \to
+                    ovvero $bc \lt 0 \,$ (per garantire l'esistenza di $U$) e, supponendo $\mu^\prime > \nu^\prime$, $\,
+                    \nu \to
                     0^+$. L'<b>instabilità</b> è data da $\, a + d \gt 0$.
                 </p>
             </div>
@@ -879,6 +875,39 @@
 
             <div class="slide">
                 <h5>Caso stazionario, lunghezza d'onda finita</h5>
+                <p>
+                    Il seguente è il caso più <b>rilevante</b> dal punto di vista della <b>biologia</b>, poiché la
+                    concentrazione dei morfogeni nelle cellule è determinato da un'onda con lunghezza d'onda finita. Se
+                    si immagina che i morfogeni determino il <b>colore di un tessuto</b>, ad esempio, una configurazione
+                    di questo determinerebbe la formazione di <b>motivi striati</b>.
+                </p>
+                <p>
+                    Una simile configurazione è generata, ad esempio, da $\mu = 1$, $\, \nu = \dfrac{1}{2}$, $\, a = J_2
+                    -2$, $\, b = \dfrac{5}{2}$, $\, c = -\dfrac{5}{4}$, $\, d = J_2 + \dfrac{3}{2}$. Pertanto
+                    <span class="tooltip">
+                        <span class="tooltip-text bottom">
+                            \[
+                            \small
+                            \Big(p_s - a + 4 \mu \sin^2 \dfrac{\pi s}{N} \Big)
+                            \Big(p_s - d + 4 \nu \sin^2 \dfrac{\pi s}{N} \Big) = bc
+                            \]
+                        </span>
+                        $p_s$ risolve
+                    </span>
+
+                    \[
+                    (p_s - J_2)^2 + \Big(\dfrac{1}{2} + \dfrac{3}{2} U_s \Big)(p - J_2) + \dfrac{1}{2} \Big( U_s -
+                    \dfrac{1}{2} \Big)^2 = 0 \, ,
+                    \]
+
+                    che ha una soluzione $\, p_s = J_2 \,$ per $\, U_s = \dfrac{1}{2} \,$. Nel grafico che segue $\, p_s
+                    = J_2 = 0$.
+                </p>
+                <!-- p>
+                    Poiché $\lambda = {\large
+                    \frac{2 \pi}{\sqrt{U_s}}}$, il numero di creste e avvallamenti sarà pari a uno dei due numeri interi
+                    più vicini alla soluzione di $U = \dfrac{s^2}{\rho^2} = \Big(\dfrac{2 \pi}{\lambda} \Big)^2 \, $.
+                </p -->
                 <div class="plot-container" id="plot-13">
                     <canvas class="ring-plot" id="canvas-13" tabindex="13" style="height: 150px;"></canvas>
                     <div id="loader-13" class="plot loader"></div>
@@ -898,54 +927,194 @@
                     </div>
                 </div>
             </div>
-
-            <div>
-                <h5>Caso oscillatorio, lunghezza d'onda estremamente lunga</h5>
+            <div class="slide">
                 <p>
-
+                    Per $p_s = J_2 \lt 0$, l'onda si appiattisce, tendendo asintoticamente ad uno stato di equilibrio
+                    <b>stabile</b>.
                 </p>
-
-                <div class="input-container" id="input-container">
-                    <div>
+                <div class="plot-container" id="plot-14" style="margin-top: 15px;">
+                    <canvas class="ring-plot" id="canvas-14" tabindex="14" style="height: 150px;"></canvas>
+                    <div id="loader-14" class="plot loader"></div>
+                    <div class="plot-controls">
                         <div>
-                            #iters:
-                            <input id="iters" class="input-box" type="text" maxlength="4" value="100">
-                            v-scale:
-                            <input id="v-scale" class="input-box" type="text" maxlength="4" value="0.04">
-                            v-offset:
-                            <input id="v-offset" class="input-box" type="text" maxlength="4" value="0.04">
+                            <span class="material-icons button" id="play-pause-14">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-14">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-14">
+                                refresh
+                            </span>
                         </div>
-                        <div style="margin-top: 5px;">
-                            #cells:
-                            <input id="num-of-cells" class="input-box" type="text" maxlength="4" value="200">
-                            dt:
-                            <input id="dt" class="input-box" type="text" maxlength="4" value="0.01">
-                            noise:
-                            <input id="noise" class="input-box" type="text" maxlength="4" value="0.04">
-                            noise2:
-                            <input id="noise-2" class="input-box" type="text" maxlength="4" value="0.04">
-                        </div>
-                        <div style="margin-top: 5px;">
-                            mu:
-                            <input id="mu" class="input-box" type="text" maxlength="4" value="0.04">
-                            nu:
-                            <input id="nu" class="input-box" type="text" maxlength="4" value="0.04">
-                            a:
-                            <input id="a" class="input-box" type="text" maxlength="4" value="0.04">
-                            b:
-                            <input id="b" class="input-box" type="text" maxlength="4" value="0.04">
-                            c:
-                            <input id="c" class="input-box" type="text" maxlength="4" value="0.04">
-                            d:
-                            <input id="d" class="input-box" type="text" maxlength="4" value="0.04">
+                    </div>
+                </div>
+                <p>
+                    Mentre, per $\, p_s = J_2 \gt 0 \,$ il sistema è <b>instabile</b>.
+                </p>
+                <div class="plot-container" id="plot-15" style="margin-top: 15px;">
+                    <canvas class="ring-plot" id="canvas-15" tabindex="15" style="height: 150px;"></canvas>
+                    <div id="loader-15" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-15">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-15">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-15">
+                                refresh
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="slide">
+                <p>
+                    Il caso continuo, stazionario e con lunghezza d'onda finita è verificato per $bc \lt 0$, che
+                    garantisce l'esista di
+                    <span class="tooltip">
+                        <span class="tooltip-text bottom">
+                            \[
+                            \small
+                            U_s = \Big(a - d + \dfrac{\mu^\prime + \nu^\prime}{\sqrt{\mu^\prime \nu^\prime}} \sqrt{-bc}
+                            \Big) \dfrac{1}{\mu^\prime - \nu^\prime}
+                            \]
+                        </span>
+                        $\, U_s \,$
+                    </span>,
+                    e da
 
-            <h3>Ring Cell Graphs</h3>
+                    \[
+                    \dfrac{4 \sqrt(\mu^\prime \nu^\prime)}{\mu^\prime + \nu^\prime} \lt \dfrac{d - a}{\sqrt{-bc}} \lt
+                    \dfrac{\mu^\prime + \nu^\prime}{\sqrt{\mu^\prime \nu^\prime}} \, .
+                    \]
 
-            <p>The graph for a ring cell</p>
+                    La prima disuguaglianza si ricava imponendo $\, p_{\text{max}} \gt p_0$. La seconda, invece,
+                    garantisce
+                    <span class="tooltip">
+                        <span class="tooltip-text bottom">
+                            \[
+                            \small
+                            U_s = \Big(a - d + \dfrac{\mu^\prime + \nu^\prime}{\sqrt{\mu^\prime \nu^\prime}} \sqrt{-bc}
+                            \Big) \dfrac{1}{\mu^\prime - \nu^\prime} \gt 0
+                            \]
+                        </span>
+                        $\, U_s > 0 \,$
+                    </span>
+                </p>
+                <p>
+                    Il sistema è <b>instabile</b> se
+                    <span class="tooltip">
+                        <span class="tooltip-text bottom">
+                            \[
+                            \small
+                            p_s = I = \big(d \mu^\prime - a \nu^\prime - 2 \sqrt{\mu^\prime \nu^\prime} \big)
+                            \dfrac{\sqrt{-bc}}{\mu^\prime - \mu^\prime} \gt 0
+                            \]
+                        </span>
+                        $\, p_{\text{max}} = I \gt 0 \,$
+                    </span>,
+                    cioè
+
+                    \[
+                    \dfrac{1}{\sqrt{-bc}} \Bigg( d \, \sqrt{\dfrac{\mu^\prime}{\nu^\prime}} - a \,
+                    \sqrt{\dfrac{\nu^\prime}{\mu^\prime}} \Bigg) > 2 \, .
+                    \]
+                </p>
+            </div>,
+
+            <!-- MODELLO GENERALE -->
+
+            <div class="slide">
+                <p>
+                    <b>Modello generale</b>
+                </p>
+                <div class="plot-container" id="plot-16" style="margin-top: 15px;">
+                    <canvas class="ring-plot" id="canvas-16" tabindex="16" style="height: 150px;"></canvas>
+                    <div id="loader-16" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-16">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-16">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-16">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-container" id="input-container">
+                    <div>
+                        <div>
+                            #iters:
+                            <input id="iters" class="input-box" type="text" maxlength="5" value="400">
+                            v-scale:
+                            <input id="v-scale" class="input-box" type="text" maxlength="5" value="600">
+                            v-offset:
+                            <input id="v-offset" class="input-box" type="text" maxlength="5" value="0.5">
+                        </div>
+                        <div style="margin-top: 5px;">
+                            #cells:
+                            <input id="num-of-cells" class="input-box" type="text" maxlength="5" value="100">
+                            dt:
+                            <input id="dt" class="input-box" type="text" maxlength="5" value="0.05">
+                            noise:
+                            <input id="noise" class="input-box" type="text" maxlength="5" value="0.05">
+                            noise-2:
+                            <input id="noise-2" class="input-box" type="text" maxlength="5" value="0">
+                        </div>
+                        <div style="margin-top: 5px;">
+                            eq-x:
+                            <input id="eq-x" class="input-box" type="text" maxlength="5" value="0">
+                            eq-y:
+                            <input id="eq-y" class="input-box" type="text" maxlength="5" value="0">
+                            squared:
+                            <input id="squared" class="input-box" type="text" maxlength="5" value="false">
+                        </div>
+                        <div style="margin-top: 5px;">
+                            mu:
+                            <input id="mu" class="input-box" type="text" maxlength="5" value="1">
+                            nu:
+                            <input id="nu" class="input-box" type="text" maxlength="5" value="0">
+                            a:
+                            <input id="a" class="input-box" type="text" maxlength="5" value="-0.1">
+                            b:
+                            <input id="b" class="input-box" type="text" maxlength="5" value="1">
+                            c:
+                            <input id="c" class="input-box" type="text" maxlength="5" value="-1">
+                            d:
+                            <input id="d" class="input-box" type="text" maxlength="5" value="0.1">
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+            </div>
+
+            <div style="height: 50px;"></div>
+
+            <!-- ALTRE CONSIDERAZIONI -->
+
+            <div class="slide">
+                <h3>Altre considerazioni</h3>
+
+            </div>
+
+            <div style="height: 50px;"></div>
+
+            <!-- TESSUTO CELLULARE -->
+
+            <div class="slide" style="margin-top: 2em">
+                <h3>Tessuto cellulare</h3>
+                <div id="canvas-17"></div>
+            </div>
         </main>
 
         <div class="play-pause-controls">
@@ -987,6 +1156,7 @@
     <script src="js/src/presentation-controller.js"></script>
     <script src="js/src/cells-ring.js"></script>
     <script src="js/src/plots-manager.js"></script>
+    <script src="js/src/rd-plots.js"></script>
 
 </body>
 

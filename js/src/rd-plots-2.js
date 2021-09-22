@@ -16,6 +16,23 @@ let cellsRingPlot1 = new p5((sketch) => {
     const feed = .055; // .055
     const kill = .062; // .062
 
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = './assets/rhino.jpg';
+
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    var myImageData = ctx.createImageData(width, height);
+
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0);
+    };
+
+    var original = function () {
+        ctx.drawImage(img, 0, 0);
+    };
+
     sketch.setup = function () {
         const parentDiv = document.getElementById("canvas-1");
         cellSize = Math.floor(parentDiv.offsetWidth * .5 / gridSize);
@@ -133,4 +150,4 @@ let cellsRingPlot1 = new p5((sketch) => {
         }
     });
 
-}, "canvas-17");
+}, "canvas-1");

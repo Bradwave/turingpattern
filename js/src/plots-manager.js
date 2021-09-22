@@ -16,11 +16,8 @@ let plotsManager = new function () {
      */
     let loaders = document.getElementsByClassName("plot loader");
 
-    const J1 = .28;
-    const J2 = .21;
-    const J3 = .2;
-    const J4 = .25;
-    const J5 = 0;
+    const JC1 = .28, JC2 = .21, JC3 = .2, JC4 = .25;
+    const JD1 = 0, JD2 = -.1, JD3 = .1;
 
     /**
      * Ring plots.
@@ -88,7 +85,7 @@ let plotsManager = new function () {
             numberOfCells: 100, reps: 2, maxTime: 1000,
             noiseFactor: 0.025,
             eqX: 0, eqY: 0,
-            mu: 1, nu: 0, a: J1 - 1, b: 1, c: -1, d: J1
+            mu: 1, nu: 0, a: JC1 - 1, b: 1, c: -1, d: JC1
         }), {
             startingPosition: .5,
             verticalScale: 600
@@ -98,7 +95,7 @@ let plotsManager = new function () {
             numberOfCells: 100, reps: 5, maxTime: 6000,
             noiseFactor: 0.05,
             eqX: 0, eqY: 0,
-            mu: 1, nu: 0, a: J2 - 1, b: 1, c: -1, d: J2
+            mu: 1, nu: 0, a: JC2 - 1, b: 1, c: -1, d: JC2
         }), {
             startingPosition: .5,
             verticalScale: 1500
@@ -108,7 +105,7 @@ let plotsManager = new function () {
             numberOfCells: 100, reps: 5, maxTime: 6000,
             noiseFactor: 0.05,
             eqX: 0, eqY: 0,
-            mu: 1, nu: 0, a: J3 - 1, b: 1, c: -1, d: J3
+            mu: 1, nu: 0, a: JC3 - 1, b: 1, c: -1, d: JC3
         }), {
             startingPosition: .5,
             verticalScale: 1500
@@ -118,7 +115,7 @@ let plotsManager = new function () {
             numberOfCells: 10, reps: 10, maxTime: 3600,
             noiseFactor: .0025,
             eqX: 0, eqY: 0,
-            mu: 1, nu: 0, a: J4 - 1, b: 1, c: -1, d: J4
+            mu: 1, nu: 0, a: JC4 - 1, b: 1, c: -1, d: JC4
         }), {
             squared: true,
             startingPosition: .5,
@@ -129,7 +126,7 @@ let plotsManager = new function () {
             numberOfCells: 11, reps: 10, maxTime: 3600,
             noiseFactor: .0025,
             eqX: 0, eqY: 0,
-            mu: 1, nu: 0, a: J4 - 1, b: 1, c: -1, d: J4
+            mu: 1, nu: 0, a: JC4 - 1, b: 1, c: -1, d: JC4
         }), {
             squared: true,
             startingPosition: .5,
@@ -137,14 +134,44 @@ let plotsManager = new function () {
         }),
         // Stationary, finite short wave
         new ringPlot(13, new cellsRing({
-            numberOfCells: 100, maxTime: 500,
-            noiseFactor: 0.005,
+            numberOfCells: 100, maxTime: 1000,
+            noiseFactor: 0.05,
             eqX: 0, eqY: 0,
-            mu: 1, nu: .5, a: J5 - 2, b: 2.5, c: -1.25, d: J5 + 1.5
+            mu: 1, nu: .5, a: JD1 - 2, b: 2.5, c: -1.25, d: JD1 + 1.5
         }), {
             startingPosition: .5,
             verticalScale: 600
-        })
+        }),
+        // Stationary, finite short wave, unstable
+        new ringPlot(14, new cellsRing({
+            numberOfCells: 100, maxTime: 800,
+            noiseFactor: 0.05,
+            eqX: 0, eqY: 0,
+            mu: 1, nu: .5, a: JD2 - 2, b: 2.5, c: -1.25, d: JD2 + 1.5
+        }), {
+            startingPosition: .5,
+            verticalScale: 600
+        }),
+        // Stationary, finite short wave, stable
+        new ringPlot(15, new cellsRing({
+            numberOfCells: 100, maxTime: 400,
+            noiseFactor: 0.05,
+            eqX: 0, eqY: 0,
+            mu: 1, nu: .5, a: JD3 - 2, b: 2.5, c: -1.25, d: JD3 + 1.5
+        }), {
+            startingPosition: .5,
+            verticalScale: 600
+        }),
+        // General plot
+        new ringPlot(16, new cellsRing({
+            numberOfCells: 100, maxTime: 400,
+            noiseFactor: 0.05,
+            eqX: 0, eqY: 0,
+            mu: 1, nu: 0, a: -.1, b: 1, c: -1, d: .1
+        }), {
+            startingPosition: .5,
+            verticalScale: 600
+        }),
     ];
 
     window.onresize = () => {
@@ -178,7 +205,18 @@ let plotsManager = new function () {
         e.target.focus();
     }
 
-    let inputs = document.getElementsByClassName("input-box");
+    let inputs = new Map();
+
+    let ids = [
+        'iters', 'v-scale', 'v-offset',
+        'num-of-cells', 'dt', 'noise', 'noise-2',
+        'eq-x', 'eq-y', 'squared',
+        'mu', 'nu', 'a', 'b', 'c', 'd'
+    ];
+
+    ids.forEach((id) => {
+        inputs.set(id, document.getElementById(id));
+    })
 
     inputs.forEach((input) => {
         input.onchange = () => {
@@ -187,49 +225,47 @@ let plotsManager = new function () {
     });
 
     function changePlot() {
-        let iters, vScale, vOffset;
-        let numOfCells, dt, noise, noise2;
-        let mu, nu, a, b, c, d;
-        inputs.forEach((input) => {
-            switch (input.id) {
-                case "iters":
-                    iters = parseInt(input.value);
-                    break;
-                case "v-scale":
-                    vScale = parseInt(input.value);
-                    break;
-                case "v-offset":
-                    vOffset = parseInt(input.value);
-                    break;
-                case "num-of-cells":
-                    numOfCells = parseInt(input.value);
-                    break;
-                case "dt":
-                    dt = parseInt(input.value);
-                    break;
-                case "noise":
-                    noise = parseInt(input.value);
-                    break;
-                case "noise-2":
-                    noise2 = parseInt(input.value);
-                    break;
-                case "mu":
-                    mu = parseInt(input.value);
-                    break;
-                case "nu":
-                    nu = parseInt(input.value);
-                    break;
-                case "a":
-                    a = parseInt(input.value);
-                    break;
-                case "b":
-                    break;
-                case "c":
-                    break;
-                case "d":
-                    break;
-            }
-        });
+        // Checks for infinity
+        let iters = inputs.get('iters').value;
+        if (iters.localeCompare("inf") == 0) {
+            iters = Infinity;
+        } else {
+            iters = getInputNumber('iters')
+        }   
+
+        let squared = inputs.get('squared').value;
+        if (squared.localeCompare("true") == 0) {
+            squared = true;
+        } else {
+            squared = false;
+            inputs.get('squared').value = "false";
+        }
+
+        try {
+            plots[14].updatePlot(new cellsRing({
+                numberOfCells: getInputNumber('num-of-cells'),
+                dt: getInputNumber('dt'), maxTime: iters,
+                noiseFactor: getInputNumber('noise'), noiseFactor2: getInputNumber('noise-2'),
+                eqX: getInputNumber('eq-x'), eqY: getInputNumber('eq-y'),
+                mu: getInputNumber('mu'), nu: getInputNumber('nu'),
+                a: getInputNumber('a'), b: getInputNumber('b'),
+                c: getInputNumber('c'), d: getInputNumber('d')
+            }), {
+                squared: squared,
+                startingPosition: getInputNumber('v-offset'),
+                verticalScale: getInputNumber('v-scale')
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
+        plots[14].drawCells();
+    }
+
+    const getInputNumber = (id) => {
+        let newValue = parseFloat(inputs.get(id).value);
+        inputs.get(id).value = newValue;
+        return newValue;
     }
 
 }

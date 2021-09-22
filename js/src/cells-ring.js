@@ -110,10 +110,10 @@ const toDefaultIfUndefined = (variable, defaultValue) => {
 /**
  * Plots a ring of cells.
  * @param {Number} idNumber Id of the ring plot.
- * @param {cellsRing} ring Ring of cells.
- * @param {*} options
+ * @param {cellsRing} inputRing Ring of cells.
+ * @param {*} inputOptions Options
  */
-let ringPlot = function (idNumber, ring, options = []) {
+let ringPlot = function (idNumber, inputRing, inputOptions = []) {
 
     /*_______________________________________
     |   General variables
@@ -123,29 +123,51 @@ let ringPlot = function (idNumber, ring, options = []) {
     let publicAPIs = {};
 
     /**
+     * 
+     */
+    let ring;
+
+    /**
      * Number of rings plotted.
      */
-    const numOfRings = toDefaultIfUndefined(options.numOfRings, 3);
+    let numOfRings;
 
     /**
      * Vertical scale of the plot.
      */
-    const vScale = toDefaultIfUndefined(options.verticalScale, 10);
+    let vScale;
 
     /**
      * Vertical position of the starting equilibrium status.
      */
-    const verticalOffsetScale = toDefaultIfUndefined(options.startingPosition, .5);
+    let verticalOffsetScale;
 
     /**
      * Vertical position of the starting equilibrium status.
      */
-    const squared = toDefaultIfUndefined(options.squared, false);
+    let squared;
 
     /**
      * True if the animation is playing, false if paused.
      */
     let isPlaying = false;
+
+    /**
+     * Updates the plot.
+     * @param {cellsRing} inputRing Ring of cells.
+     * @param {*} options
+     */
+    publicAPIs.updatePlot = (inputRing, options = []) => {
+        numOfRings = toDefaultIfUndefined(options.numOfRings, 3);
+        vScale = toDefaultIfUndefined(options.verticalScale, 10);
+        verticalOffsetScale = toDefaultIfUndefined(options.startingPosition, .5);
+        squared = toDefaultIfUndefined(options.squared, false);
+
+        ring = inputRing;
+    }
+
+    // Creates the plot
+    publicAPIs.updatePlot(inputRing, inputOptions);
 
     /*_______________________________________
     |   Resizing variables
