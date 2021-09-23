@@ -186,7 +186,33 @@ let plotsManager = new function () {
         }), {
 
         }),
-        // 
+        // Three morphogens, short wave length
+        new ringPlot(20, new cellsRing({
+            numberOfCells: 100, maxTime: 1200,
+            noiseFactor: 0.01, threeMorphogens: true,
+            eqX: 0, eqY: 0, eqZ: 0,
+            mu: 2 / 3, nu: 1 / 3, muZ: 0,
+            a: -10 / 3, b: 3, a13: -1,
+            c: -2, d: 7 / 3, a23: 0,
+            a31: 3, a32: -4, a33: 0
+        }), {
+            startingPosition: .5,
+            verticalScale: 800
+        }),
+        // Three morphogens, finite wave length
+        new ringPlot(21, new cellsRing({
+            numberOfCells: 20, maxTime: 800,
+            noiseFactor: 0.5, threeMorphogens: true,
+            eqX: 0, eqY: 0, eqZ: 0,
+            mu: 1, nu: 0, muZ: 0,
+            a: -1, b: -1, a13: 0,
+            c: 1, d: 0, a23: -1,
+            a31: 0, a32: 1, a33: 0
+        }), {
+            squared: true,
+            startingPosition: .5,
+            verticalScale: 200
+        }),
     ];
 
     window.onresize = () => {

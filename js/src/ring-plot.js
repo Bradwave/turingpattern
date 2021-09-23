@@ -199,6 +199,9 @@ let ringPlot = function (idNumber, inputRing, inputOptions = []) {
         // Gets the cells of the ring
         let cells = ring.getCells();
 
+        // Check if there are three morphogens
+        const isThree = ring.isThreeModeActive();
+
         // Computes the width of the cells
         let cellWidth = width / cells.length / numOfRings;
         // Computes the width of the ring
@@ -262,6 +265,27 @@ let ringPlot = function (idNumber, inputRing, inputOptions = []) {
                 }
                 ctx.stroke();
 
+                if (isThree) {
+                    // Draws the Z morphogen in grey
+                    ctx.strokeStyle = "#000000" + (j != 1 ? "10" : "60");
+
+                    ctx.beginPath();
+                    ctx.moveTo(
+                        cellWidth * i + ringWidth * j,
+                        vOffset + height - cells[i].z * vScale * dpi);
+                    if (squared) {
+                        ctx.lineWidth = 3;
+                        ctx.lineTo(
+                            cellWidth * (i + 1) + ringWidth * j,
+                            vOffset + height - cells[i].z * vScale * dpi);
+                    } else {
+                        ctx.lineTo(
+                            cellWidth * (i + 1) + ringWidth * j,
+                            vOffset + height - cells[(i + 1) % numberOfCells].z * vScale * dpi);
+                    }
+                    ctx.stroke();
+                }
+
                 // Draws vertical lines if the line is squared
                 if (squared) {
                     ctx.lineWidth = 1;
@@ -284,6 +308,18 @@ let ringPlot = function (idNumber, inputRing, inputOptions = []) {
                         cellWidth * (i + 1) + ringWidth * j,
                         vOffset + height - cells[(i + 1) % numberOfCells].y * vScale * dpi);
                     ctx.stroke();
+
+                    if (isThree) {
+                        ctx.strokeStyle = "#000000" + (j != 1 ? "5" : "15");
+                        ctx.beginPath();
+                        ctx.moveTo(
+                            cellWidth * (i + 1) + ringWidth * j,
+                            vOffset + height - cells[i].z * vScale * dpi);
+                        ctx.lineTo(
+                            cellWidth * (i + 1) + ringWidth * j,
+                            vOffset + height - cells[(i + 1) % numberOfCells].z * vScale * dpi);
+                        ctx.stroke();
+                    }
                 }
             }
         }

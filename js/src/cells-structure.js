@@ -65,15 +65,26 @@ class cellsRing extends cellsStructure {
 
         this.t = 0;
 
+        this.isThree = toDefaultIfUndefined(options.threeMorphogens, false);
+
         this.eqX = toDefaultIfUndefined(options.eqX, .5);
         this.eqY = toDefaultIfUndefined(options.eqY, .5);
+        this.eqZ = toDefaultIfUndefined(options.eqZ, 0);
 
         this.mu = options.mu;
         this.nu = options.nu;
+        this.muZ = options.muZ;
+
         this.a = options.a;
         this.b = options.b;
         this.c = options.c;
         this.d = options.d;
+
+        this.a13 = options.a13;
+        this.a23 = options.a23;
+        this.a31 = options.a31;
+        this.a32 = options.a32;
+        this.a33 = options.a33;
 
         this.resetCells();
     }
@@ -85,7 +96,8 @@ class cellsRing extends cellsStructure {
         this.cells = [...Array(this.numberOfCells)].map(() => {
             return {
                 x: this.eqX + Math.random() * this.noiseFactor - this.noiseFactor / 2,
-                y: this.eqY + Math.random() * this.noiseFactor - this.noiseFactor / 2
+                y: this.eqY + Math.random() * this.noiseFactor - this.noiseFactor / 2,
+                z: this.isThree ? (this.eqY + Math.random() * this.noiseFactor - this.noiseFactor / 2) : 0
             }
         });
 
@@ -108,11 +120,19 @@ class cellsRing extends cellsStructure {
 
                     // xInc[r] = a * x[r] + b * y[r] + mu * (x[r - 1] + 2 * x[r] + x[r - 1])
                     const xInc = this.a * this.cells[i].x + this.b * this.cells[i].y
+                        + (this.isThree ? this.a13 * this.cells[i].z : 0)
                         + this.mu * (this.cells[prevI].x - 2 * this.cells[i].x + this.cells[nextI].x);
 
                     // yInc[r] = c * x[r] + d * y[r] + mu * (y[r - 1] + 2 * y[r] + y[r - 1])
                     const yInc = this.c * this.cells[i].x + this.d * this.cells[i].y
+                        + (this.isThree ? this.a23 * this.cells[i].z : 0)
                         + this.nu * (this.cells[prevI].y - 2 * this.cells[i].y + this.cells[nextI].y);
+
+                    const zInc = this.isThree ? (
+                        this.a31 * this.cells[i].x + this.a32 * this.cells[i].y
+                        + this.a33 * this.cells[i].z
+                        + this.muZ * (this.cells[prevI].z - 2 * this.cells[i].z + this.cells[nextI].z)
+                    ) : 0;
 
                     this.newCells[i] = {
                         // x[r] += deltaTime * (xInc[r] + noise)
@@ -120,8 +140,10 @@ class cellsRing extends cellsStructure {
                             + this.deltaTime * (xInc + this.noiseFactor2 * (Math.random() - .5)),
                         // y[r] += deltaTime * (yInc[r] + noise)
                         y: this.cells[i].y
-                            + this.deltaTime * (yInc + this.noiseFactor2 * (Math.random() - .5))
-
+                            + this.deltaTime * (yInc + this.noiseFactor2 * (Math.random() - .5)),
+                        // y[r] += deltaTime * (yInc[r] + noise)
+                        z: this.cells[i].z
+                            + this.deltaTime * (zInc + this.noiseFactor2 * (Math.random() - .5))
                     }
                 }
                 // Cells are updated
@@ -132,6 +154,14 @@ class cellsRing extends cellsStructure {
                 this.resetCells();
             }
         }
+    }
+
+    /**
+     * Get the three morphogens mode activation status.
+     * @returns Returns true if there are three morphogens, false otherwise.
+     */
+    isThreeModeActive () {
+        return this.isThree;
     }
 }
 
