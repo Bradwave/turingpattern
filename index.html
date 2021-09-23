@@ -34,11 +34,32 @@
         </nav>
         <main class="page-content" id="page-content">
             <h1>
-                Brevi note sui pattern di Turing
+                Morfogenesi & Pattern di Turing
             </h1>
             <p>
                 <b>Basato su: A. M. Turing, <i>The Chemical Basis of Morphogenesis</i>, 1952</b>
             </p>
+
+            <div style="height: 20px;"></div>
+
+            <!-- INTRODUZIONE -->
+
+            <div class="slide">
+                <p>
+                    Nell'articolo del 1952, Turing esplora dei sistemi <b>reazione-diffusione</b>, con l'obiettivo di
+                    spiegare i meccanismi che determinano la <b>formazione di strutture</b> anatomiche in un organismo,
+                    come — ad esempio — la pigmentazione dei tessuti. Tali processi, detti di <b>morfogenesi</b>,
+                    possono essere modellizzati da un sistema a <b>reazione-reazione</b>, in cui sostanze chimiche —
+                    dette morfogeni — interagiscono tra loro e con l'ambiente. Partendo da uno stato di
+                    quasi-omogeneità, è possibile assistere a particolari evoluzioni del sistema, causate
+                    dall'<b>instabilità</b> dell'equilibrio.
+                </p>
+                <p>
+                    Turing si occupa non solamente degli aspetti matematici, ma ricerca anche giustificazioni biologiche
+                    e chimiche per le osservazioni. Questa relazione si concentrerà tuttavia sugli aspetti matematici
+                    del problema.
+                </p>
+            </div>
 
             <!-- ANELLO CELLULARE -->
 
@@ -46,8 +67,7 @@
                 <h3>L'anello cellulare</h3>
                 <p>
                     Per illustrare i principi della morfogenesi, consideriamo - seguendo strettamente l'articolo del
-                    1952
-                    di Turing - una particolare configurazione: <b>un anello di cellule simili</b>. Pur non essendo
+                    1952 di Turing - una particolare configurazione: <b>un anello di cellule simili</b>. Pur non essendo
                     riconducibile ad un corrispettivo biologico, questa configurazione facilita l'analisi matematica del
                     problema e la teoria ad essa applicata può essere eventualmente estesa ad altri casi più complessi.
                 </p>
@@ -117,7 +137,7 @@
                 </p>
                 <ul>
                     <li>
-                        Una cellula isolata ha equilibrio $X = h \, , \; Y = k$ quando $f(h,k) = 0 = g(h, k)$.
+                        Una cellula isolata ha equilibrio $X = h \, , \; Y = k$ quando $f(h, k) = 0 = g(h, k)$.
                     </li>
                     <li>
                         Il sistema è pertanto in equilibrio se $X_r = h \, , \; Y_r = k \;\: \forall r = 1, ..., N \,$.
@@ -237,10 +257,12 @@
 
                     \begin{equation}
                     \begin{cases}
-                    \dfrac{\partial X}{\partial t} = a(X - h) + b(Y - k) + \dfrac{\mu^\prime}{\rho^2} \dfrac{\partial^2
-                    X}{\partial \theta^2} \\[.5em]
-                    \dfrac{\partial Y}{\partial t} = c(X - h) + d(Y - k) + \dfrac{\nu^\prime}{\rho^2} \dfrac{\partial^2
-                    X}{\partial \theta^2}
+                    \dfrac{\partial X_\theta}{\partial t} = a(X_\theta - h) + b(Y_\theta - k) +
+                    \dfrac{\mu^\prime}{\rho^2} \dfrac{\partial^2
+                    X_\theta}{\partial \theta^2} \\[.5em]
+                    \dfrac{\partial Y_\theta}{\partial t} = c(X_\theta - h) + d(Y_\theta - k) +
+                    \dfrac{\nu^\prime}{\rho^2} \dfrac{\partial^2
+                    X_\theta}{\partial \theta^2}
                     \end{cases}
                     \end{equation}
 
@@ -248,10 +270,12 @@
 
                     \begin{equation}
                     \begin{cases}
-                    X = h + \displaystyle \sum_{s = -\infty}^{+\infty} \big(A_s e^{p_s t} + B_s e^{p_s^\prime t} \big)
-                    e^{\large i r s} \\[.5em]
-                    Y = k + \displaystyle \sum_{s = -\infty}^{+\infty} \big(C_s e^{p_s t} + D_s e^{p_s^\prime t} \big)
-                    e^{\large i r s} \, .
+                    X_\theta = h + \displaystyle \sum_{s = -\infty}^{+\infty} \big(A_s e^{p_s t} + B_s e^{p_s^\prime t}
+                    \big)
+                    e^{\large i \theta s} \\[.5em]
+                    Y_\theta = k + \displaystyle \sum_{s = -\infty}^{+\infty} \big(C_s e^{p_s t} + D_s e^{p_s^\prime t}
+                    \big)
+                    e^{\large i \theta s} \, .
                     \end{cases}
                     \end{equation}
 
@@ -315,11 +339,17 @@
                         <span style="margin-right: 10px">
                             <i><b>Stazionario:</b></i>
                         </span>
-                        se $p_{s_0} = I$ è reale, allora $X_r - h \,$ e $\, Y_r - k$ tendono asintoticamente alla forma
+                        se $\, p_{s_0} = I \,$ è reale, allora $X_r - h \,$ e $\, Y_r - k$ tendono asintoticamente alla
+                        forma
 
                         \[
                         \begin{cases}
-                        X_r - h = 2 \, e^{I t} \, \text{Re}\Big( A_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N}} \Big)
+                        \underbrace{X_r - h}_{
+                        \begin{gathered}
+                        \text{distanza} \\[-.3em]
+                        \text{da'eq.}
+                        \end{gathered}
+                        } = 2 \, e^{I t} \, \text{Re}\Big( A_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N}} \Big)
                         \\[.5em]
                         Y_r - k = 2 \, e^{I t} \, \text{Re}\Big( C_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N}} \Big)
                         \end{cases}
@@ -329,7 +359,8 @@
                         <span style="margin-right: 10px">
                             <i><b>Oscillatorio:</b></i>
                         </span>
-                        se $p_{s_0} = I + i \omega$ è complesso, con $I, \omega \in \mathbb{R}$, allora $X_r - h \,$ e
+                        se $\, p_{s_0} = I + i \omega \,$ è complesso, con $I, \omega \in \mathbb{R}$, allora $X_r - h
+                        \,$ e
                         $\, Y_r - k$ tendono alla forma
 
                         \[
@@ -352,12 +383,12 @@
                         <span style="margin-right: 10px">
                             <i><b>Stazionario:</b></i>
                         </span>
-                        se $p_{s_0} = I$ è reale, allora
+                        se $\, p_{s_0} = I \,$ è reale, allora
 
                         \[
                         \begin{cases}
-                        x_r - h = 2 \, \text{Re}\Big( A_{s_0} \, e^{i r s_0 + I t} \Big) \\[.5em]
-                        y_r - k = 2 \, \text{Re}\Big( C_{s_0} \, e^{i r s_0 + I t} \Big)
+                        x_\theta - h = 2 \, \text{Re}\Big( A_{s_0} \, e^{i \theta s_0 + I t} \Big) \\[.5em]
+                        y_\theta - k = 2 \, \text{Re}\Big( C_{s_0} \, e^{i \theta s_0 + I t} \Big)
                         \end{cases}
                         \]
                     </li>
@@ -365,14 +396,14 @@
                         <span style="margin-right: 10px">
                             <i><b>Oscillatorio:</b></i>
                         </span>
-                        se $p_{s_0} = I + i \omega$ è complesso, allora
+                        se $\, p_{s_0} = I + i \omega \,$ è complesso, allora
 
                         \[
                         \begin{cases}
-                        x_r - h = 2 \, e^{I t} \, \text{Re}\Big( A_{s_0} \, e^{i r s_0 + i \omega
-                        t} + A_{\small N - s_0} \, e^{i r s_0 - i \omega t} \Big) \\[.5em]
-                        y_r - k = 2 \, e^{I t} \, \text{Re}\Big( C_{s_0} \, e^{i r s + i \omega
-                        t} + C_{\small N - s_0} \, e^{i r s_0 - i \omega t} \Big)
+                        x_\theta - h = 2 \, e^{I t} \, \text{Re}\Big( A_{s_0} \, e^{i \theta s_0 + i \omega
+                        t} + A_{\small N - s_0} \, e^{i \theta s_0 - i \omega t} \Big) \\[.5em]
+                        y_\theta - k = 2 \, e^{I t} \, \text{Re}\Big( C_{s_0} \, e^{i \theta s + i \omega
+                        t} + C_{\small N - s_0} \, e^{i \theta s_0 - i \omega t} \Big)
                         \end{cases}
                         \]
                     </li>
@@ -409,8 +440,8 @@
                         ovvero $I > 0$, le onde divento via via più pronunciate.
                     </li>
                     <li>
-                        Nel caso <b>oscillatorio</b>, le onde che si formano si muovono lungo l'anello con frequenza
-                        $\dfrac{\omega}{2 \pi}$.
+                        Nel caso <b>oscillatorio</b>, si formano due onde che si muovono in direzioni opposte lungo l'anello, con frequenza
+                        $\, \dfrac{\omega}{2 \pi}$.
                     </li>
                 </ul>
                 <p>
