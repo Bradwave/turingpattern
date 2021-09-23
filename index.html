@@ -342,7 +342,7 @@
                         se $\, p_{s_0} = I \,$ è reale, allora $X_r - h \,$ e $\, Y_r - k$ tendono asintoticamente alla
                         forma
 
-                        \[
+                        \begin{equation}
                         \begin{cases}
                         \underbrace{X_r - h}_{
                         \begin{gathered}
@@ -353,7 +353,7 @@
                         \\[.5em]
                         Y_r - k = 2 \, e^{I t} \, \text{Re}\Big( C_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N}} \Big)
                         \end{cases}
-                        \]
+                        \end{equation}
                     </li>
                     <li>
                         <span style="margin-right: 10px">
@@ -363,14 +363,14 @@
                         \,$ e
                         $\, Y_r - k$ tendono alla forma
 
-                        \[
+                        \begin{equation}
                         \begin{cases}
                         X_r - h = 2 \, e^{I t} \, \text{Re}\Big( A_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} + i \omega
                         t} + A_{\small N - s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} - i \omega t} \Big) \\[.5em]
                         Y_r - k = 2 \, e^{I t} \, \text{Re}\Big( C_{s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} + i \omega
                         t} + C_{\small N - s_0} \, e^{\large \frac{2 \pi i s_0 r}{N} - i \omega t} \Big)
                         \end{cases}
-                        \]
+                        \end{equation}
                     </li>
                 </ul>
             </div>
@@ -385,12 +385,12 @@
                         </span>
                         se $\, p_{s_0} = I \,$ è reale, allora
 
-                        \[
+                        \begin{equation}
                         \begin{cases}
                         x_\theta - h = 2 \, \text{Re}\Big( A_{s_0} \, e^{i \theta s_0 + I t} \Big) \\[.5em]
                         y_\theta - k = 2 \, \text{Re}\Big( C_{s_0} \, e^{i \theta s_0 + I t} \Big)
                         \end{cases}
-                        \]
+                        \end{equation}
                     </li>
                     <li>
                         <span style="margin-right: 10px">
@@ -398,14 +398,14 @@
                         </span>
                         se $\, p_{s_0} = I + i \omega \,$ è complesso, allora
 
-                        \[
+                        \begin{equation}
                         \begin{cases}
                         x_\theta - h = 2 \, e^{I t} \, \text{Re}\Big( A_{s_0} \, e^{i \theta s_0 + i \omega
                         t} + A_{\small N - s_0} \, e^{i \theta s_0 - i \omega t} \Big) \\[.5em]
                         y_\theta - k = 2 \, e^{I t} \, \text{Re}\Big( C_{s_0} \, e^{i \theta s + i \omega
                         t} + C_{\small N - s_0} \, e^{i \theta s_0 - i \omega t} \Big)
                         \end{cases}
-                        \]
+                        \end{equation}
                     </li>
                 </ul>
             </div>
@@ -460,15 +460,13 @@
                 <h5>Caso stazionario, lunghezza d'onda $\gg 1$</h5>
                 <p>
                     Il contenuto di tutte le cellule è identico e non si osservano flussi evidenti causati dalla
-                    diffusione. Le cellule si comportano pertanto come se fossero <b>isolate</b>. L'equilibrio del
-                    sistema è
-                    <b>instabile</b>.
+                    diffusione. Le cellule si comportano pertanto come se fossero <b>isolate</b>.
                 </p>
                 <p>
                     Questa configurazione si può ottenere quando $\, \mu = \nu = \frac{1}{4}$, $\, a = d$, $\, b = c =
                     1$.<br>
                     In tal caso, $\, p_s = a - \sin^2 {\large \frac{\pi s}{N}} + 1 \,$ è <b>reale</b> ed massimo per $s
-                    = 0$.
+                    = 0$. Per $\, a > 1$, il sistema è dunque <b>instabile</b>.
                 </p>
                 <p>
                     <b>Nota:</b> le ondulazioni visibili nel grafico di tempo non sono direttamente prodotti
@@ -492,7 +490,7 @@
             </div>
             <div class="slide">
                 <p>
-                    Durante le mie esplorazioni, ho individuato la configurazione $\, a = d = -1 \,$ per cui il sistema
+                    Durante le mie esplorazioni, ho notato che, per la configurazione $\, a = d = -1$, il sistema
                     sembra tendere <b>asintoticamente</b> ad un equilibrio. Particolarmente interessante è il fatto che
                     l'equilibrio sembra essere raggiunto indipendentemente dal <b>rumore</b> introdotto iniziale nel
                     sistema.
@@ -544,11 +542,10 @@
 
             <div class="slide">
                 <p>
-                    Studiando il caso continuo, per un anello di raggio $\rho$ sufficientemente grande da poter
-                    accomodare
-                    ogni tipo di onda, è possibile ricavare condizioni più precise che caratterizzano i vari sottocasi.
-                    Detto $U_s = \dfrac{s^2}{\rho^2} = \Big( \dfrac{2 \pi}{\lambda} \Big)^2$, dove $\lambda$ indica la
-                    lunghezza d'onda, si può scrivere $p$ in funzione di $U_s$:
+                    Studiando il caso continuo, per un anello di raggio $\, \rho \,$ sufficientemente grande da poter
+                    accomodare ogni tipo di onda, è possibile ricavare condizioni più precise che caratterizzano i vari
+                    sottocasi. Detto $\, U_s = \dfrac{s^2}{\rho^2} = \Big( \dfrac{2 \pi}{\lambda} \Big)^ \,2$, dove $\,
+                    \lambda \,$ indica la lunghezza d'onda, si può scrivere $\, p_s \,$ in funzione di $\, U_s$:
 
                     \[
                     p_s = \dfrac{a + d}{2} - \dfrac{\mu^\prime + \nu^\prime}{2} U_s \pm \sqrt{\Big(\dfrac{\mu^\prime -
@@ -556,9 +553,9 @@
                     U_s + \dfrac{d - a}{2} \Big)^2 + bc} \, .
                     \]
 
-                    La parte reale di $p$ rappresenta l'<b>instabilità</b> delle onde di lunghezza
+                    La parte reale di $\, p \,$ rappresenta l'<b>instabilità</b> delle onde di lunghezza
                     d'onda $\, \lambda = \dfrac{2 \pi} {\sqrt{U_s}}$. La componente dominante della soluzione è
-                    data dal massimo di $\, \text{Re}(p_s)$, verificato per $U_s \to 0^+$, oppure per $\, U_s \to
+                    data dal massimo di $\, \text{Re}(p_s)$, verificato per $\, U_s \to 0^+$, oppure per $\, \, U_s \to
                     +\infty$, oppure ancora per un punto intermedio,
 
                     \[
@@ -586,7 +583,7 @@
                             \sqrt{\Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc}
                             \]
                         </span>
-                        $p_s$
+                        $\, p_s \,$
                     </span>
                     sia <b>reale</b>, cioè
 
@@ -594,10 +591,10 @@
                     \Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc \geq 0 \, .
                     \]
 
-                    Inoltre, affinché $\lambda = {\large \frac{2 \pi}{\sqrt{U_s}}} \gg 1 \,$ (o meglio $\lambda \to
-                    +\infty$) è possibile porre $U_s \to 0^+$. Combinando tutte condizioni e il fatto che non debbano
-                    esistere $U_s$ intermedi per cui $p_s$ è massimo, si ottiene che il caso desiderato è
-                    dato da $bc \gt 0$ oppure da $bc \lt 0$ e
+                    Inoltre, affinché $\, \lambda = {\large \frac{2 \pi}{\sqrt{U_s}}} \gg 1 \,$ (o meglio $\, \lambda
+                    \to +\infty$) è possibile porre $\, U_s \to 0^+ \,$. Combinando tutte condizioni e il fatto che non
+                    debbano esistere $U_s$ intermedi per cui $\, p_s \,$ è massimo, si ottiene che il caso desiderato è
+                    dato da $\, bc \gt 0 \,$ oppure da $\, bc \lt 0 \,$ e
 
                     \[
                     \dfrac{d - a}{\sqrt{-bc}} \gt \dfrac{\mu^\prime + \nu^\prime}{\sqrt{\mu^\prime \nu^\prime}}
@@ -605,8 +602,8 @@
                     \dfrac{d - a}{\sqrt{-bc}} \lt -2 \, .
                     \]
 
-                    L'<b>instabilità</b> della soluzione è verificata per $p_s > 0$, ovvero $a + d > 0$ oppure $bc >
-                    ad$.
+                    L'<b>instabilità</b> della soluzione è verificata per $\, p_s > 0$, ovvero $\, a + d > 0 \,$ oppure
+                    $\, bc \gt ad$.
                 </p>
             </div>
 
@@ -622,7 +619,7 @@
                     Questa configurazione si può ottenere quando $\, \mu = \nu = \frac{1}{4}$, $\, a = d$, $\, b = -c =
                     1$.<br>
                     In tal caso, $\, p_s = a - \sin^2 \frac{\pi s}{N} \pm i \,$ è <b>complesso</b> e la parte reale è
-                    massima per $s = 0$.
+                    massima per $\, s = 0$.
                 </p>
                 <div class="plot-container" id="plot-4" style="margin-top: 20px;">
                     <canvas class="ring-plot" id="canvas-4" tabindex="4" style="height: 300px;"></canvas>
@@ -700,15 +697,15 @@
                             \sqrt{\Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc}
                             \]
                         </span>
-                        $p_s$
+                        $\, p_s \,$
                     </span>
                     complesso, pertanto è necessario imporre
 
                     \[
-                    \Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc \geq 0 \, .
+                    \Big(\dfrac{\mu^\prime - \nu^\prime}{2} U_{\large s} + \dfrac{d - a}{2} \Big)^2 + bc \lt 0 \, .
                     \]
 
-                    Inoltre, come per il caso stazionario, $\lambda \to +\infty$ è data da $U \to 0^+$. Tuttavia,
+                    Inoltre, come per il caso stazionario, $\lambda \to +\infty \,$ è data da $\, U \to 0^+$. Tuttavia,
                     <span class="tooltip">
                         <span class="tooltip-text bottom"
                             style="width: 320px; font-size: 11pt; padding: 15px; text-align: left;">
@@ -726,7 +723,7 @@
                     \, .
                     \]
 
-                    L'<b>instabilità</b> è data banalmente da $a + d \gt 0$.
+                    L'<b>instabilità</b> è data banalmente da $\, a + d \gt 0$.
                 </p>
             </div>
 
@@ -735,17 +732,17 @@
                 <p>
                     In questo caso, le onde risultanti sono stazionarie, ma la lunghezza d'onda estremamente breve
                     genera <b>pattern frastagliati</b>.<br>
-                    Le configurazioni che seguono sono generate da $\mu = 1, \; \nu = 0$, $b = - c = 1$, $a = J_1 - 1$,
-                    $d
-                    = J_1$ con $J_1 = {\large \frac{1}{4}}$. In questo caso,
+                    Le configurazioni che seguono sono generate da $\, \mu = 1, \; \nu = 0$, $b = - c = 1$, $a = J_1 -
+                    1$, $d = J_1 \,$ con $\, J_1 = {\large \frac{1}{4}}$. In questo caso,
 
                     \[
                     p_s = J_1 - \dfrac{1}{2} - 2 \sin^2 \dfrac{\pi s}{N} + \sqrt{\Big( 2 \sin^2 \dfrac{\pi s}{N} +
                     \dfrac{1}{2} \Big)^2 - 1} \,
                     \]
 
-                    ed è massimo quando $\sin^2 \dfrac{\pi s}{N}$ è massimo, cioè $s = \dfrac{1}{2} N \;\, \lor \;\, s =
-                    \dfrac{1}{2} (N - 1) \,$.
+                    ed è massimo quando $\, \sin^2 \dfrac{\pi s}{N} \,$ è massimo, cioè $\, s = \dfrac{1}{2} N \;\, \lor
+                    \;\,
+                    s = \dfrac{1}{2} (N - 1) \,$.
                 </p>
                 <p>
                     In generale, il contenuto di ogni cellula tenderà ad essere quanto <b>più diverso possibile</b> da
@@ -778,7 +775,7 @@
                     Esistono configurazioni dei parametri per cui il sistema sembra raggiungere un equilibrio.
                 </p>
                 <p>
-                    Ad esempio, il grafico seguente è generato da $J_1 = 0.21$.
+                    Ad esempio, il grafico seguente è generato da $\, J_1 = 0.21$.
                 </p>
                 <div class="plot-container" id="plot-8" style="margin-top: 20px;">
                     <canvas class="ring-plot" id="canvas-8" tabindex="8" style="height: 150px"></canvas>
@@ -799,7 +796,7 @@
                     </div>
                 </div>
                 <p>
-                    Per $J_1 = 0.20$, le onde sembrano via via appiattirsi, tendendo asintoticamente ad uno stato di
+                    Per $\, J_1 = 0.20$, le onde sembrano via via appiattirsi, tendendo asintoticamente ad uno stato di
                     equilibrio.
                 </p>
                 <div class="plot-container" id="plot-9" style="margin-top: 10px;">
@@ -823,7 +820,8 @@
             </div>
             <div class="slide">
                 <p>
-                    Quando il numero di cellule $N$ è contenuto, si possono osservare due differenti fenomeni. Per $N$
+                    Quando il numero di cellule $N$ è contenuto, si possono osservare due differenti fenomeni. Per $\, N
+                    \,$
                     <b>pari</b>, il contenuto di ogni cellula $r$ tenderà ad essere simile a quello delle cellule $\, r
                     + 2 \,$ e $\, r - 2$, ma quanto più dissimile da quello delle cellule adiacenti $\, r + 1 \,$ e $\,
                     r - 1 \,$.
@@ -897,9 +895,8 @@
                         </span>
                         $\, U_s \to +\infty \,$
                     </span>,
-                    ovvero $bc \lt 0 \,$ (per garantire l'esistenza di $U$) e, supponendo $\mu^\prime > \nu^\prime$, $\,
-                    \nu \to
-                    0^+$. L'<b>instabilità</b> è data da $\, a + d \gt 0$.
+                    ovvero $bc \lt 0 \,$ (per garantire l'esistenza di $U$) e, supponendo $\, \mu^\prime > \nu^\prime$,
+                    $\, \nu \to 0^+$. L'<b>instabilità</b> è data da $\, a + d \gt 0$.
                 </p>
             </div>
 
@@ -914,8 +911,8 @@
                     di questo determinerebbe la formazione di <b>motivi striati</b>.
                 </p>
                 <p>
-                    Una simile configurazione è generata, ad esempio, da $\mu = 1$, $\, \nu = \dfrac{1}{2}$, $\, a = J_2
-                    -2$, $\, b = \dfrac{5}{2}$, $\, c = -\dfrac{5}{4}$, $\, d = J_2 + \dfrac{3}{2}$. Pertanto
+                    Una simile configurazione è generata, ad esempio, da $\, \mu = 1$, $\, \nu = \dfrac{1}{2}$, $\, a =
+                    J_2 -2$, $\, b = \dfrac{5}{2}$, $\, c = -\dfrac{5}{4}$, $\, d = J_2 + \dfrac{3}{2}$. Pertanto
                     <span class="tooltip">
                         <span class="tooltip-text bottom">
                             \[
@@ -924,7 +921,7 @@
                             \Big(p_s - d + 4 \nu \sin^2 \dfrac{\pi s}{N} \Big) = bc
                             \]
                         </span>
-                        $p_s$ risolve
+                        $\, p_s \,$ risolve
                     </span>
 
                     \[
@@ -1006,7 +1003,7 @@
             </div>
             <div class="slide">
                 <p>
-                    Il caso continuo, stazionario e con lunghezza d'onda finita è verificato per $bc \lt 0$, che
+                    Il caso continuo, stazionario e con lunghezza d'onda finita è verificato per $\, bc \lt 0$, che
                     garantisce l'esista di
                     <span class="tooltip">
                         <span class="tooltip-text bottom">
@@ -1057,13 +1054,66 @@
                     \sqrt{\dfrac{\nu^\prime}{\mu^\prime}} \Bigg) > 2 \, .
                     \]
                 </p>
-            </div>,
+            </div>
+
+            <!-- ALTRI CASI OSCILLATORI -->
+
+            <div class="slide">
+                <h5>Altri casi</h5>
+                <p>
+                    Due ulteriori casi oscillatori sono ottenibili considerando sistemi con <b>tre morfogeni</b>.
+                </p>
+                <p>
+                    <b>Caso oscillatorio, lunghezza d'onda finita</b>
+                </p>
+                <div class="plot-container" id="plot-20" style="margin-top: 15px;">
+                    <canvas class="ring-plot" id="canvas-20" tabindex="20" style="height: 150px;"></canvas>
+                    <div id="loader-20" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-20">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-20">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-20">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <b>Caso oscillatorio, lunghezza d'onda breve</b>
+                </p>
+                <div class="plot-container" id="plot-21" style="margin-top: 15px;">
+                    <canvas class="ring-plot" id="canvas-21" tabindex="21" style="height: 150px;"></canvas>
+                    <div id="loader-21" class="plot loader"></div>
+                    <div class="plot-controls">
+                        <div>
+                            <span class="material-icons button" id="play-pause-21">
+                                play_arrow
+                            </span>
+                            <span class="material-icons button" id="skip-21">
+                                skip_next
+                            </span>
+                            <span style="margin-right: 10px;"></span>
+                            <span class="material-icons button" id="refresh-21">
+                                refresh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height: 50px;"></div>
 
             <!-- MODELLO GENERALE -->
 
             <div class="slide">
                 <p>
-                    <b>Modello generale</b>
+                    <b>Modello generale per due morfogeni</b>
                 </p>
                 <div class="plot-container" id="plot-16" style="margin-top: 15px;">
                     <canvas class="ring-plot" id="canvas-16" tabindex="16" style="height: 150px;"></canvas>
@@ -1130,13 +1180,35 @@
                 <p></p>
             </div>
 
-            <div style="height: 50px;"></div>
+            <div style="height: 40px;"></div>
 
             <!-- ALTRE CONSIDERAZIONI -->
 
             <div class="slide">
-                <h3>Altre considerazioni</h3>
-
+                <h3>Ulteriori considerazioni</h3>
+                <p>
+                    Nel proseguo dell'articolo, Turing esplora più nel dettaglio alcune questioni matematiche, tra cui
+                </p>
+                <ul>
+                    <li>
+                        l'applicazione di un <b>rumore continuo</b> alla concentrazione dei morfogeni;
+                    </li>
+                    <li>
+                        reazioni $\, f \,$ e $\, g \,$ <b>non lineari</b>;
+                    </li>
+                    <li>
+                        diverse approssimazioni per il caso stazionario con lunghezza d'onda $\, \lambda \gg 1$.
+                    </li>
+                </ul>
+                <p>
+                    Questi temi non saranno tuttavia affrontati in questa relazione.
+                </p>
+                <p>
+                    Particolarmente interessante — dato l'anno della pubblicazione, il 1952 — è il fatto che Turing
+                    riconosca il ruolo che un <b>computer</b> potrebbe svolgere nella comprensione del problema,
+                    soprattutto per quanto riguarda il caso non lineare. Per questa ragione, ho pensato che l'inclusione
+                    dei grafici dinamici potesse essere uno strumento in sintonia con il pensiero dell'autore.
+                </p>
             </div>
 
             <div style="height: 50px;"></div>
@@ -1145,6 +1217,50 @@
 
             <div class="slide" style="margin-top: 2em">
                 <h3>Tessuto cellulare</h3>
+                <p>
+                    È possibile estendere il modello di reazione-diffusione a sistemi più complessi, come ad esempio una
+                    <b>superficie piana</b> composta da cellule. Nel caso che segue, si considera un griglia quadrata.
+                    Ogni unità della griglia (pixel) corrisponde ad una cellula. Ogni cellula confina con le otto
+                    cellule che la circondano (quattro con un lato in comune, quattro con un vertice comune) e pertanto
+                    la diffusione coinvolge queste unità. Dato il costo computazionale, per ottenere l'illusione di un
+                    tessuto esteso, alla griglia è stata applicata una topologia toroidale — detto banalmente, si
+                    comporta come la griglia del celebre gioco <i>Snake</i>.
+                </p>
+                <p>
+                    Per modellizzare il sistema, è stata implementata la seguente formulazione:
+
+                    \begin{equation}
+                    \begin{cases}
+                    X_{i,j}^{\text{new}} = X_{i,j} + (\mu \nabla^2 X_{i,j} - X_{i,j} Y_{i,j}^2 + f (1 - X_{i,j}))
+                    \Delta t \\[.5em]
+                    Y_{i,j}^{\text{new}} = Y_{i,j} + (\nu \nabla^2 Y_{i,j} + X_{i,j} Y_{i,j}^2 - (k + f) Y_{i,j})
+                    \Delta t
+                    \end{cases}
+                    \end{equation}
+
+                    dove
+                </p>
+                <ul>
+                    <li>
+                        $i, \, j \,$ sono le coordinate della cellula;
+                    </li>
+                    <li>
+                        $\nabla \,$ indica un prodotto di convoluzione bidimensionale, con pesi $\, - 1 \,$ per la
+                        cellula $\, (i, j) \,$, $\, \frac{1}{2} \,$ per quelle lateralmente adiacenti, $\, \frac{1}{4}
+                        \,$ per quelle diagonalmente adiacenti;
+                    </li>
+                    <li>
+                        $f \,$ è il cosiddetto fattore <i>feed</i>;
+                    </li>
+                    <li>
+                        $k \,$ è il fattore <i>kill</i>.
+                    </li>
+                </ul>
+                <p>
+                    Fonte: <a href="http://karlsims.com/rd.html">karlsims.com/rd.html</a>
+                </p>
+            </div>
+            <div class="slide">
                 <div class="plot-container" id="plot-17" style="margin-top: 15px;">
                     <div class="canvas-container">
                         <canvas class="tissue-plot" id="canvas-17" tabindex="17"></canvas>
@@ -1202,51 +1318,14 @@
                 <p></p>
             </div>
 
-            <div class="slide">
-                <div class="plot-container" id="plot-20" style="margin-top: 15px;">
-                    <canvas class="ring-plot" id="canvas-20" tabindex="20" style="height: 150px;"></canvas>
-                    <div id="loader-20" class="plot loader"></div>
-                    <div class="plot-controls">
-                        <div>
-                            <span class="material-icons button" id="play-pause-20">
-                                play_arrow
-                            </span>
-                            <span class="material-icons button" id="skip-20">
-                                skip_next
-                            </span>
-                            <span style="margin-right: 10px;"></span>
-                            <span class="material-icons button" id="refresh-20">
-                                refresh
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <p>
-
-            </p>
-            <div class="slide">
-                <div class="plot-container" id="plot-21" style="margin-top: 15px;">
-                    <canvas class="ring-plot" id="canvas-21" tabindex="21" style="height: 150px;"></canvas>
-                    <div id="loader-21" class="plot loader"></div>
-                    <div class="plot-controls">
-                        <div>
-                            <span class="material-icons button" id="play-pause-21">
-                                play_arrow
-                            </span>
-                            <span class="material-icons button" id="skip-21">
-                                skip_next
-                            </span>
-                            <span style="margin-right: 10px;"></span>
-                            <span class="material-icons button" id="refresh-21">
-                                refresh
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div style="height: 300px;"></div>
+
+            <div>
+                <p style="font-family: 'Roboto-Mono', monospace; font-weight: 600; font-size: 10pt;">
+                    Software liberamente distribuito con licenza MIT. Source code: <a
+                        href="https://github.com/Bradwave/turingpattern">github.com/Bradwave/turingpattern</a>
+                </p>
+            </div>
 
         </main>
 

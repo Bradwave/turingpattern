@@ -224,6 +224,12 @@ mark {
     background-color: #00000020;
 }
 
+/* -- Links -- */
+
+a {
+    color: var(--accent);
+}
+
 /* -- 2.2 Formulas -- */
 
 div.formula-container {
